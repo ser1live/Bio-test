@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #020208;
+    background-color: #000000;
     color: white;
     display: flex;
     justify-content: center;
@@ -17,7 +17,7 @@ body {
     position: relative;
 }
 
-/* 🎥 VİDEO ARKA PLAN AYARLARI */
+/* 🎥 KENDİ YÜKLEDİĞİN ARKA PLAN VİDEOSU AYARLARI */
 #bg-video {
     position: fixed;
     right: 0;
@@ -28,16 +28,18 @@ body {
     height: auto;
     z-index: -2;
     object-fit: cover;
+    /* Kendi videon dikey veya ortalı formatta ise tam merkezde dursun diye ortaladık */
+    object-position: center center; 
 }
 
-/* 🎭 VİDEO ÜZERİNDEKİ SİYAH SİNEMATİK PERDE */
+/* 🎭 SİNEMATİK KARARTMA PERDESİ */
 .video-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(2, 2, 8, 0.6); /* Videoyu %60 karartarak yazıları öne çıkarır */
+    background: rgba(0, 0, 0, 0.55); /* Videoyu %55 karartarak yazıları öne çıkartır */
     z-index: -1;
 }
 
@@ -52,7 +54,7 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translate3d(0, 25px, 0); }
+    from { opacity: 0; transform: translate3d(0, 20px, 0); }
     to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
@@ -64,7 +66,7 @@ body {
     margin: 0 auto 16px;
     display: block;
     object-fit: cover;
-    border: 3px solid rgba(0, 242, 254, 0.35);
+    border: 2px solid rgba(0, 242, 254, 0.4);
     box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
@@ -80,7 +82,7 @@ h1 {
     font-weight: 600;
     color: #00f2fe;
     letter-spacing: 1.5px;
-    text-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
 .title-tag {
@@ -90,17 +92,19 @@ h1 {
     opacity: 0.9;
     margin-bottom: 10px;
     letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 #bioText {
     font-size: 0.85em;
     margin-bottom: 24px;
     min-height: 20px;
-    color: #b0b0b5;
+    color: #e0e0e5;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 .cursor {
@@ -113,16 +117,16 @@ h1 {
     50% { opacity: 0; }
 }
 
-/* 📱 Premium Cam Kart */
+/* 📱 SİTENE PREMİUM HAVA KATAN BUZLU CAM KART (O GRİLİK GİTTİ) */
 .links-card {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    background: rgba(255, 255, 255, 0.06); /* İçeriyi tamamen transparan yaptık */
+    backdrop-filter: blur(20px); /* Arkayı efsane buzlu cam gibi bulanıklaştırır */
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 24px;
-    padding: 20px 16px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 
-                inset 0 1px 1px rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 24px 16px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* İnce asil parlayan çerçeve */
     width: 100%;
 }
 
@@ -138,17 +142,16 @@ h1 {
     align-items: center;
     justify-content: flex-start;
     padding: 14px 20px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     border-radius: 14px;
     font-weight: 500;
     font-size: 0.95rem;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .social-links i {
@@ -158,33 +161,34 @@ h1 {
     transition: transform 0.3s ease;
 }
 
+/* Buton Hover Efektleri */
 .social-links a.instagram:hover {
     color: #fccc63;
     border-color: rgba(225, 48, 108, 0.4);
-    background: linear-gradient(135deg, rgba(225, 48, 108, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
-    box-shadow: 0 12px 30px rgba(225, 48, 108, 0.2);
+    background: rgba(225, 48, 108, 0.15);
+    box-shadow: 0 10px 25px rgba(225, 48, 108, 0.25);
 }
 
 .social-links a.tiktok:hover {
     color: #00f2fe;
     border-color: rgba(254, 44, 85, 0.4);
-    background: linear-gradient(135deg, rgba(254, 44, 85, 0.08) 0%, rgba(0, 242, 254, 0.03) 100%);
-    box-shadow: 0 12px 30px rgba(254, 44, 85, 0.2);
+    background: rgba(254, 44, 85, 0.15);
+    box-shadow: 0 10px 25px rgba(254, 44, 85, 0.25);
 }
 
 .social-links a.telegram:hover {
     color: #2ea6da;
     border-color: rgba(46, 166, 218, 0.4);
-    background: linear-gradient(135deg, rgba(46, 166, 218, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
-    box-shadow: 0 12px 30px rgba(46, 166, 218, 0.2);
+    background: rgba(46, 166, 218, 0.15);
+    box-shadow: 0 10px 25px rgba(46, 166, 218, 0.25);
 }
 
 .social-links a:hover {
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-2px) scale(1.01);
 }
 
 .social-links a:hover i {
-    transform: scale(1.12);
+    transform: scale(1.1);
 }
 
 .pulse-btn {
@@ -192,8 +196,8 @@ h1 {
 }
 
 @keyframes buttonPulse {
-    0% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.25); }
-    70% { box-shadow: 0 0 0 12px rgba(0, 242, 254, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.2); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 242, 254, 0); }
     100% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
 }
 
