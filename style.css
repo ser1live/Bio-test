@@ -120,80 +120,87 @@ h1 {
     50% { opacity: 0; }
 }
 
-/* 📱 BUZLU CAM KART AYARI */
+/* 📱 PREMİUM CAM KART (İÇİNDEKİ BUTONLARIN REHBERİ) */
 .links-card {
-    background: rgba(255, 255, 255, 0.03); 
-    backdrop-filter: blur(20px); 
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.02); 
+    backdrop-filter: blur(25px); 
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 30px; /* Kartın köşelerini de butonlara uyumlu biraz daha yuvarlattık */
     padding: 24px 16px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 
-                inset 0 1px 1px rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.08); 
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05); 
     width: 100%;
 }
 
 .social-links {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px; /* Butonların arasındaki boşluğu biraz açtık ki o ovallik kalitesini göstersin */
     width: 100%;
 }
 
+/* 🎯 İSTEDİĞİN ÖZEL OVAL VE PARLAK ÇERÇEVELİ BUTON TASARIMI */
 .social-links a {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 14px 20px;
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    padding: 14px 24px;
+    
+    /* İçi görseldeki gibi koyu, hafif parlak ve degradeli siyah tonu */
+    background: linear-gradient(135deg, rgba(20, 20, 25, 0.85) 0%, rgba(10, 10, 12, 0.95) 100%);
+    
+    /* Tam istediğin gibi kapsül şeklinde oval köşeler */
+    border-radius: 50px; 
+    
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    border-radius: 14px;
     font-weight: 500;
     font-size: 0.95rem;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    /* 🥈 GÖRSELDEKİ O İNCE METALİK GÜMÜŞ ÇERÇEVE EFFECT'İ */
+    border: 1px solid rgba(255, 255, 255, 0.45); 
+    
+    /* Butonun altına hafif asil bir derinlik gölgesi */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 
+                inset 0 1px 2px rgba(255, 255, 255, 0.15);
 }
 
+/* Butonun içindeki ikonlar */
 .social-links i {
-    font-size: 1.3em;
+    font-size: 1.2em;
     width: 28px;
     text-align: left;
+    transition: transform 0.3s ease;
 }
 
-/* Buton Hover Renkleri */
-.social-links a.instagram:hover {
-    color: #fccc63;
-    border-color: rgba(225, 48, 108, 0.4);
-    background: rgba(225, 48, 108, 0.15);
-}
-
-.social-links a.tiktok:hover {
-    color: #00f2fe;
-    border-color: rgba(254, 44, 85, 0.4);
-    background: rgba(254, 44, 85, 0.15);
-}
-
-.social-links a.telegram:hover {
-    color: #2ea6da;
-    border-color: rgba(46, 166, 218, 0.4);
-    background: rgba(46, 166, 218, 0.15);
-}
-
+/* 🔥 HOVER (ÜZERİNE GELİNCE) EFSANE PARLAMA VE METALE BÜRÜNME EFEKTİ */
 .social-links a:hover {
     transform: translateY(-2px);
+    /* Üzerine gelince o gümüş çerçeve ve içindeki siyah asalet daha çok parlar */
+    border-color: rgba(255, 255, 255, 0.85);
+    background: linear-gradient(135deg, rgba(30, 30, 38, 0.95) 0%, rgba(15, 15, 20, 1) 100%);
+    box-shadow: 0 12px 25px rgba(0, 242, 254, 0.15), /* Hafif arkadaki neon renkle uyum */
+                inset 0 1px 3px rgba(255, 255, 255, 0.3);
+    color: #ffffff;
 }
 
+/* İkonların hover hareketi */
+.social-links a:hover i {
+    transform: scale(1.1);
+}
+
+/* Instagram butonunun üzerindeki o özel parlama dalgası */
 .pulse-btn {
-    animation: buttonPulse 2s infinite;
+    animation: gentleGlow 2.5s infinite;
 }
 
-@keyframes buttonPulse {
-    0% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.2); }
-    70% { box-shadow: 0 0 0 10px rgba(0, 242, 254, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+@keyframes gentleGlow {
+    0% { border-color: rgba(255, 255, 255, 0.45); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); }
+    50% { border-color: rgba(255, 255, 255, 0.75); box-shadow: 0 8px 25px rgba(0, 242, 254, 0.1); }
+    100% { border-color: rgba(255, 255, 255, 0.45); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); }
 }
 
 @media (max-width: 480px) {
