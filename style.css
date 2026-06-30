@@ -7,8 +7,6 @@
 html, body {
     width: 100%;
     height: 100%;
-    margin: 0;
-    padding: 0;
     overflow-x: hidden;
 }
 
@@ -20,12 +18,11 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    min-height: -webkit-fill-available; /* Mobil tarayıcı barları için tam ekran fix */
+    min-height: -webkit-fill-available;
     text-align: center;
     position: relative;
 }
 
-/* 🎥 VİDEONUN TELEFONDA TAM EKRAN KAPLAMASI İÇİN */
 #bg-video {
     position: fixed;
     top: 0;
@@ -34,11 +31,10 @@ body {
     height: 100vh;
     height: -webkit-fill-available;
     z-index: -2;
-    object-fit: cover; /* Videoyu ekrana esnetmeden tam sığdırır */
-    object-position: center center; /* Dikey videonun tam merkezini odaklar */
+    object-fit: cover;
+    object-position: center center;
 }
 
-/* 🎭 SİNEMATİK KARARTMA PERDESİ */
 .video-overlay {
     position: fixed;
     top: 0;
@@ -46,18 +42,16 @@ body {
     width: 100vw;
     height: 100vh;
     height: -webkit-fill-available;
-    background: rgba(0, 0, 0, 0.45); /* Kara deliğin parlamasını bozmamak için karartmayı %45'e çektim */
+    background: rgba(0, 0, 0, 0.45);
     z-index: -1;
 }
 
-/* ✨ ANA KONTEYNER */
 .container {
-    max-width: 340px;
-    width: 88%;
+    width: 100%;
+    max-width: 400px; /* Slider'ın taşması ve yan kartların görünmesi için alanı biraz genişlettik */
     animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     position: relative;
     z-index: 1;
-    will-change: transform, opacity;
     padding: 20px 0;
 }
 
@@ -66,48 +60,40 @@ body {
     to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
-/* Profil Resmi */
 .profile-img {
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    margin: 0 auto 16px;
+    margin: 0 auto 12px;
     display: block;
     object-fit: cover;
     border: 2px solid rgba(0, 242, 254, 0.4);
-    box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
 }
 
 h1 {
-    font-size: 1.6em;
-    margin-bottom: 4px;
+    font-size: 1.5em;
+    margin-bottom: 2px;
     font-weight: 600;
     color: #00f2fe;
     letter-spacing: 1.5px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
 .title-tag {
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: #ffffff;
-    opacity: 0.9;
-    margin-bottom: 10px;
-    letter-spacing: 0.5px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 6px;
 }
 
 #bioText {
-    font-size: 0.85em;
-    margin-bottom: 24px;
+    font-size: 0.8em;
+    margin-bottom: 20px;
     min-height: 20px;
     color: #e0e0e5;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .cursor {
@@ -115,96 +101,76 @@ h1 {
     animation: blink 0.7s infinite;
 }
 
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* 📱 PREMİUM CAM KART (İÇİNDEKİ BUTONLARIN REHBERİ) */
-.links-card {
-    background: rgba(255, 255, 255, 0.02); 
-    backdrop-filter: blur(25px); 
-    -webkit-backdrop-filter: blur(25px);
-    border-radius: 30px; /* Kartın köşelerini de butonlara uyumlu biraz daha yuvarlattık */
-    padding: 24px 16px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.05); 
+/* 🎡 SWIPER SLIDER ALANI */
+.swiper {
     width: 100%;
+    padding-top: 15px;
+    padding-bottom: 35px;
 }
 
-.social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 16px; /* Butonların arasındaki boşluğu biraz açtık ki o ovallik kalitesini göstersin */
+/* 🎯 TAM İSTEDİĞİN 3D PARLAK REKLAM KARTLARI */
+.card-item {
+    background: linear-gradient(135deg, rgba(25, 25, 30, 0.9) 0%, rgba(12, 12, 15, 0.98) 100%);
+    width: 190px; /* Kartların dikey durması için genişlik */
+    height: 250px; /* Kartların yüksekliği */
+    border-radius: 24px;
+    
+    /* 🥈 İstediğin o asil ince gümüş çerçeve efekti */
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6),
+                inset 0 1px 2px rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.card-item a {
+    text-decoration: none;
+    color: white;
     width: 100%;
-}
-
-/* 🎯 İSTEDİĞİN ÖZEL OVAL VE PARLAK ÇERÇEVELİ BUTON TASARIMI */
-.social-links a {
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 14px 24px;
-    
-    /* İçi görseldeki gibi koyu, hafif parlak ve degradeli siyah tonu */
-    background: linear-gradient(135deg, rgba(20, 20, 25, 0.85) 0%, rgba(10, 10, 12, 0.95) 100%);
-    
-    /* Tam istediğin gibi kapsül şeklinde oval köşeler */
-    border-radius: 50px; 
-    
+    justify-content: center;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Kartların içindeki dev logolar */
+.brand-icon {
+    font-size: 3.2em;
+    margin-bottom: 15px;
     color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95rem;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    
-    /* 🥈 GÖRSELDEKİ O İNCE METALİK GÜMÜŞ ÇERÇEVE EFFECT'İ */
-    border: 1px solid rgba(255, 255, 255, 0.45); 
-    
-    /* Butonun altına hafif asil bir derinlik gölgesi */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 
-                inset 0 1px 2px rgba(255, 255, 255, 0.15);
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* Butonun içindeki ikonlar */
-.social-links i {
-    font-size: 1.2em;
-    width: 28px;
-    text-align: left;
-    transition: transform 0.3s ease;
+.card-content h3 {
+    font-size: 1.15em;
+    font-weight: 600;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
 }
 
-/* 🔥 HOVER (ÜZERİNE GELİNCE) EFSANE PARLAMA VE METALE BÜRÜNME EFEKTİ */
-.social-links a:hover {
-    transform: translateY(-2px);
-    /* Üzerine gelince o gümüş çerçeve ve içindeki siyah asalet daha çok parlar */
+.card-content p {
+    font-size: 0.75em;
+    color: #8a8a93;
+}
+
+/* Ortada duran aktif kartın çerçevesi daha çok parlasın */
+.swiper-slide-active {
     border-color: rgba(255, 255, 255, 0.85);
-    background: linear-gradient(135deg, rgba(30, 30, 38, 0.95) 0%, rgba(15, 15, 20, 1) 100%);
-    box-shadow: 0 12px 25px rgba(0, 242, 254, 0.15), /* Hafif arkadaki neon renkle uyum */
-                inset 0 1px 3px rgba(255, 255, 255, 0.3);
-    color: #ffffff;
+    box-shadow: 0 20px 40px rgba(0, 242, 254, 0.15);
 }
 
-/* İkonların hover hareketi */
-.social-links a:hover i {
-    transform: scale(1.1);
-}
-
-/* Instagram butonunun üzerindeki o özel parlama dalgası */
-.pulse-btn {
-    animation: gentleGlow 2.5s infinite;
-}
-
-@keyframes gentleGlow {
-    0% { border-color: rgba(255, 255, 255, 0.45); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); }
-    50% { border-color: rgba(255, 255, 255, 0.75); box-shadow: 0 8px 25px rgba(0, 242, 254, 0.1); }
-    100% { border-color: rgba(255, 255, 255, 0.45); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); }
-}
-
-@media (max-width: 480px) {
-    .container { max-width: 310px; }
-    h1 { font-size: 1.4em; }
-    .title-tag { font-size: 0.9rem; }
+/* Alt kısımdaki noktaların rengi */
+.swiper-pagination-bullet-active {
+    background: #00f2fe !important;
 }
