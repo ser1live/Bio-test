@@ -49,10 +49,15 @@ body {
 .container {
     width: 100%;
     max-width: 360px;
+    height: 82vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center;
     animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     position: relative;
     z-index: 1;
-    padding: 10px 0;
+    padding: 20px 0;
 }
 
 @keyframes fadeIn {
@@ -60,11 +65,16 @@ body {
     to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
+.profile-section {
+    width: 100%;
+    margin-top: -15px; 
+}
+
 .profile-img {
-    width: 90px;
-    height: 90px;
+    width: 95px;
+    height: 95px;
     border-radius: 50%;
-    margin: 0 auto 10px;
+    margin: 0 auto 12px;
     display: block;
     object-fit: cover;
     border: 2px solid rgba(0, 242, 254, 0.4);
@@ -72,7 +82,7 @@ body {
 }
 
 h1 {
-    font-size: 1.35em;
+    font-size: 1.4em;
     margin-bottom: 2px;
     font-weight: 600;
     color: #00f2fe;
@@ -82,18 +92,45 @@ h1 {
 .title-tag {
     font-size: 0.85rem;
     opacity: 0.8;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+}
+
+/* ⚡ TİPUTANİ / CYBERPUNK LOGO TASARIM CSS AYARLARI ⚡ */
+.cyber-font-container {
+    width: 100%;
+    margin: 8px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.cyber-svg {
+    width: 100%;
+    max-width: 290px;
+    height: auto;
+}
+
+.cyber-text {
+    font-family: 'Impact', 'Arial Black', sans-serif; /* Keskin köşeli küt font tabanı */
+    font-weight: 900;
+    font-size: 19px;
+    fill: #ffffff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-style: italic; /* Tiputani gibi hafif yatay agresif duruş */
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 
+                 0 0 10px rgba(0, 242, 254, 0.6), 
+                 0 0 20px rgba(0, 242, 254, 0.4); /* Şık Siber Parlama */
 }
 
 #bioText {
     font-size: 0.75em;
-    margin-bottom: 25px; /* Slider ile arayı biraz açtık */
     min-height: 20px;
     color: #e0e0e5;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
+    margin-top: 10px;
 }
 
 .cursor {
@@ -107,15 +144,15 @@ h1 {
 .swiper {
     width: 100%;
     padding-top: 5px;
-    padding-bottom: 35px;
+    padding-bottom: 30px;
+    margin-bottom: -10px; 
 }
 
-/* 🎯 YENİ MİNİMALİST KARE KART YAPISI */
 .card-item {
     background: linear-gradient(135deg, rgba(30, 30, 35, 0.85) 0%, rgba(15, 15, 18, 0.95) 100%);
-    width: 105px;  /* Tamamen küçültülmüş kare genişlik */
-    height: 105px; /* Tamamen küçültülmüş kare yükseklik */
-    border-radius: 22px; /* Yumuşak modern köşeler */
+    width: 105px;  
+    height: 105px; 
+    border-radius: 22px; 
     border: 1px solid rgba(255, 255, 255, 0.2); 
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     overflow: hidden; 
@@ -137,23 +174,19 @@ h1 {
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 0; /* Boşlukları sıfırladık resim tam otursun */
 }
 
-/* 🖼️ SADECE LOGONUN KENDİSİ */
 .card-brand-img {
-    width: 100%; /* Kartın içini tamamen doldursun */
+    width: 100%; 
     height: 100%;
     object-fit: cover; 
     object-position: center; 
-    transition: transform 0.3s ease;
 }
 
-/* Aktif (ortadaki odaklanmış) kare kartın parlaması */
 .swiper-slide-active {
-    border-color: rgba(0, 242, 254, 0.6); /* Aktif kartta neon mavi çizgi */
+    border-color: rgba(0, 242, 254, 0.6); 
     box-shadow: 0 12px 25px rgba(0, 242, 254, 0.3);
-    transform: scale(1.1); /* Ortadaki logo hafif öne çıksın */
+    transform: scale(1.1); 
 }
 
 .swiper-pagination-bullet-active {
