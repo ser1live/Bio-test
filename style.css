@@ -48,11 +48,11 @@ body {
 
 .container {
     width: 100%;
-    max-width: 400px; /* Slider'ın taşması ve yan kartların görünmesi için alanı biraz genişlettik */
+    max-width: 360px;
     animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     position: relative;
     z-index: 1;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 @keyframes fadeIn {
@@ -61,10 +61,10 @@ body {
 }
 
 .profile-img {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    margin: 0 auto 12px;
+    margin: 0 auto 10px;
     display: block;
     object-fit: cover;
     border: 2px solid rgba(0, 242, 254, 0.4);
@@ -72,7 +72,7 @@ body {
 }
 
 h1 {
-    font-size: 1.5em;
+    font-size: 1.35em;
     margin-bottom: 2px;
     font-weight: 600;
     color: #00f2fe;
@@ -80,14 +80,14 @@ h1 {
 }
 
 .title-tag {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     opacity: 0.8;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 #bioText {
-    font-size: 0.8em;
-    margin-bottom: 20px;
+    font-size: 0.75em;
+    margin-bottom: 10px;
     min-height: 20px;
     color: #e0e0e5;
     display: flex;
@@ -106,24 +106,21 @@ h1 {
 /* 🎡 SWIPER SLIDER ALANI */
 .swiper {
     width: 100%;
-    padding-top: 15px;
-    padding-bottom: 35px;
+    padding-top: 10px;
+    padding-bottom: 30px;
 }
 
-/* 🎯 TAM İSTEDİĞİN 3D PARLAK REKLAM KARTLARI */
+/* 🎯 KİBAR VE OTOMATİK KIRPMALI KART YAPISI */
 .card-item {
-    background: linear-gradient(135deg, rgba(25, 25, 30, 0.9) 0%, rgba(12, 12, 15, 0.98) 100%);
-    width: 190px; /* Kartların dikey durması için genişlik */
-    height: 250px; /* Kartların yüksekliği */
-    border-radius: 24px;
-    
-    /* 🥈 İstediğin o asil ince gümüş çerçeve efekti */
-    border: 1px solid rgba(255, 255, 255, 0.4); 
-    
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6),
-                inset 0 1px 2px rgba(255, 255, 255, 0.15);
-    overflow: hidden;
-    transition: border-color 0.3s ease;
+    background: linear-gradient(135deg, rgba(25, 25, 30, 0.95) 0%, rgba(12, 12, 15, 1) 100%);
+    width: 145px; 
+    height: 195px; 
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.35); 
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6),
+                inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    overflow: hidden; 
+    transition: all 0.3s ease;
 }
 
 .card-item a {
@@ -141,36 +138,41 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
 }
 
-/* Kartların içindeki dev logolar */
-.brand-icon {
-    font-size: 3.2em;
-    margin-bottom: 15px;
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+/* 🖼️ 3D LOGOLARIN KUSURSUZ HİZALANMASI VE KIRPILMASI */
+.card-brand-img {
+    width: 65px; 
+    height: 65px;
+    object-fit: cover; /* Resmi ezmeden alana sığdırır */
+    object-position: center; /* Tam merkezini odaklar */
+    border-radius: 14px; 
+    margin-bottom: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
 .card-content h3 {
-    font-size: 1.15em;
+    font-size: 0.95rem;
     font-weight: 600;
-    margin-bottom: 5px;
-    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+    color: #ffffff;
 }
 
 .card-content p {
-    font-size: 0.75em;
+    font-size: 0.68rem;
     color: #8a8a93;
 }
 
-/* Ortada duran aktif kartın çerçevesi daha çok parlasın */
+/* Aktif (ortadaki) kart efekti */
 .swiper-slide-active {
     border-color: rgba(255, 255, 255, 0.85);
-    box-shadow: 0 20px 40px rgba(0, 242, 254, 0.15);
+    box-shadow: 0 15px 30px rgba(0, 242, 254, 0.15);
+    transform: scale(1.03);
 }
 
-/* Alt kısımdaki noktaların rengi */
 .swiper-pagination-bullet-active {
     background: #00f2fe !important;
 }
