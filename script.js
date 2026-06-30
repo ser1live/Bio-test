@@ -1,4 +1,23 @@
-// --- DAKTİLO EFEKTİ SCRIPT'İ ---
+// --- 📦 SWIPER 3D COVERFLOW MOTORU AYARLARI ---
+var swiper = new Swiper(".mySwiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+        rotate: 25,     // Kartların yana doğru dönme açısı (Görseldeki gibi)
+        stretch: -10,   // Kartların birbirinin üzerine binme payı
+        depth: 130,     // Arkadaki kartların derinlik/uzaklık hissi
+        modifier: 1,
+        slideShadows: false, // Kartların üzerine yapay siyah gölge düşmesin
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+});
+
+// --- 🎭 DAKTİLO EFEKTİ SCRIPT'İ ---
 const dynamicText = document.getElementById('dynamicText');
 const words = [
     "Web Developer 🌐", 
