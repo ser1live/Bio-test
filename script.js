@@ -5,11 +5,11 @@ var swiper = new Swiper(".mySwiper", {
     centeredSlides: true,
     slidesPerView: "auto",
     coverflowEffect: {
-        rotate: 25,     // Kartların yana doğru dönme açısı
-        stretch: -10,   // Kartların birbirinin üzerine binme payı
-        depth: 130,     // Arkadaki kartların derinlik hissi
+        rotate: 15,     // Kare kartlar için daha kibar dönme açısı
+        stretch: 15,    // Kartların birbirine yaklaşma mesafesi
+        depth: 100,     // Derinlik hissi
         modifier: 1,
-        slideShadows: false, // Üzerlerine yapay gölge düşmesin
+        slideShadows: false, 
     },
     pagination: {
         el: ".swiper-pagination",
