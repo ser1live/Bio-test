@@ -5,9 +5,9 @@ var swiper = new Swiper(".mySwiper", {
     centeredSlides: true,
     slidesPerView: "auto",
     coverflowEffect: {
-        rotate: 15,     // Kare kartlar için daha kibar dönme açısı
-        stretch: 15,    // Kartların birbirine yaklaşma mesafesi
-        depth: 100,     // Derinlik hissi
+        rotate: 12,     
+        stretch: 15,    
+        depth: 100,     
         modifier: 1,
         slideShadows: false, 
     },
@@ -20,10 +20,10 @@ var swiper = new Swiper(".mySwiper", {
 // --- 🎭 DAKTİLO EFEKTİ SCRIPT'İ ---
 const dynamicText = document.getElementById('dynamicText');
 const words = [
-    "Web Developer 🌐", 
-    "Turning ideas into reality 💡", 
-    "Focusing on clean code ✨", 
-    "Always adapting, always learning 🚀"
+    "Error: 404 Sleep Not Found ☕", 
+    "Turning coffee into clean code 🚀", 
+    "Building digital universes 🌌", 
+    "Code. Design. Deploy. Repeat. ✨"
 ];
 let wordIndex = 0;
 let charIndex = 0;
