@@ -1,62 +1,66 @@
-// --- 📦 SWIPER 3D COVERFLOW MOTORU AYARLARI ---
-var swiper = new Swiper(".mySwiper", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: "auto",
-    coverflowEffect: {
-        rotate: 12,     
-        stretch: 15,    
-        depth: 100,     
-        modifier: 1,
-        slideShadows: false, 
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-});
+document.addEventListener('DOMContentLoaded', () => {
 
-// --- 🎭 DAKTİLO EFEKTİ SCRIPT'İ ---
-const dynamicText = document.getElementById('dynamicText');
-const words = [
-    "Error: 404 Sleep Not Found ☕", 
-    "Turning coffee into clean code 🚀", 
-    "Building digital universes 🌌", 
-    "Code. Design. Deploy. Repeat. ✨"
-];
-let wordIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+    // 1. SWIPER SLIDER KURULUMU
+    const swiper = new Swiper('.mySwiper', {
+        slidesPerView: 2.2,
+        spaceBetween: 20,
+        centeredSlides: true,
+        loop: true,
+        grabCursor: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            320: {
+                slidesPerView: 2.1,
+                spaceBetween: 15
+            },
+            480: {
+                slidesPerView: 2.5,
+                spaceBetween: 20
+            }
+        }
+    });
 
-function typeEffect() {
-    const currentWord = words[wordIndex];
+    // 2. DİNAMİK YAZI (TYPEWRITER EFEKTİ)
+    const dynamicText = document.getElementById('dynamicText');
+    const phrases = [
+        "Error: 404 Sleep Not Found ☕",
+        "Building Future Web Experiences... 🚀",
+        "Liquid Glass UI Enthusiast 💎"
+    ];
     
-    if (isDeleting) {
-        dynamicText.textContent = currentWord.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        dynamicText.textContent = currentWord.substring(0, charIndex + 1);
-    }
-    
-    if (!isDeleting) {
-        charIndex++;
-    }
-    
-    let typeSpeed = isDeleting ? 30 : 60;
-    
-    if (!isDeleting && charIndex === currentWord.length) {
-        typeSpeed = 2000;
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        typeSpeed = 400; 
-    }
-    
-    setTimeout(typeEffect, typeSpeed);
-}
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
 
-window.addEventListener('load', () => {
-    setTimeout(typeEffect, 600);
+    function typeEffect() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isDeleting) {
+            dynamicText.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            dynamicText.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        let typeSpeed = isDeleting ? 40 : 80;
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            typeSpeed = 2000; // Cümle bittiğinde bekleme süresi
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typeSpeed = 500;
+        }
+
+        setTimeout(typeEffect, typeSpeed);
+    }
+
+    if (dynamicText) {
+        typeEffect();
+    }
 });
