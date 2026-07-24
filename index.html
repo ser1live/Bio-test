@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SERDAR | Solo Developer | Advanced Liquid Glass</title>
+    <title>SERDAR | Futuristic Glass UI</title>
     
-    <!-- Gelişmiş Fontlar & İkonlar -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Modern Fontlar & İkonlar -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Swiper CSS -->
@@ -19,103 +19,61 @@
         * {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
-        h1, .tagline {
+        h1, h2, h3, .heading-font {
             font-family: 'Space Grotesk', sans-serif;
         }
-        
-        /* Advanced Liquid Glass (Aero) Efektleri */
-        .aero-glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(40px) saturate(220%);
-            -webkit-backdrop-filter: blur(40px) saturate(220%);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-bottom-color: rgba(255, 255, 255, 0.08);
-            border-right-color: rgba(255, 255, 255, 0.08);
-            box-shadow: 
-                0 30px 70px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                inset 1px 0 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
 
-        /* Cam Üzerindeki Işık Yansımaları (Specular Lines) */
-        .aero-glass::before {
-            content: "";
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: linear-gradient(
-                135deg, 
-                rgba(255,255,255,0) 45%, 
-                rgba(255,255,255,0.05) 50%, 
-                rgba(255,255,255,0) 55%
-            );
-            transform: rotate(-45deg);
-            pointer-events: none;
-            opacity: 0.6;
-        }
-
-        .aero-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-bottom-color: rgba(255, 255, 255, 0.04);
-            border-right-color: rgba(255, 255, 255, 0.04);
-            box-shadow: 
-                0 15px 40px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .aero-card:hover {
-            transform: translateY(-8px) scale(1.03) rotate(-1deg);
+        /* Görseldeki Ultra Yumuşak Cam Efektleri */
+        .master-glass-frame {
             background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(50px) saturate(200%);
+            -webkit-backdrop-filter: blur(50px) saturate(200%);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
             box-shadow: 
-                0 25px 60px rgba(0, 0, 0, 0.5),
-                inset 0 1px 1px rgba(255, 255, 255, 0.5),
-                0 0 30px rgba(255, 255, 255, 0.2);
+                0 30px 100px rgba(0, 0, 0, 0.5),
+                inset 0 1px 2px rgba(255, 255, 255, 0.5);
         }
 
-        /* Daha Organik ve Dinamik Arka Plan Küreleri */
-        .ambient-blob-organic {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.4;
-            animation: float-organic 15s infinite alternate ease-in-out;
-            pointer-events: none;
+        .white-glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        @keyframes float-organic {
-            0% { transform: translate(0, 0) scale(1); filter: blur(100px); }
-            33% { transform: translate(50px, -60px) scale(1.15); filter: blur(120px); }
-            66% { transform: translate(-40px, 30px) scale(0.9); filter: blur(90px); }
-            100% { transform: translate(10px, -10px) scale(1.05); filter: blur(100px); }
+        .dark-glass-card {
+            background: rgba(18, 22, 38, 0.55);
+            backdrop-filter: blur(35px) saturate(180%);
+            -webkit-backdrop-filter: blur(35px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
         }
 
-        /* Parçacık Efekti için Arka Plan */
-        .particles {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1;
+        .pill-button {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            pointer-events: none;
+        .pill-button:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-dock {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
         /* İmleç Yanıp Sönme */
         .cursor {
             display: inline-block;
-            width: 3px;
+            width: 2px;
             height: 1.1em;
-            background-color: #38bdf8;
+            background-color: #0284c7;
             animation: blink 1s infinite;
             margin-left: 2px;
             vertical-align: middle;
@@ -126,174 +84,231 @@
             50% { opacity: 0; }
         }
 
-        /* Swiper Özel Stil */
-        .swiper-pagination-bullet {
-            background: rgba(255, 255, 255, 0.3) !important;
-            opacity: 1 !important;
-            transition: all 0.3s ease;
+        /* Custom Scrollbar Hide */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        .swiper-pagination-bullet-active {
-            background: #38bdf8 !important;
-            width: 25px !important;
-            border-radius: 10px !important;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
-        }
-        
-        /* Slogan Etiketi Geliştirme */
-        .cyber-badge {
-            font-family: 'Space Grotesk', sans-serif;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        .cyber-badge:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            color: white;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
-<body class="bg-slate-950 text-white min-h-screen flex items-center justify-center relative overflow-x-hidden p-4">
+<body class="bg-stone-300 text-slate-900 min-h-screen flex items-center justify-center p-3 sm:p-6 relative overflow-x-hidden">
 
-    <!-- Gelişmiş Arka Plan Katmanları -->
-    <video autoplay muted loop playsinline id="bg-video" class="fixed inset-0 w-full h-full object-cover z-0 opacity-30">
+    <!-- Görseldeki Gibi Arka Plan Sahnesi -->
+    <video autoplay muted loop playsinline id="bg-video" class="fixed inset-0 w-full h-full object-cover z-0 filter brightness-90 contrast-105 scale-105">
         <source src="bg.mp4" type="video/mp4">
     </video>
-    <div class="fixed inset-0 bg-slate-950/60 backdrop-blur-[4px] z-0"></div>
-    
-    <!-- Parçacık Arka Planı -->
-    <div class="particles">
-        <div class="particle" style="width: 2px; height: 2px; top: 10%; left: 15%; animation-delay: 1s;"></div>
-        <div class="particle" style="width: 3px; height: 3px; top: 30%; left: 80%; animation-delay: 2s;"></div>
-        <div class="particle" style="width: 2px; height: 2px; top: 60%; left: 40%; animation-delay: 0.5s;"></div>
-        <div class="particle" style="width: 4px; height: 4px; top: 85%; left: 20%; animation-delay: 1.5s;"></div>
-        <div class="particle" style="width: 3px; height: 3px; top: 70%; left: 90%; animation-delay: 2.5s;"></div>
-        <div class="particle" style="width: 2px; height: 2px; top: 20%; left: 50%; animation-delay: 3s;"></div>
-    </div>
-    
-    <!-- Organik Renk Küreleri -->
-    <div class="ambient-blob-organic w-72 h-72 bg-blue-600 top-10 left-10 z-0 opacity-50"></div>
-    <div class="ambient-blob-organic w-80 h-80 bg-purple-600 bottom-10 right-10 z-0 opacity-50" style="animation-delay: -5s;"></div>
-    <div class="ambient-blob-organic w-64 h-64 bg-cyan-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 opacity-40" style="animation-delay: -8s;"></div>
-    <div class="ambient-blob-organic w-56 h-56 bg-pink-500 top-[20%] left-[70%] z-0 opacity-30" style="animation-delay: -3s;"></div>
+    <div class="fixed inset-0 bg-black/20 backdrop-blur-[2px] z-0"></div>
 
-    <!-- Ana Aero Glass Kart Container -->
-    <main class="relative z-10 w-full max-w-md aero-glass rounded-3xl p-6 sm:p-10 flex flex-col items-center text-center my-10">
+    <!-- ANA FUTURISTIK UI PENCERESİ (Görseldeki Büyük Çerçeve) -->
+    <div class="relative z-10 w-full max-w-5xl master-glass-frame rounded-[36px] sm:rounded-[44px] p-4 sm:p-8 flex flex-col justify-between min-h-[680px] overflow-hidden my-auto">
         
-        <!-- Profil Bölümü Geliştirme -->
-        <div class="relative group mb-6">
-            <div class="absolute -inset-2 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 blur opacity-70 group-hover:opacity-100 group-hover:blur-xl transition-all duration-700"></div>
-            <img src="profile.jpg" alt="SERDAR" class="relative w-32 h-32 rounded-full object-cover border-4 border-white/60 shadow-3xl transform group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=400&fit=crop&crop=face';">
-        </div>
-
-        <!-- İsim ve Unvan - Daha Cesur -->
-        <h1 class="text-4xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400">
-            SERDAR
-        </h1>
-        
-        <div class="inline-block px-4 py-1.5 mt-2.5 text-xs font-bold tracking-widest text-cyan-200 uppercase rounded-full bg-cyan-500/10 border border-cyan-500/20 backdrop-blur-xl">
-            Solo Developer
-        </div>
-
-        <!-- Slogan - Gelişmiş Etiket -->
-        <div class="my-6 px-5 py-2.5 rounded-xl cyber-badge text-xs tracking-widest text-slate-300 font-medium">
-            CODE. DESIGN. DEPLOY. 🚀
-        </div>
-
-        <!-- Dinamik Yazı Alanı - Daha Büyük -->
-        <div class="h-10 flex items-center justify-center text-base font-semibold text-slate-200 mb-8 max-w-[90%]">
-            <span id="dynamicText"></span><span class="cursor">&nbsp;</span>
-        </div>
-
-        <!-- Gelişmiş Sosyal Bağlantı Kartları (Swiper Slider) -->
-        <div class="w-full">
-            <div class="swiper mySwiper py-4 px-1.5">
-                <div class="swiper-wrapper">
-                    
-                    <!-- Telegram -->
-                    <div class="swiper-slide px-1">
-                        <a href="https://t.me/ser1live" target="_blank" rel="noopener noreferrer" class="aero-card flex items-center gap-5 p-5 rounded-2xl group w-full">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-sky-400 via-sky-500 to-blue-600 flex items-center justify-center text-white text-2xl shadow-xl group-hover:scale-110 transition-transform duration-500">
-                                <i class="fa-brands fa-telegram"></i>
-                            </div>
-                            <div class="text-left flex-1">
-                                <p class="text-xs text-slate-400 font-semibold mb-0.5">Kanal & İletişim</p>
-                                <p class="text-base font-extrabold text-white group-hover:text-cyan-300 transition-colors">Telegram</p>
-                            </div>
-                            <i class="fa-solid fa-arrow-right-long text-slate-500 group-hover:text-white group-hover:translate-x-2 transition-all duration-500"></i>
-                        </a>
-                    </div>
-
-                    <!-- Instagram -->
-                    <div class="swiper-slide px-1">
-                        <a href="https://www.instagram.com/ser_dark_?igsh=MXhzeGY5eDJhMzFxNA==" target="_blank" rel="noopener noreferrer" class="aero-card flex items-center gap-5 p-5 rounded-2xl group w-full">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-400 via-rose-500 to-purple-600 flex items-center justify-center text-white text-2xl shadow-xl group-hover:scale-110 transition-transform duration-500">
-                                <i class="fa-brands fa-instagram"></i>
-                            </div>
-                            <div class="text-left flex-1">
-                                <p class="text-xs text-slate-400 font-semibold mb-0.5">Takip Et</p>
-                                <p class="text-base font-extrabold text-white group-hover:text-rose-300 transition-colors">Instagram</p>
-                            </div>
-                            <i class="fa-solid fa-arrow-right-long text-slate-500 group-hover:text-white group-hover:translate-x-2 transition-all duration-500"></i>
-                        </a>
-                    </div>
-
-                    <!-- TikTok -->
-                    <div class="swiper-slide px-1">
-                        <a href="https://www.tiktok.com/@serlive7?_t=ZS-90qic9PtnKp&_r=1" target="_blank" rel="noopener noreferrer" class="aero-card flex items-center gap-5 p-5 rounded-2xl group w-full">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-slate-900 via-neutral-800 to-slate-950 flex items-center justify-center text-white text-2xl shadow-xl group-hover:scale-110 transition-transform duration-500 border border-white/10">
-                                <i class="fa-brands fa-tiktok"></i>
-                            </div>
-                            <div class="text-left flex-1">
-                                <p class="text-xs text-slate-400 font-semibold mb-0.5">İçerikler</p>
-                                <p class="text-base font-extrabold text-white group-hover:text-pink-300 transition-colors">TikTok</p>
-                            </div>
-                            <i class="fa-solid fa-arrow-right-long text-slate-500 group-hover:text-white group-hover:translate-x-2 transition-all duration-500"></i>
-                        </a>
-                    </div>
-
+        <!-- ÜST BAR: Sol Logo + Sağ Arama/Menü ve Filtre Hapları -->
+        <header class="w-full flex flex-wrap items-center justify-between gap-3 z-20 mb-6 sm:mb-8">
+            
+            <!-- Sol Üst Rozetler -->
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+                <div class="pill-button px-4 py-2 rounded-full text-xs font-bold text-slate-800 flex items-center gap-2 shadow-sm whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Available for Projects
                 </div>
-                <!-- Pagination Noktaları Geliştirme -->
-                <div class="swiper-pagination !-bottom-3"></div>
+                <div class="pill-button px-4 py-2 rounded-full text-xs font-semibold text-slate-700 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-location-dot text-slate-500"></i> Turkey
+                </div>
+                <div class="pill-button px-4 py-2 rounded-full text-xs font-semibold text-slate-700 hidden md:flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-code text-slate-500"></i> Solo Developer
+                </div>
+            </div>
+
+            <!-- Sağ Üst Aksiyon Hapı -->
+            <a href="https://t.me/ser1live" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 shadow-lg hover:scale-105 ml-auto">
+                <span>Contact Me</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
+        </header>
+
+        <!-- ORTA ALAN: Sol Dikey Dock & Dev Headline Text -->
+        <div class="relative w-full flex-1 flex flex-col md:flex-row items-start gap-6 z-20 my-4">
+            
+            <!-- Sol Dikey İkon Dock'ı (Görseldeki Sol İkon Çubuğu) -->
+            <aside class="nav-dock rounded-full p-2 flex md:flex-col items-center gap-3 shadow-lg mx-auto md:mx-0">
+                <button class="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center text-sm shadow-md hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-house"></i>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-white/40 hover:bg-white text-slate-800 flex items-center justify-center text-sm transition-all hover:scale-110">
+                    <i class="fa-solid fa-layer-group"></i>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-white/40 hover:bg-white text-slate-800 flex items-center justify-center text-sm transition-all hover:scale-110">
+                    <i class="fa-solid fa-code"></i>
+                </button>
+                <div class="w-6 h-[1px] md:w-[1px] md:h-6 bg-white/40 my-1"></div>
+                <button class="w-10 h-10 rounded-full bg-white/40 hover:bg-white text-slate-800 flex items-center justify-center text-sm transition-all hover:scale-110">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+            </aside>
+
+            <!-- Dev Slogan Başlık (Görseldeki "New Way Of Living" Yazısı) -->
+            <div class="flex-1 text-center md:text-left pt-2 md:pt-4">
+                <p class="text-xs font-bold tracking-widest text-white/80 uppercase mb-2">Modern Web Architecture</p>
+                <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white drop-shadow-md leading-none">
+                    New Way Of <br class="hidden sm:inline"/>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">Developing</span>
+                </h1>
             </div>
         </div>
 
-        <!-- Footer Geliştirme -->
-        <footer class="mt-8 pt-5 border-t border-white/10 text-xs text-slate-500 w-full flex justify-between items-center font-medium">
-            <span>© SERDAR</span>
-            <span class="text-cyan-600 font-mono text-[10px] tracking-wide">v3.0 Aero Glass</span>
-        </footer>
+        <!-- ALT ALAN: Çapraz Üst Üste Binen Yüzen İki Kart (Görseldeki Alt Paneller) -->
+        <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-5 z-20 items-end mt-6">
+            
+            <!-- SOL ALT KART (Fotoğraftaki Beyaz Kıvrımlı Kart) -->
+            <div class="lg:col-span-5 white-glass-card rounded-[28px] p-5 sm:p-6 text-slate-900 flex flex-col justify-between shadow-2xl relative overflow-hidden group">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="relative">
+                        <img src="profile.jpg" alt="SERDAR" class="w-16 h-16 rounded-2xl object-cover shadow-md border-2 border-white" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&h=200&fit=crop&crop=face';">
+                        <span class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-white rounded-full flex items-center justify-center text-[10px] text-white">✓</span>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold tracking-tight text-slate-900">SERDAR</h2>
+                        <p class="text-xs font-medium text-slate-500">Solo Developer & Creator</p>
+                    </div>
+                </div>
 
-    </main>
+                <!-- Dinamik Metin -->
+                <div class="h-12 flex items-center text-xs sm:text-sm font-semibold text-slate-700 bg-white/60 rounded-xl px-3 py-2 border border-slate-200/50 mb-4">
+                    <span id="dynamicText"></span><span class="cursor"></span>
+                </div>
+
+                <!-- İstatistikler -->
+                <div class="flex items-center justify-between border-t border-slate-200/60 pt-3">
+                    <div>
+                        <p class="text-lg font-extrabold text-slate-900 heading-font">100%</p>
+                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Custom Code</p>
+                    </div>
+                    <div class="h-8 w-[1px] bg-slate-200"></div>
+                    <div>
+                        <p class="text-lg font-extrabold text-slate-900 heading-font">V3.0</p>
+                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Aero Liquid UI</p>
+                    </div>
+                    <a href="https://t.me/ser1live" target="_blank" class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center text-sm hover:scale-110 transition-transform shadow-md">
+                        <i class="fa-solid fa-arrow-up-right-dots"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- SAĞ ALT KART (Fotoğraftaki "Lunar Oasis Villa" Koyu Buzlu Cam Kart) -->
+            <div class="lg:col-span-7 dark-glass-card rounded-[28px] p-5 sm:p-6 text-white flex flex-col justify-between shadow-2xl relative overflow-hidden">
+                
+                <div class="flex items-start justify-between gap-4 mb-3">
+                    <div>
+                        <div class="flex items-center gap-2 text-xs font-medium text-cyan-300 mb-1">
+                            <i class="fa-solid fa-bolt text-[10px]"></i> Active Social Hub
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-white">Connect & Follow</h3>
+                        <p class="text-xs text-slate-300 mt-1 max-w-sm">Projelerimi, kod paylaşımlarımı ve güncel videolarımı sosyal medya hesaplarımdan takip edebilirsiniz.</p>
+                    </div>
+
+                    <!-- Sağ Üst Dairesel Yönlendirme Butonu (Görseldeki Yuvarlak Ok Butonu) -->
+                    <div class="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white text-lg backdrop-blur-md">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </div>
+                </div>
+
+                <!-- Swiper Slider / Sosyal Medya Aksiyonları -->
+                <div class="w-full my-3">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            
+                            <!-- Telegram -->
+                            <div class="swiper-slide">
+                                <a href="https://t.me/ser1live" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-xl bg-sky-500 flex items-center justify-center text-white text-lg shadow-md">
+                                            <i class="fa-brands fa-telegram"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-white">Telegram Channel</p>
+                                            <p class="text-[11px] text-slate-300">@ser1live • İletişim & Duyurular</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-8 h-8 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Instagram -->
+                            <div class="swiper-slide">
+                                <a href="https://www.instagram.com/ser_dark_?igsh=MXhzeGY5eDJhMzFxNA==" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white text-lg shadow-md">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-white">Instagram Profile</p>
+                                            <p class="text-[11px] text-slate-300">@ser_dark_ • Günlük İçerik</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-8 h-8 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- TikTok -->
+                            <div class="swiper-slide">
+                                <a href="https://www.tiktok.com/@serlive7?_t=ZS-90qic9PtnKp&_r=1" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-xl bg-slate-950 flex items-center justify-center text-white text-lg border border-white/20 shadow-md">
+                                            <i class="fa-brands fa-tiktok"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-white">TikTok Account</p>
+                                            <p class="text-[11px] text-slate-300">@serlive7 • VLOG & Tech</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-8 h-8 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alt Detay Çubuğu -->
+                <div class="flex items-center justify-between border-t border-white/10 pt-3 text-[11px] text-slate-300">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-cyan-400"></i> Verified Developer</span>
+                    <span class="font-mono text-slate-400">© 2026 SERDAR</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
     <!-- Script Kodları -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Swiper Ayarları - Daha Akıcı
+        // Swiper Ayarları
         const swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
-            spaceBetween: 16,
+            spaceBetween: 12,
             loop: true,
-            speed: 800,
             autoplay: {
-                delay: 4000,
+                delay: 3500,
                 disableOnInteraction: false,
             },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            effect: 'slide',
         });
 
-        // Dinamik Yazı Efekti - Daha Pürüzsüz
+        // Dynamic Typing Effect
         const phrases = [
-            "Geleceğin web deneyimlerini kodluyorum.",
-            "Solo Developer & Designer.",
-            "Aero Glass ile sınırları zorlayan tasarımlar...",
-            "Code. Design. Deploy. 🚀"
+            "Geleceğin web arayüzlerini kodluyorum.",
+            "Modern UI/UX & Liquid Glass tasarımlar.",
+            "Solo Developer & Creator."
         ];
         let phraseIndex = 0;
         let charIndex = 0;
@@ -311,15 +326,15 @@
                 charIndex++;
             }
 
-            let typeSpeed = isDeleting ? 30 : 70; // Yazma ve silme hızları
+            let typeSpeed = isDeleting ? 30 : 60;
 
             if (!isDeleting && charIndex === currentPhrase.length) {
-                typeSpeed = 2500; // Tamamlandıktan sonra bekleme süresi
+                typeSpeed = 2200;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 600; // Silme bittikten sonra bekleme süresi
+                typeSpeed = 400;
             }
 
             setTimeout(typeEffect, typeSpeed);
