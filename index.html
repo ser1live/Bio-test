@@ -23,25 +23,27 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Görseldeki Ultra Yumuşak Cam Efektleri */
+        /* Ana Şeffaf Çerçeve */
         .master-glass-frame {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(50px) saturate(200%);
             -webkit-backdrop-filter: blur(50px) saturate(200%);
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
             box-shadow: 
                 0 30px 100px rgba(0, 0, 0, 0.5),
-                inset 0 1px 2px rgba(255, 255, 255, 0.5);
+                inset 0 1px 2px rgba(255, 255, 255, 0.3);
         }
 
-        .white-glass-card {
-            background: rgba(255, 255, 255, 0.82);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        /* YENİ: Tamamen Şeffaf Buzlu Cam Profil Kartı */
+        .clear-glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(35px) saturate(190%);
+            -webkit-backdrop-filter: blur(35px) saturate(190%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
         }
 
+        /* Koyu Cam Kart */
         .dark-glass-card {
             background: rgba(18, 22, 38, 0.55);
             backdrop-filter: blur(35px) saturate(180%);
@@ -51,21 +53,20 @@
         }
 
         .pill-button {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .pill-button:hover {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.25);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .nav-dock {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
         /* İmleç Yanıp Sönme */
@@ -73,7 +74,7 @@
             display: inline-block;
             width: 2px;
             height: 1.1em;
-            background-color: #0284c7;
+            background-color: #38bdf8;
             animation: blink 1s infinite;
             margin-left: 2px;
             vertical-align: middle;
@@ -84,7 +85,6 @@
             50% { opacity: 0; }
         }
 
-        /* Custom Scrollbar Hide */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -94,110 +94,99 @@
         }
     </style>
 </head>
-<body class="bg-stone-300 text-slate-900 min-h-screen flex items-center justify-center p-3 sm:p-6 relative overflow-x-hidden">
+<body class="bg-slate-950 text-white min-h-screen flex items-center justify-center p-3 sm:p-6 relative overflow-x-hidden">
 
-    <!-- Görseldeki Gibi Arka Plan Sahnesi -->
+    <!-- Arka Plan Videosu -->
     <video autoplay muted loop playsinline id="bg-video" class="fixed inset-0 w-full h-full object-cover z-0 filter brightness-90 contrast-105 scale-105">
         <source src="bg.mp4" type="video/mp4">
     </video>
-    <div class="fixed inset-0 bg-black/20 backdrop-blur-[2px] z-0"></div>
+    <div class="fixed inset-0 bg-black/30 backdrop-blur-[2px] z-0"></div>
 
-    <!-- ANA FUTURISTIK UI PENCERESİ (Görseldeki Büyük Çerçeve) -->
+    <!-- ANA FUTURISTIK UI PENCERESİ -->
     <div class="relative z-10 w-full max-w-5xl master-glass-frame rounded-[36px] sm:rounded-[44px] p-4 sm:p-8 flex flex-col justify-between min-h-[680px] overflow-hidden my-auto">
         
-        <!-- ÜST BAR: Sol Logo + Sağ Arama/Menü ve Filtre Hapları -->
+        <!-- ÜST BAR -->
         <header class="w-full flex flex-wrap items-center justify-between gap-3 z-20 mb-6 sm:mb-8">
             
-            <!-- Sol Üst Rozetler -->
+            <!-- Sol Üst Rozet (Turkey kaldırıldı) -->
             <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-                <div class="pill-button px-4 py-2 rounded-full text-xs font-bold text-slate-800 flex items-center gap-2 shadow-sm whitespace-nowrap">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <div class="pill-button px-4 py-2 rounded-full text-xs font-bold text-white flex items-center gap-2 shadow-sm whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                     Available for Projects
                 </div>
-                <div class="pill-button px-4 py-2 rounded-full text-xs font-semibold text-slate-700 flex items-center gap-1.5 whitespace-nowrap">
-                    <i class="fa-solid fa-location-dot text-slate-500"></i> Turkey
-                </div>
-                <div class="pill-button px-4 py-2 rounded-full text-xs font-semibold text-slate-700 hidden md:flex items-center gap-1.5 whitespace-nowrap">
-                    <i class="fa-solid fa-code text-slate-500"></i> Solo Developer
+                <div class="pill-button px-4 py-2 rounded-full text-xs font-semibold text-slate-200 hidden md:flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-code text-cyan-400"></i> Solo Developer
                 </div>
             </div>
 
-            <!-- Sağ Üst Aksiyon Hapı -->
-            <a href="https://t.me/ser1live" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 shadow-lg hover:scale-105 ml-auto">
+            <!-- Sağ Üst Contact Me Butonu -->
+            <a href="https://t.me/ser1live" target="_blank" class="bg-white hover:bg-slate-100 text-slate-900 px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 shadow-lg hover:scale-105 ml-auto">
                 <span>Contact Me</span>
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
         </header>
 
-        <!-- ORTA ALAN: Sol Dikey Dock & Dev Headline Text -->
+        <!-- ORTA ALAN: Sol Dikey Dock & Başlık -->
         <div class="relative w-full flex-1 flex flex-col md:flex-row items-start gap-6 z-20 my-4">
             
-            <!-- Sol Dikey İkon Dock'ı (Görseldeki Sol İkon Çubuğu) -->
+            <!-- Sol Dikey İkon Dock'ı -->
             <aside class="nav-dock rounded-full p-2 flex md:flex-col items-center gap-3 shadow-lg mx-auto md:mx-0">
                 <button class="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center text-sm shadow-md hover:scale-110 transition-transform">
                     <i class="fa-solid fa-house"></i>
                 </button>
-                <button class="w-10 h-10 rounded-full bg-white/40 hover:bg-white text-slate-800 flex items-center justify-center text-sm transition-all hover:scale-110">
+                <button class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-sm transition-all hover:scale-110">
                     <i class="fa-solid fa-layer-group"></i>
                 </button>
-                <button class="w-10 h-10 rounded-full bg-white/40 hover:bg-white text-slate-800 flex items-center justify-center text-sm transition-all hover:scale-110">
+                <button class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-sm transition-all hover:scale-110">
                     <i class="fa-solid fa-code"></i>
                 </button>
-                <div class="w-6 h-[1px] md:w-[1px] md:h-6 bg-white/40 my-1"></div>
-                <button class="w-10 h-10 rounded-full bg-white/40 hover:bg-white text-slate-800 flex items-center justify-center text-sm transition-all hover:scale-110">
+                <div class="w-6 h-[1px] md:w-[1px] md:h-6 bg-white/20 my-1"></div>
+                <button class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-sm transition-all hover:scale-110">
                     <i class="fa-solid fa-circle-half-stroke"></i>
                 </button>
             </aside>
 
-            <!-- Dev Slogan Başlık (Görseldeki "New Way Of Living" Yazısı) -->
+            <!-- Dev Slogan Başlık -->
             <div class="flex-1 text-center md:text-left pt-2 md:pt-4">
-                <p class="text-xs font-bold tracking-widest text-white/80 uppercase mb-2">Modern Web Architecture</p>
+                <p class="text-xs font-bold tracking-widest text-cyan-300 uppercase mb-2">Modern Web Architecture</p>
                 <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white drop-shadow-md leading-none">
                     New Way Of <br class="hidden sm:inline"/>
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">Developing</span>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400">Developing</span>
                 </h1>
             </div>
         </div>
 
-        <!-- ALT ALAN: Çapraz Üst Üste Binen Yüzen İki Kart (Görseldeki Alt Paneller) -->
+        <!-- ALT ALAN: Paneller -->
         <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-5 z-20 items-end mt-6">
             
-            <!-- SOL ALT KART (Fotoğraftaki Beyaz Kıvrımlı Kart) -->
-            <div class="lg:col-span-5 white-glass-card rounded-[28px] p-5 sm:p-6 text-slate-900 flex flex-col justify-between shadow-2xl relative overflow-hidden group">
+            <!-- SOL ALT KART (Tamamen Şeffaf Buzlu Cam Yapıldı) -->
+            <div class="lg:col-span-5 clear-glass-card rounded-[28px] p-5 sm:p-6 text-white flex flex-col justify-between shadow-2xl relative overflow-hidden group">
                 <div class="flex items-center gap-4 mb-4">
                     <div class="relative">
-                        <img src="profile.jpg" alt="SERDAR" class="w-16 h-16 rounded-2xl object-cover shadow-md border-2 border-white" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&h=200&fit=crop&crop=face';">
-                        <span class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-white rounded-full flex items-center justify-center text-[10px] text-white">✓</span>
+                        <img src="profile.jpg" alt="SERDAR" class="w-16 h-16 rounded-2xl object-cover shadow-md border-2 border-white/40" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&h=200&fit=crop&crop=face';">
+                        <span class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-slate-900 rounded-full flex items-center justify-center text-[10px] text-white">✓</span>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold tracking-tight text-slate-900">SERDAR</h2>
-                        <p class="text-xs font-medium text-slate-500">Solo Developer & Creator</p>
+                        <h2 class="text-xl font-bold tracking-tight text-white">SERDAR</h2>
+                        <p class="text-xs font-medium text-slate-300">Solo Developer & Creator</p>
                     </div>
                 </div>
 
-                <!-- Dinamik Metin -->
-                <div class="h-12 flex items-center text-xs sm:text-sm font-semibold text-slate-700 bg-white/60 rounded-xl px-3 py-2 border border-slate-200/50 mb-4">
+                <!-- Dinamik Metin Kutusu (Şeffaf Cam Uyumlu) -->
+                <div class="h-12 flex items-center text-xs sm:text-sm font-semibold text-slate-100 bg-white/10 rounded-xl px-3 py-2 border border-white/15 mb-4 backdrop-blur-md">
                     <span id="dynamicText"></span><span class="cursor"></span>
                 </div>
 
-                <!-- İstatistikler -->
-                <div class="flex items-center justify-between border-t border-slate-200/60 pt-3">
+                <!-- İstatistikler (Sadece 100% Custom Code Bırakıldı) -->
+                <div class="flex items-center justify-between border-t border-white/10 pt-3">
                     <div>
-                        <p class="text-lg font-extrabold text-slate-900 heading-font">100%</p>
-                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Custom Code</p>
+                        <p class="text-lg font-extrabold text-white heading-font">100%</p>
+                        <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Custom Code</p>
                     </div>
-                    <div class="h-8 w-[1px] bg-slate-200"></div>
-                    <div>
-                        <p class="text-lg font-extrabold text-slate-900 heading-font">V3.0</p>
-                        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Aero Liquid UI</p>
-                    </div>
-                    <a href="https://t.me/ser1live" target="_blank" class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center text-sm hover:scale-110 transition-transform shadow-md">
-                        <i class="fa-solid fa-arrow-up-right-dots"></i>
-                    </a>
                 </div>
             </div>
 
-            <!-- SAĞ ALT KART (Fotoğraftaki "Lunar Oasis Villa" Koyu Buzlu Cam Kart) -->
+            <!-- SAĞ ALT KART (Koyu Buzlu Cam Kart) -->
             <div class="lg:col-span-7 dark-glass-card rounded-[28px] p-5 sm:p-6 text-white flex flex-col justify-between shadow-2xl relative overflow-hidden">
                 
                 <div class="flex items-start justify-between gap-4 mb-3">
@@ -209,13 +198,12 @@
                         <p class="text-xs text-slate-300 mt-1 max-w-sm">Projelerimi, kod paylaşımlarımı ve güncel videolarımı sosyal medya hesaplarımdan takip edebilirsiniz.</p>
                     </div>
 
-                    <!-- Sağ Üst Dairesel Yönlendirme Butonu (Görseldeki Yuvarlak Ok Butonu) -->
                     <div class="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white text-lg backdrop-blur-md">
                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     </div>
                 </div>
 
-                <!-- Swiper Slider / Sosyal Medya Aksiyonları -->
+                <!-- Swiper Slider -->
                 <div class="w-full my-3">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
@@ -293,7 +281,6 @@
     <!-- Script Kodları -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Swiper Ayarları
         const swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
             spaceBetween: 12,
@@ -304,7 +291,6 @@
             },
         });
 
-        // Dynamic Typing Effect
         const phrases = [
             "Geleceğin web arayüzlerini kodluyorum.",
             "Modern UI/UX & Liquid Glass tasarımlar.",
