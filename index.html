@@ -6,7 +6,7 @@
     <title>SERDAR | Futuristic Glass UI</title>
     
     <!-- Modern Fontlar & İkonlar -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Swiper CSS -->
@@ -18,58 +18,88 @@
     <style>
         * {
             font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
         h1, h2, h3, .heading-font {
             font-family: 'Space Grotesk', sans-serif;
+        }
+        .font-mono-code {
+            font-family: 'Fira Code', monospace;
         }
 
         /* Ana Şeffaf Çerçeve */
         .master-glass-frame {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(50px) saturate(200%);
-            -webkit-backdrop-filter: blur(50px) saturate(200%);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
             border: 1.5px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 
-                0 30px 100px rgba(0, 0, 0, 0.5),
-                inset 0 1px 2px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
-        /* YENİ: Tamamen Şeffaf Buzlu Cam Profil Kartı */
+        /* Şeffaf Buzlu Cam Kartı */
         .clear-glass-card {
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(35px) saturate(190%);
-            -webkit-backdrop-filter: blur(35px) saturate(190%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         /* Koyu Cam Kart */
         .dark-glass-card {
             background: rgba(18, 22, 38, 0.55);
-            backdrop-filter: blur(35px) saturate(180%);
-            -webkit-backdrop-filter: blur(35px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         .pill-button {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
         .pill-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.22);
         }
 
         .nav-dock {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* İmleç Yanıp Sönme */
+        /* Aktif Buton Stili */
+        .dock-btn.active {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            transform: scale(1.08);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Aydınlık Cam Teması */
+        body.light-theme .master-glass-frame {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        body.light-theme .clear-glass-card {
+            background: rgba(255, 255, 255, 0.55);
+            color: #0f172a;
+        }
+        body.light-theme .dark-glass-card {
+            background: rgba(255, 255, 255, 0.45);
+            color: #0f172a;
+        }
+        body.light-theme .text-white {
+            color: #0f172a !important;
+        }
+        body.light-theme .text-slate-300, body.light-theme .text-slate-400 {
+            color: #334155 !important;
+        }
+
+        /* İmleç Efekti */
         .cursor {
             display: inline-block;
             width: 2px;
@@ -85,12 +115,15 @@
             50% { opacity: 0; }
         }
 
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -100,15 +133,13 @@
     <video autoplay muted loop playsinline id="bg-video" class="fixed inset-0 w-full h-full object-cover z-0 filter brightness-90 contrast-105 scale-105">
         <source src="bg.mp4" type="video/mp4">
     </video>
-    <div class="fixed inset-0 bg-black/30 backdrop-blur-[2px] z-0"></div>
+    <div id="bg-overlay" class="fixed inset-0 bg-black/35 backdrop-blur-[2px] z-0 transition-all duration-500"></div>
 
-    <!-- ANA FUTURISTIK UI PENCERESİ -->
-    <div class="relative z-10 w-full max-w-5xl master-glass-frame rounded-[36px] sm:rounded-[44px] p-4 sm:p-8 flex flex-col justify-between min-h-[680px] overflow-hidden my-auto">
+    <!-- ANA UI PENCERESİ -->
+    <div class="relative z-10 w-full max-w-5xl master-glass-frame rounded-[32px] sm:rounded-[40px] p-4 sm:p-7 flex flex-col justify-between min-h-[660px] overflow-hidden my-auto">
         
         <!-- ÜST BAR -->
-        <header class="w-full flex flex-wrap items-center justify-between gap-3 z-20 mb-6 sm:mb-8">
-            
-            <!-- Sol Üst Rozet (Turkey kaldırıldı) -->
+        <header class="w-full flex flex-wrap items-center justify-between gap-3 z-20 mb-6">
             <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
                 <div class="pill-button px-4 py-2 rounded-full text-xs font-bold text-white flex items-center gap-2 shadow-sm whitespace-nowrap">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -119,108 +150,143 @@
                 </div>
             </div>
 
-            <!-- Sağ Üst Contact Me Butonu -->
             <a href="https://t.me/ser1live" target="_blank" class="bg-white hover:bg-slate-100 text-slate-900 px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 shadow-lg hover:scale-105 ml-auto">
                 <span>Contact Me</span>
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
         </header>
 
-        <!-- ORTA ALAN: Sol Dikey Dock & Başlık -->
-        <div class="relative w-full flex-1 flex flex-col md:flex-row items-start gap-6 z-20 my-4">
+        <!-- ORTA ALAN: Dinamik Sekmeler -->
+        <div class="relative w-full flex-1 flex flex-col md:flex-row items-start gap-6 z-20 my-3">
             
-            <!-- Sol Dikey İkon Dock'ı -->
-            <aside class="nav-dock rounded-full p-2 flex md:flex-col items-center gap-3 shadow-lg mx-auto md:mx-0">
-                <button class="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center text-sm shadow-md hover:scale-110 transition-transform">
+            <!-- DİKEY İKON DOCK'I -->
+            <aside class="nav-dock rounded-full p-2 flex md:flex-col items-center gap-2.5 shadow-lg mx-auto md:mx-0">
+                <button onclick="switchTab('home', this)" class="dock-btn active w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center text-sm transition-all hover:scale-110" title="Ana Sayfa">
                     <i class="fa-solid fa-house"></i>
                 </button>
-                <button class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-sm transition-all hover:scale-110">
+                <button onclick="switchTab('skills', this)" class="dock-btn w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center text-sm transition-all hover:scale-110" title="Yetenekler & Uzmanlık">
                     <i class="fa-solid fa-layer-group"></i>
                 </button>
-                <button class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-sm transition-all hover:scale-110">
+                <button onclick="switchTab('terminal', this)" class="dock-btn w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center text-sm transition-all hover:scale-110" title="Live Terminal">
                     <i class="fa-solid fa-code"></i>
                 </button>
-                <div class="w-6 h-[1px] md:w-[1px] md:h-6 bg-white/20 my-1"></div>
-                <button class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-sm transition-all hover:scale-110">
+                
+                <div class="w-5 h-[1px] md:w-[1px] md:h-5 bg-white/20 my-0.5"></div>
+                
+                <button onclick="toggleGlassTheme()" class="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center text-sm transition-all hover:scale-110 hover:rotate-45" title="Tema Değiştir">
                     <i class="fa-solid fa-circle-half-stroke"></i>
                 </button>
             </aside>
 
-            <!-- Dev Slogan Başlık -->
-            <div class="flex-1 text-center md:text-left pt-2 md:pt-4">
+            <!-- TAB 1: ANA SAYFA -->
+            <div id="tab-home" class="tab-content active flex-1 text-center md:text-left pt-2 md:pt-4">
                 <p class="text-xs font-bold tracking-widest text-cyan-300 uppercase mb-2">Modern Web Architecture</p>
                 <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white drop-shadow-md leading-none">
                     New Way Of <br class="hidden sm:inline"/>
                     <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400">Developing</span>
                 </h1>
             </div>
+
+            <!-- TAB 2: YETENEKLER -->
+            <div id="tab-skills" class="tab-content flex-1 text-center md:text-left pt-2 w-full">
+                <p class="text-xs font-bold tracking-widest text-cyan-300 uppercase mb-1">Tech Stack & Ecosystem</p>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Uzmanlık Alanlarım</h2>
+                
+                <div class="flex flex-wrap justify-center md:justify-start gap-2 max-w-lg">
+                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-brands fa-linux text-amber-400"></i> Linux & Termux</span>
+                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-brands fa-android text-emerald-400"></i> Custom Android OS</span>
+                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-brands fa-html5 text-orange-400"></i> HTML5 & CSS3</span>
+                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-brands fa-js text-yellow-300"></i> JavaScript ES6+</span>
+                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-solid fa-wind text-sky-400"></i> Tailwind CSS</span>
+                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-solid fa-shield-halved text-purple-400"></i> Cyber Security</span>
+                </div>
+            </div>
+
+            <!-- TAB 3: TERMINAL -->
+            <div id="tab-terminal" class="tab-content flex-1 text-left pt-1 w-full">
+                <div class="dark-glass-card rounded-2xl p-3.5 font-mono-code text-xs text-emerald-400 border border-white/20 shadow-xl max-w-xl">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2">
+                        <span class="text-slate-400 text-[10px] flex items-center gap-1.5"><i class="fa-solid fa-terminal"></i> serdar@terminal:~</span>
+                        <div class="flex gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                        </div>
+                    </div>
+                    <p class="text-slate-300">$ whoami</p>
+                    <p class="text-white mb-1.5">> SERDAR - Solo Developer & Modder</p>
+                    <p class="text-slate-300">$ status</p>
+                    <p class="text-cyan-300 mb-1.5">> System online. Liquid Glass UI v3.0 running...</p>
+                    <p class="text-slate-300">$ echo $SKILLS</p>
+                    <p class="text-amber-300">> ["Termux", "Aero UI", "Root Customization", "Web Dev"]</p>
+                </div>
+            </div>
+
         </div>
 
-        <!-- ALT ALAN: Paneller -->
-        <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-5 z-20 items-end mt-6">
+        <!-- ALT ALAN: Kartlar -->
+        <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-4 z-20 items-end mt-4">
             
-            <!-- SOL ALT KART (Tamamen Şeffaf Buzlu Cam Yapıldı) -->
-            <div class="lg:col-span-5 clear-glass-card rounded-[28px] p-5 sm:p-6 text-white flex flex-col justify-between shadow-2xl relative overflow-hidden group">
-                <div class="flex items-center gap-4 mb-4">
+            <!-- SOL ALT KART -->
+            <div class="lg:col-span-5 clear-glass-card rounded-[24px] p-4 sm:p-5 text-white flex flex-col justify-between shadow-2xl relative overflow-hidden">
+                <div class="flex items-center gap-3.5 mb-3">
                     <div class="relative">
-                        <img src="profile.jpg" alt="SERDAR" class="w-16 h-16 rounded-2xl object-cover shadow-md border-2 border-white/40" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&h=200&fit=crop&crop=face';">
-                        <span class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-slate-900 rounded-full flex items-center justify-center text-[10px] text-white">✓</span>
+                        <img src="profile.jpg" alt="SERDAR" class="w-14 h-14 rounded-2xl object-cover shadow-md border-2 border-white/40" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&h=200&fit=crop&crop=face';">
+                        <span class="absolute -bottom-1 -right-1 w-4.5 h-4.5 bg-emerald-500 border-2 border-slate-900 rounded-full flex items-center justify-center text-[9px] text-white">✓</span>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold tracking-tight text-white">SERDAR</h2>
+                        <h2 class="text-lg font-bold tracking-tight text-white">SERDAR</h2>
                         <p class="text-xs font-medium text-slate-300">Solo Developer & Creator</p>
                     </div>
                 </div>
 
-                <!-- Dinamik Metin Kutusu (Şeffaf Cam Uyumlu) -->
-                <div class="h-12 flex items-center text-xs sm:text-sm font-semibold text-slate-100 bg-white/10 rounded-xl px-3 py-2 border border-white/15 mb-4 backdrop-blur-md">
+                <div class="h-11 flex items-center text-xs sm:text-sm font-semibold text-slate-100 bg-white/10 rounded-xl px-3 py-1.5 border border-white/15 mb-3 backdrop-blur-md">
                     <span id="dynamicText"></span><span class="cursor"></span>
                 </div>
 
-                <!-- İstatistikler (Sadece 100% Custom Code Bırakıldı) -->
-                <div class="flex items-center justify-between border-t border-white/10 pt-3">
+                <div class="flex items-center justify-between border-t border-white/10 pt-2.5">
                     <div>
-                        <p class="text-lg font-extrabold text-white heading-font">100%</p>
-                        <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Custom Code</p>
+                        <p class="text-base font-extrabold text-white heading-font">100%</p>
+                        <p class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Custom Code</p>
                     </div>
                 </div>
             </div>
 
-            <!-- SAĞ ALT KART (Koyu Buzlu Cam Kart) -->
-            <div class="lg:col-span-7 dark-glass-card rounded-[28px] p-5 sm:p-6 text-white flex flex-col justify-between shadow-2xl relative overflow-hidden">
+            <!-- SAĞ ALT KART (Sosyal Medya Hub) -->
+            <div class="lg:col-span-7 dark-glass-card rounded-[24px] p-4 sm:p-5 text-white flex flex-col justify-between shadow-2xl relative overflow-hidden">
                 
-                <div class="flex items-start justify-between gap-4 mb-3">
+                <div class="flex items-start justify-between gap-4 mb-2">
                     <div>
-                        <div class="flex items-center gap-2 text-xs font-medium text-cyan-300 mb-1">
+                        <div class="flex items-center gap-1.5 text-xs font-medium text-cyan-300 mb-0.5">
                             <i class="fa-solid fa-bolt text-[10px]"></i> Active Social Hub
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-white">Connect & Follow</h3>
-                        <p class="text-xs text-slate-300 mt-1 max-w-sm">Projelerimi, kod paylaşımlarımı ve güncel videolarımı sosyal medya hesaplarımdan takip edebilirsiniz.</p>
+                        <h3 class="text-lg sm:text-xl font-bold tracking-tight text-white">Connect & Follow</h3>
+                        <p class="text-xs text-slate-300 mt-0.5 max-w-sm">Projelerimi ve güncel içeriklerimi sosyal medya hesaplarımdan takip edebilirsiniz.</p>
                     </div>
 
-                    <div class="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white text-lg backdrop-blur-md">
+                    <div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white text-base backdrop-blur-md">
                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     </div>
                 </div>
 
                 <!-- Swiper Slider -->
-                <div class="w-full my-3">
+                <div class="w-full my-2">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             
                             <!-- Telegram -->
                             <div class="swiper-slide">
-                                <a href="https://t.me/ser1live" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
+                                <a href="https://t.me/ser1live" target="_blank" class="flex items-center justify-between p-3 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded-xl bg-sky-500 flex items-center justify-center text-white text-lg shadow-md">
+                                        <div class="w-9 h-9 rounded-xl bg-sky-500 flex items-center justify-center text-white text-base shadow-md">
                                             <i class="fa-brands fa-telegram"></i>
                                         </div>
                                         <div>
-                                            <p class="text-sm font-bold text-white">Telegram Channel</p>
-                                            <p class="text-[11px] text-slate-300">@ser1live • İletişim & Duyurular</p>
+                                            <p class="text-xs font-bold text-white">Telegram Channel</p>
+                                            <p class="text-[10px] text-slate-300">@ser1live • Duyurular</p>
                                         </div>
                                     </div>
-                                    <div class="w-8 h-8 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
+                                    <div class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </div>
                                 </a>
@@ -228,17 +294,17 @@
 
                             <!-- Instagram -->
                             <div class="swiper-slide">
-                                <a href="https://www.instagram.com/ser_dark_?igsh=MXhzeGY5eDJhMzFxNA==" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
+                                <a href="https://www.instagram.com/ser_dark_?igsh=MXhzeGY5eDJhMzFxNA==" target="_blank" class="flex items-center justify-between p-3 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white text-lg shadow-md">
+                                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white text-base shadow-md">
                                             <i class="fa-brands fa-instagram"></i>
                                         </div>
                                         <div>
-                                            <p class="text-sm font-bold text-white">Instagram Profile</p>
-                                            <p class="text-[11px] text-slate-300">@ser_dark_ • Günlük İçerik</p>
+                                            <p class="text-xs font-bold text-white">Instagram Profile</p>
+                                            <p class="text-[10px] text-slate-300">@ser_dark_ • Günlük İçerik</p>
                                         </div>
                                     </div>
-                                    <div class="w-8 h-8 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
+                                    <div class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </div>
                                 </a>
@@ -246,17 +312,17 @@
 
                             <!-- TikTok -->
                             <div class="swiper-slide">
-                                <a href="https://www.tiktok.com/@serlive7?_t=ZS-90qic9PtnKp&_r=1" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
+                                <a href="https://www.tiktok.com/@serlive7?_t=ZS-90qic9PtnKp&_r=1" target="_blank" class="flex items-center justify-between p-3 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded-xl bg-slate-950 flex items-center justify-center text-white text-lg border border-white/20 shadow-md">
+                                        <div class="w-9 h-9 rounded-xl bg-slate-950 flex items-center justify-center text-white text-base border border-white/20 shadow-md">
                                             <i class="fa-brands fa-tiktok"></i>
                                         </div>
                                         <div>
-                                            <p class="text-sm font-bold text-white">TikTok Account</p>
-                                            <p class="text-[11px] text-slate-300">@serlive7 • VLOG & Tech</p>
+                                            <p class="text-xs font-bold text-white">TikTok Account</p>
+                                            <p class="text-[10px] text-slate-300">@serlive7 • VLOG & Tech</p>
                                         </div>
                                     </div>
-                                    <div class="w-8 h-8 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
+                                    <div class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </div>
                                 </a>
@@ -267,66 +333,9 @@
                 </div>
 
                 <!-- Alt Detay Çubuğu -->
-                <div class="flex items-center justify-between border-t border-white/10 pt-3 text-[11px] text-slate-300">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-cyan-400"></i> Verified Developer</span>
+                <div class="flex items-center justify-between border-t border-white/10 pt-2.5 text-[10px] text-slate-300">
+                    <span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-cyan-400"></i> Verified Developer</span>
                     <span class="font-mono text-slate-400">© 2026 SERDAR</span>
                 </div>
 
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Script Kodları -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        const swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 12,
-            loop: true,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
-            },
-        });
-
-        const phrases = [
-            "Geleceğin web arayüzlerini kodluyorum.",
-            "Modern UI/UX & Liquid Glass tasarımlar.",
-            "Solo Developer & Creator."
-        ];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const dynamicText = document.getElementById("dynamicText");
-
-        function typeEffect() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                dynamicText.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                dynamicText.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 30 : 60;
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                typeSpeed = 2200;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 400;
-            }
-
-            setTimeout(typeEffect, typeSpeed);
-        }
-
-        document.addEventListener("DOMContentLoaded", typeEffect);
-    </script>
-</body>
-</html>
+ 
