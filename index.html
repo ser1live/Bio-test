@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SERDAR | Bio & Portfolio</title>
+    <title>SERDAR | Liquid Clear Glass Experience</title>
     
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
@@ -28,24 +30,51 @@
             min-height: 100vh;
         }
 
-        /* Cam Üst Sekme Barı (Liquid UI) */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        /* 👑 iOS CLEAR LIQUID GLASS BUTTON STİLİ */
+        .liquid-glass-btn {
+            position: relative;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 
+                inset 0 1px 2px 0 rgba(255, 255, 255, 0.8),
+                inset 0 -1px 2px 0 rgba(255, 255, 255, 0.2),
+                inset 0 0 12px 2px rgba(255, 255, 255, 0.1),
+                0 8px 25px -4px rgba(0, 0, 0, 0.5);
+            transition: all 0.35 cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* Üst Köşe Kenar Işığı (Specular Refraction) */
+        .liquid-glass-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 15%;
+            width: 70%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+        }
+
+        .liquid-glass-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 
+                inset 0 1px 3px 0 rgba(255, 255, 255, 1),
+                0 12px 30px -4px rgba(56, 189, 248, 0.35);
+        }
+
+        /* Navigasyon Buton Aktif Hal */
         .nav-btn {
             color: #94a3b8;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s ease;
         }
 
         .nav-btn.active {
-            color: #09090b;
+            color: #030712;
             background: #ffffff;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
 
         /* Sekme İçerikleri */
@@ -61,36 +90,27 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Cam Buton Efekti */
-        .glass-btn {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .glass-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
     </style>
 </head>
 <body class="relative min-h-screen flex flex-col justify-between p-4 md:p-10 select-none">
 
+    <!-- 3D DNA CANVAS -->
     <canvas id="dnaCanvas" class="fixed inset-0 w-full h-full z-0 pointer-events-none transition-opacity duration-700 opacity-0"></canvas>
 
-    <div id="bgGradient" class="fixed inset-0 bg-gradient-to-t from-[#030712] via-transparent to-[#030712]/70 z-0 pointer-events-none"></div>
+    <!-- ARKA PLAN DERİNLİK -->
+    <div class="fixed inset-0 bg-gradient-to-t from-[#030712] via-transparent to-[#030712]/70 z-0 pointer-events-none"></div>
 
+    <!-- ÜST NAVİGASYON BAR -->
     <header class="relative z-20 w-full flex items-center justify-between max-w-4xl mx-auto mb-6">
         
-        <div class="glass-btn px-3 py-1.5 rounded-full text-xs font-mono text-emerald-400 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Available for Projects</span>
+        <!-- Sol Statü Rozeti (Clear Glass Capsule) -->
+        <div class="liquid-glass-btn px-4 py-2 rounded-full text-xs font-mono text-cyan-300 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            <span>SYSTEM ONLINE</span>
         </div>
 
-        <nav class="glass-nav p-1.5 rounded-full flex items-center gap-1">
+        <!-- ORTA SEKME BAR (Clear Glass Container) -->
+        <nav class="liquid-glass-btn p-1.5 rounded-full flex items-center gap-1.5">
             <button onclick="switchTab('home')" id="tab-btn-home" class="nav-btn w-10 h-10 rounded-full flex items-center justify-center">
                 <i class="fa-solid fa-house text-sm"></i>
             </button>
@@ -104,70 +124,77 @@
             </button>
         </nav>
 
-        <a href="https://t.me/ser1live" target="_blank" class="glass-btn px-4 py-2 rounded-full text-xs font-semibold text-white hover:text-cyan-400 transition-colors hidden sm:flex items-center gap-2">
+        <!-- Sağ İletişim Butonu -->
+        <a href="https://t.me/ser1live" target="_blank" class="liquid-glass-btn px-5 py-2.5 rounded-full text-xs font-semibold text-white hidden sm:flex items-center gap-2">
             <span>Contact Me</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-cyan-300"></i>
         </a>
     </header>
 
+    <!-- ================= 1. ANA SAYFA ================= -->
     <section id="tab-home" class="tab-content relative z-10 max-w-lg mx-auto w-full my-auto py-8">
-        <div class="glass-btn p-8 rounded-3xl text-center border border-white/10">
-            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-cyan-400/50 mb-4 shadow-xl">
+        <div class="liquid-glass-btn p-8 rounded-3xl text-center">
+            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-white/40 mb-4 shadow-2xl">
                 <img src="https://github.com/ser1live.png" alt="Serdar" class="w-full h-full object-cover">
             </div>
             <h1 class="text-3xl font-bold text-white mb-1">SERDAR</h1>
-            <p class="text-xs text-cyan-400 font-mono tracking-widest uppercase mb-4">Solo Developer & Creator</p>
-            <p class="text-xs text-slate-400 leading-relaxed mb-6">Geleceğin web deneyimlerini ve kişiselleştirilmiş minimalist arayüzlerini kodluyorum.</p>
-            <button onclick="switchTab('projects')" class="w-full py-3 rounded-xl bg-white text-slate-950 text-xs font-bold hover:bg-slate-200 transition-all">
-                Projelerimi İncele <i class="fa-solid fa-arrow-right ml-1"></i>
+            <p class="text-xs text-cyan-300 font-mono tracking-widest uppercase mb-4">Solo Developer & Creator</p>
+            <p class="text-xs text-slate-300 leading-relaxed mb-6">iOS Clear Liquid Glass mimarisiyle tasarlanmış kişisel web portfolyosu.</p>
+            <button onclick="switchTab('projects')" class="liquid-glass-btn w-full py-3.5 rounded-2xl text-white text-xs font-bold">
+                Projelerimi İncele <i class="fa-solid fa-arrow-right ml-1 text-cyan-300"></i>
             </button>
         </div>
     </section>
 
+    <!-- ================= 2. PROJELERİM SEKMESİ (3D & CLEAR GLASS) ================= -->
     <section id="tab-projects" class="tab-content active relative z-10 max-w-5xl mx-auto w-full my-auto py-4">
         
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             
+            <!-- Sol Metin Alanı -->
             <div class="md:col-span-7 space-y-4">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[11px] font-mono">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-glass-btn text-cyan-300 text-[11px] font-mono">
                     <i class="fa-solid fa-cube text-xs"></i>
-                    <span>PROJELER & UYGULAMALAR</span>
+                    <span>PROJELER & MODLAR</span>
                 </div>
 
                 <h1 class="text-3xl sm:text-5xl font-light text-white leading-tight tracking-tight">
                     How will custom <br/>
-                    <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-white to-slate-400">code change you?</span>
+                    <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400">code change you?</span>
                 </h1>
 
-                <p id="project-desc" class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-md">
+                <p id="project-desc" class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md">
                     Biyoteknoloji ve sinematik tasarım prensipleriyle geliştirilmiş özel projeler. 3D akıcı web mimarisi ve yüksek performanslı özel arayüzler.
                 </p>
 
                 <div class="pt-2 flex items-center gap-6">
-                    <a id="project-link" href="https://t.me/ser1live" target="_blank" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-white hover:text-cyan-300 transition-all">
+                    <a id="project-link" href="https://t.me/ser1live" target="_blank" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-white">
                         <span class="text-cyan-400 font-bold">&gt;</span>
-                        <span class="underline underline-offset-8 decoration-slate-600 hover:decoration-white">Canlı Demo / Proje Detayı</span>
+                        <span class="underline underline-offset-8 decoration-white/30 hover:decoration-white transition-all">Canlı Demo / Proje Detayı</span>
                     </a>
                 </div>
             </div>
 
+            <!-- Sağ Taraf: iOS Clear Oynat Butonu -->
             <div class="md:col-span-5 flex flex-col items-center md:items-end gap-6">
                 
-                <a href="https://t.me/ser1live" target="_blank" class="glass-btn w-24 h-24 rounded-full flex flex-col items-center justify-center gap-1 text-white shadow-2xl group hover:border-cyan-400/50">
-                    <i class="fa-solid fa-play text-xl text-cyan-400 group-hover:scale-125 transition-transform"></i>
-                    <span class="text-[9px] font-mono tracking-wider text-slate-300 uppercase">Önizleme</span>
+                <!-- Oynat Butonu (Görseldeki "Button" ile Birebir Aynı Clear Glass Yapı) -->
+                <a href="https://t.me/ser1live" target="_blank" class="liquid-glass-btn w-24 h-24 rounded-full flex flex-col items-center justify-center gap-1.5 text-white group">
+                    <i class="fa-solid fa-play text-xl text-white group-hover:scale-125 transition-transform"></i>
+                    <span class="text-[9px] font-mono tracking-wider text-slate-200 uppercase">Önizleme</span>
                 </a>
 
-                <div class="glass-btn p-4 rounded-2xl w-full max-w-xs border border-white/10 space-y-3">
-                    <div class="flex items-center justify-between text-xs font-mono text-slate-400">
+                <!-- Proje Değiştirici -->
+                <div class="liquid-glass-btn p-4 rounded-2xl w-full max-w-xs space-y-3">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-300">
                         <span>SEÇİLİ PROJE</span>
-                        <span id="project-num" class="text-cyan-400 font-bold">01 / 03</span>
+                        <span id="project-num" class="text-cyan-300 font-bold">01 / 03</span>
                     </div>
 
                     <div class="grid grid-cols-3 gap-2">
-                        <button onclick="setProject(1)" id="p-btn-1" class="py-2 rounded-lg bg-white/10 text-white text-xs font-bold border border-cyan-400/50">v3.0</button>
-                        <button onclick="setProject(2)" id="p-btn-2" class="py-2 rounded-lg bg-white/5 text-slate-400 text-xs font-bold hover:bg-white/10">Bio-Hub</button>
-                        <button onclick="setProject(3)" id="p-btn-3" class="py-2 rounded-lg bg-white/5 text-slate-400 text-xs font-bold hover:bg-white/10">Engine</button>
+                        <button onclick="setProject(1)" id="p-btn-1" class="liquid-glass-btn py-2 rounded-xl text-white text-xs font-bold border-white/60">v3.0</button>
+                        <button onclick="setProject(2)" id="p-btn-2" class="liquid-glass-btn py-2 rounded-xl text-slate-300 text-xs font-bold opacity-60 hover:opacity-100">Bio-Hub</button>
+                        <button onclick="setProject(3)" id="p-btn-3" class="liquid-glass-btn py-2 rounded-xl text-slate-300 text-xs font-bold opacity-60 hover:opacity-100">Engine</button>
                     </div>
                 </div>
 
@@ -177,53 +204,47 @@
 
     </section>
 
+    <!-- ================= 3. İLETİŞİM ================= -->
     <section id="tab-contact" class="tab-content relative z-10 max-w-lg mx-auto w-full my-auto py-8">
-        <div class="glass-btn p-8 rounded-3xl border border-white/10 text-center space-y-4">
+        <div class="liquid-glass-btn p-8 rounded-3xl text-center space-y-4">
             <h2 class="text-2xl font-bold text-white">İletişim & Sosyal Medya</h2>
-            <p class="text-xs text-slate-400">Projelerinize özel tasarım ve geliştirme için doğrudan ulaşabilirsiniz.</p>
+            <p class="text-xs text-slate-300">Projeleriniz için doğrudan iletişime geçebilirsiniz.</p>
             <div class="pt-4 flex justify-center gap-4 text-xl">
-                <a href="https://t.me/ser1live" target="_blank" class="w-12 h-12 rounded-2xl glass-btn flex items-center justify-center text-cyan-400 hover:scale-110 transition-transform"><i class="fa-brands fa-telegram"></i></a>
-                <a href="https://www.instagram.com/ser_dark_" target="_blank" class="w-12 h-12 rounded-2xl glass-btn flex items-center justify-center text-pink-400 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@serlive7" target="_blank" class="w-12 h-12 rounded-2xl glass-btn flex items-center justify-center text-white hover:scale-110 transition-transform"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://t.me/ser1live" target="_blank" class="liquid-glass-btn w-12 h-12 rounded-2xl flex items-center justify-center text-cyan-300"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://www.instagram.com/ser_dark_" target="_blank" class="liquid-glass-btn w-12 h-12 rounded-2xl flex items-center justify-center text-pink-300"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@serlive7" target="_blank" class="liquid-glass-btn w-12 h-12 rounded-2xl flex items-center justify-center text-white"><i class="fa-brands fa-tiktok"></i></a>
             </div>
         </div>
     </section>
 
-    <footer class="relative z-10 w-full max-w-4xl mx-auto flex items-center justify-between text-[11px] text-slate-500 font-mono pt-4 border-t border-white/5">
+    <!-- FOOTER -->
+    <footer class="relative z-10 w-full max-w-4xl mx-auto flex items-center justify-between text-[11px] text-slate-400 font-mono pt-4 border-t border-white/10">
         <div>© 2026 SERDAR</div>
-        <div class="text-slate-400">v3.0 Liquid 3D Engine</div>
+        <div>iOS Clear Glass UI</div>
     </footer>
 
+    <!-- JS SCRIPT -->
     <script>
-        // --- 1. SEKMELER ARASI GEÇİŞ (TAB SWITCHER) ---
         function switchTab(tabName) {
-            // Tüm içerikleri ve buton aktifliklerini temizle
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
 
-            // İstenen sekmeyi göster
             document.getElementById(`tab-${tabName}`).classList.add('active');
             document.getElementById(`tab-btn-${tabName}`).classList.add('active');
 
-            // 3D DNA Arka Planını Sadece Projeler Sekmesinde Göster
             const canvas = document.getElementById('dnaCanvas');
-            if (tabName === 'projects') {
-                canvas.style.opacity = '1';
-            } else {
-                canvas.style.opacity = '0';
-            }
+            canvas.style.opacity = (tabName === 'projects') ? '1' : '0';
         }
 
-        // --- 2. PROJELERİM SEKMESİ İÇİNDEKİ PROJE DEĞİŞTİRİCİ ---
         const projectsData = {
             1: {
                 num: "01 / 03",
-                desc: "Aero Liquid UI v3.0: Cam efekti (Glassmorphism), akıcı geçişler ve yüksek performanslı modern mobil bio arayüzü.",
+                desc: "Liquid UI v3.0: Tamamen şeffaf iOS cam efekti, akıcı geçişler ve yüksek performanslı modern mobil bio arayüzü.",
                 link: "https://t.me/ser1live"
             },
             2: {
                 num: "02 / 03",
-                desc: "Bio-Hub Platform: Sosyal medya bağlantılarını ve içerikleri tek bir etkileşimli kartta toplayan web mimarisi.",
+                desc: "Bio-Hub Platform: Sosyal medya bağlantılarını ve içerikleri tek bir etkileşimli cam kartta toplayan web mimarisi.",
                 link: "https://t.me/ser1live"
             },
             3: {
@@ -241,14 +262,16 @@
             [1, 2, 3].forEach(i => {
                 const btn = document.getElementById(`p-btn-${i}`);
                 if (i === id) {
-                    btn.className = "py-2 rounded-lg bg-white/10 text-white text-xs font-bold border border-cyan-400/50";
+                    btn.classList.add('border-white/60');
+                    btn.classList.remove('opacity-60');
                 } else {
-                    btn.className = "py-2 rounded-lg bg-white/5 text-slate-400 text-xs font-bold hover:bg-white/10";
+                    btn.classList.remove('border-white/60');
+                    btn.classList.add('opacity-60');
                 }
             });
         }
 
-        // --- 3. 3D DNA CANVAS ANİMASYONU ---
+        // 3D DNA ANIMATION
         const canvas = document.getElementById('dnaCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -285,7 +308,6 @@
                 const scale1 = (z1 + 200) / 300;
                 const scale2 = (z2 + 200) / 300;
 
-                // Basamaklar
                 ctx.beginPath();
                 ctx.moveTo(x1, y);
                 ctx.lineTo(x2, y);
@@ -293,20 +315,17 @@
                 ctx.lineWidth = 1.2;
                 ctx.stroke();
 
-                // Orta Altın Işıklar
                 const midX = (x1 + x2) / 2;
                 ctx.beginPath();
                 ctx.arc(midX, y, 2.2, 0, Math.PI * 2);
                 ctx.fillStyle = '#fbbf24';
                 ctx.fill();
 
-                // Düğüm 1
                 ctx.beginPath();
                 ctx.arc(x1, y, Math.max(2, 4 * scale1), 0, Math.PI * 2);
                 ctx.fillStyle = z1 > 0 ? '#ffffff' : '#38bdf8';
                 ctx.fill();
 
-                // Düğüm 2
                 ctx.beginPath();
                 ctx.arc(x2, y, Math.max(2, 4 * scale2), 0, Math.PI * 2);
                 ctx.fillStyle = z2 > 0 ? '#ffffff' : '#0284c7';
@@ -318,7 +337,7 @@
         }
 
         drawDNA();
-        switchTab('projects'); // Varsayılan olarak Projelerim sekmesiyle açılır
+        switchTab('projects');
     </script>
 </body>
 </html>
