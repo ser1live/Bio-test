@@ -3,77 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SERDAR - Kişisel Bio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>SERDAR | Solo Developer</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        /* Liquid Glass Efektleri */
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px) saturate(190%);
+            -webkit-backdrop-filter: blur(25px) saturate(190%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        }
 
-    <video autoplay muted loop playsinline id="bg-video">
+        .liquid-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .liquid-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.5),
+                        0 0 20px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Arka Plan Renk Küreleri */
+        .ambient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 12s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -40px) scale(1.1); }
+            100% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* İmleç Yanıp Sönme */
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: #38bdf8;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Swiper Özel Stil */
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.4) !important;
+        }
+        .swiper-pagination-bullet-active {
+            background: #38bdf8 !important;
+            width: 20px !important;
+            border-radius: 4px !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex items-center justify-center relative overflow-x-hidden p-4">
+
+    <!-- Arka Plan Videosu -->
+    <video autoplay muted loop playsinline id="bg-video" class="fixed inset-0 w-full h-full object-cover z-0 opacity-40">
         <source src="bg.mp4" type="video/mp4">
     </video>
 
-    <div class="video-overlay"></div>
+    <!-- Renk/Işık Katmanları -->
+    <div class="fixed inset-0 bg-slate-950/40 backdrop-blur-[2px] z-0"></div>
+    <div class="ambient-blob w-72 h-72 bg-blue-600 top-10 left-10 z-0"></div>
+    <div class="ambient-blob w-80 h-80 bg-purple-600 bottom-10 right-10 z-0" style="animation-delay: -5s;"></div>
+    <div class="ambient-blob w-64 h-64 bg-cyan-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0" style="animation-delay: -8s;"></div>
 
-    <div class="container">
+    <!-- Ana Kart Container -->
+    <main class="relative z-10 w-full max-w-md liquid-glass rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center my-8 border border-white/20">
         
-        <div class="profile-section">
-            <img src="profile.jpg" alt="Profil Fotoğrafı" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&h=300&fit=crop&crop=face';">
-            <h1>SERDAR</h1>
-            <div class="title-tag">| Solo Developer |</div>
-            
-            <div class="cyber-font-container">
-                <svg viewBox="0 0 320 45" class="cyber-svg">
-                    <text x="50%" y="28" text-anchor="middle" class="cyber-text">
-                        CODE. DESIGN. DEPLOY. 🚀
-                    </text>
-                </svg>
-            </div>
-            
-            <div id="bioText">
-                <span id="dynamicText"></span>
-                <span class="cursor">|</span>
+        <!-- Profil Fotoğrafı -->
+        <div class="relative group mb-5">
+            <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 blur opacity-60 group-hover:opacity-100 transition duration-500"></div>
+            <img src="profile.jpg" alt="SERDAR" class="relative w-28 h-28 rounded-full object-cover border-2 border-white/40 shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&h=300&fit=crop&crop=face';">
+        </div>
+
+        <!-- İsim ve Unvan -->
+        <h1 class="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">
+            SERDAR
+        </h1>
+        
+        <div class="inline-block px-3 py-1 mt-2 text-xs font-semibold tracking-wider text-cyan-300 uppercase rounded-full bg-cyan-500/10 border border-cyan-500/20 backdrop-blur-md">
+            Solo Developer
+        </div>
+
+        <!-- Slogan Rozeti -->
+        <div class="my-4 px-4 py-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md text-xs tracking-widest text-slate-300 font-mono">
+            CODE. DESIGN. DEPLOY. 🚀
+        </div>
+
+        <!-- Dinamik Yazı Alanı -->
+        <div class="h-8 flex items-center justify-center text-sm font-medium text-slate-300 mb-6">
+            <span id="dynamicText"></span><span class="cursor">&nbsp;</span>
+        </div>
+
+        <!-- Sosyal Bağlantı Kartları (Swiper Slider) -->
+        <div class="w-full">
+            <div class="swiper mySwiper py-2 px-1">
+                <div class="swiper-wrapper">
+                    
+                    <!-- Telegram -->
+                    <div class="swiper-slide">
+                        <a href="https://t.me/ser1live" target="_blank" rel="noopener noreferrer" class="liquid-card flex items-center gap-4 p-4 rounded-2xl group w-full">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-telegram"></i>
+                            </div>
+                            <div class="text-left flex-1">
+                                <p class="text-xs text-slate-400 font-medium">Kanal & İletişim</p>
+                                <p class="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">Telegram</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+
+                    <!-- Instagram -->
+                    <div class="swiper-slide">
+                        <a href="https://www.instagram.com/ser_dark_?igsh=MXhzeGY5eDJhMzFxNA==" target="_blank" rel="noopener noreferrer" class="liquid-card flex items-center gap-4 p-4 rounded-2xl group w-full">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                            <div class="text-left flex-1">
+                                <p class="text-xs text-slate-400 font-medium">Takip Et</p>
+                                <p class="text-sm font-bold text-white group-hover:text-rose-300 transition-colors">Instagram</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+
+                    <!-- TikTok -->
+                    <div class="swiper-slide">
+                        <a href="https://www.tiktok.com/@serlive7?_t=ZS-90qic9PtnKp&_r=1" target="_blank" rel="noopener noreferrer" class="liquid-card flex items-center gap-4 p-4 rounded-2xl group w-full">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-slate-900 via-neutral-800 to-pink-600 flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform border border-white/20">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </div>
+                            <div class="text-left flex-1">
+                                <p class="text-xs text-slate-400 font-medium">İçerikler</p>
+                                <p class="text-sm font-bold text-white group-hover:text-pink-300 transition-colors">TikTok</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+
+                </div>
+                <!-- Pagination Noktaları -->
+                <div class="swiper-pagination !-bottom-1"></div>
             </div>
         </div>
 
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                
-                <div class="swiper-slide card-item">
-                    <a href="https://t.me/ser1live" target="_blank" rel="noopener noreferrer">
-                        <div class="card-content">
-                            <img src="tele-logo.jpg" alt="Telegram" class="card-brand-img">
-                        </div>
-                    </a>
-                </div>
+        <!-- Footer -->
+        <footer class="mt-6 pt-4 border-t border-white/10 text-xs text-slate-400 w-full flex justify-between items-center">
+            <span>© SERDAR</span>
+            <span class="text-cyan-400 font-mono text-[10px]">v2.0 Liquid Glass</span>
+        </footer>
 
-                <div class="swiper-slide card-item">
-                    <a href="https://www.instagram.com/ser_dark_?igsh=MXhzeGY5eDJhMzFxNA==" target="_blank" rel="noopener noreferrer">
-                        <div class="card-content">
-                            <img src="insta-logo.jpg" alt="Instagram" class="card-brand-img">
-                        </div>
-                    </a>
-                </div>
+    </main>
 
-                <div class="swiper-slide card-item">
-                    <a href="https://www.tiktok.com/@serlive7?_t=ZS-90qic9PtnKp&_r=1" target="_blank" rel="noopener noreferrer">
-                        <div class="card-content">
-                            <img src="tiktok-logo.jpg" alt="TikTok" class="card-brand-img">
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-
-    </div>
-
+    <!-- Script Kodları -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Swiper Ayarları
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 12,
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+
+        // Dinamik Yazı Efekti
+        const phrases = [
+            "Geleceğin web deneyimlerini kodluyorum.",
+            "Solo Developer & Designer.",
+            "Sınırları zorlayan projeler..."
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const dynamicText = document.getElementById("dynamicText");
+
+        function typeEffect() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                dynamicText.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                dynamicText.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        document.addEventListener("DOMContentLoaded", typeEffect);
+    </script>
 </body>
 </html>
