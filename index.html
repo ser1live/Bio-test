@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SERDAR | Coder & Developer</title>
     
-    <!-- Google Fonts & FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Tailwind CSS & Three.js -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
@@ -30,18 +28,18 @@
             overflow-x: hidden;
         }
 
-        /* 👑 iOS CLEAR LIQUID GLASS CAM KART & BUTON STİLİ */
+        /* 👑 LIQUID GLASS CAM KART & BUTON STİLİ */
         .liquid-glass-card {
             position: relative;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(24px) saturate(200%);
             -webkit-backdrop-filter: blur(24px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.22);
             box-shadow: 
                 inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.7),
                 inset 0 -1.5px 2px 0 rgba(255, 255, 255, 0.15),
                 inset 0 0 20px 2px rgba(255, 255, 255, 0.05),
-                0 25px 50px -12px rgba(0, 0, 0, 0.7);
+                0 25px 50px -12px rgba(0, 0, 0, 0.8);
         }
 
         .liquid-glass-card::before {
@@ -99,17 +97,14 @@
 </head>
 <body class="relative select-none">
 
-    <!-- 3D THREE.JS CANVAS -->
     <canvas id="webgl-canvas"></canvas>
 
-    <!-- ARKA PLAN KARARTMA & DERİNLİK -->
-    <div class="fixed inset-0 bg-gradient-to-t from-[#020617] via-transparent to-[#020617]/50 z-0 pointer-events-none"></div>
+    <div class="fixed inset-0 bg-gradient-to-t from-[#020617] via-transparent to-[#020617]/40 z-0 pointer-events-none"></div>
 
-    <!-- SABİT ÜST BAR (NAVBAR) -->
     <header class="fixed top-5 left-0 right-0 z-50 px-5 max-w-5xl mx-auto flex items-center justify-between">
         <div class="liquid-glass-btn px-3.5 py-1.5 rounded-full text-[11px] font-mono text-cyan-300 flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span>GLOBE ENGINE ONLINE</span>
+            <span>REAL EARTH GLOBE ONLINE</span>
         </div>
 
         <a href="https://t.me/ser1live" target="_blank" class="liquid-glass-btn px-4 py-2 rounded-full text-[11px] font-semibold text-white flex items-center gap-1.5">
@@ -118,15 +113,12 @@
         </a>
     </header>
 
-    <!-- KAYDIRILABİLİR İÇERİK -->
     <main class="relative z-10 w-full">
 
-        <!-- ================= BÖLÜM 1: KOMPAKT LIQUID GLASS BIO KARTI ================= -->
         <section id="section1" class="min-h-screen flex items-center justify-center px-4 py-16">
             
             <div class="liquid-glass-card p-5 sm:p-6 rounded-[2rem] w-full max-w-xs text-center space-y-4 shadow-2xl">
                 
-                <!-- Profil Avatarı -->
                 <div class="relative w-20 h-20 mx-auto">
                     <div class="w-full h-full rounded-full overflow-hidden border-2 border-white/50 shadow-lg p-0.5 bg-white/5">
                         <img src="https://github.com/ser1live.png" alt="Serdar" class="w-full h-full object-cover rounded-full">
@@ -134,7 +126,6 @@
                     <span class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-[#020617] rounded-full"></span>
                 </div>
 
-                <!-- İsim & Rozetler -->
                 <div class="space-y-2">
                     <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white heading-font">
                         SERDAR
@@ -153,7 +144,6 @@
                     </div>
                 </div>
 
-                <!-- BUTON & SOSYAL İKONLAR (EN ALTA) -->
                 <div class="pt-2 space-y-3">
                     
                     <a href="#section2" class="liquid-glass-btn w-full py-2.5 rounded-xl text-xs font-bold text-white flex items-center justify-center gap-2">
@@ -179,19 +169,18 @@
 
         </section>
 
-        <!-- ================= BÖLÜM 2: PROJELER ================= -->
         <section id="section2" class="min-h-screen flex items-center justify-end px-6 max-w-5xl mx-auto">
             <div class="liquid-glass-card p-6 rounded-3xl max-w-sm space-y-3 text-right">
                 <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full liquid-glass-btn text-amber-300 text-[10px] font-mono">
                     <i class="fa-solid fa-earth-americas"></i>
-                    <span>GLOBAL NETWORK</span>
+                    <span>REAL DYNAMIC GLOBE</span>
                 </div>
                 <h2 class="text-2xl font-light text-white leading-tight">
-                    Dynamic 3D <br/>
-                    <span class="font-bold text-cyan-400">Plexus World</span>
+                    1:1 Video Style <br/>
+                    <span class="font-bold text-cyan-400">Earth Network</span>
                 </h2>
                 <p class="text-xs text-slate-300 leading-relaxed">
-                    Sayfayı aşağı kaydırdıkça dünya kendi ekseninde gerçekçi fiziklerle döner ve kamera açısı değişir.
+                    Sayfayı kaydırdıkça kıtalar üzerindeki gerçek şehir ağları ve kavisli veri hatları dönerek açısını değiştirir.
                 </p>
                 <div class="pt-1 flex justify-end">
                     <a href="https://t.me/ser1live" target="_blank" class="liquid-glass-btn px-4 py-2 rounded-xl text-xs font-bold text-white inline-flex items-center gap-2">
@@ -202,29 +191,13 @@
             </div>
         </section>
 
-        <!-- ================= BÖLÜM 3: İLETİŞİM ================= -->
-        <section id="section3" class="min-h-screen flex items-center justify-center px-6 max-w-md mx-auto text-center">
-            <div class="liquid-glass-card p-6 rounded-3xl space-y-4 w-full">
-                <h2 class="text-2xl font-bold text-white">İletişime Geç</h2>
-                <p class="text-xs text-slate-300 max-w-xs mx-auto">
-                    3D etkileşimli siteler, modern web mimarileri ve sıvı cam arayüzler için ulaşabilirsin.
-                </p>
-                <a href="https://t.me/ser1live" target="_blank" class="liquid-glass-btn px-6 py-3 rounded-xl text-xs font-bold text-white inline-flex items-center gap-2">
-                    <i class="fa-brands fa-telegram text-sm text-cyan-300"></i>
-                    <span>Telegram'dan Yaz</span>
-                </a>
-            </div>
-        </section>
-
     </main>
 
-    <!-- FOOTER -->
     <footer class="relative z-10 w-full max-w-5xl mx-auto px-6 py-5 flex items-center justify-between text-[10px] text-slate-400 font-mono border-t border-white/10">
         <div>© 2026 SERDAR</div>
-        <div>3D Global Mesh Engine</div>
+        <div>Real 3D Earth Network Engine</div>
     </footer>
 
-    <!-- ================= 3D THREE.JS GERÇEKÇİ GLOBUS KODLARI ================= -->
     <script>
         // 1. SAHNE & KAMERA KURULUMU
         const canvas = document.getElementById('webgl-canvas');
@@ -237,151 +210,174 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // 2. ANA GLOBUS GRUBU
+        // 2. DÜNYA GRUBU
         const globeGroup = new THREE.Group();
-        // Hafif videodaki gibi eğik duruş
-        globeGroup.rotation.z = -0.25;
+        globeGroup.rotation.z = -0.3; // Videodaki gibi hafif eğik eksen
         globeGroup.rotation.x = 0.2;
         scene.add(globeGroup);
 
-        const GLOBE_RADIUS = 2.8;
+        const GLOBE_RADIUS = 2.7;
 
-        // A) KARANLIK DÜNYA KÜRESİ (Gövdeli Taban)
-        const sphereGeo = new THREE.SphereGeometry(GLOBE_RADIUS - 0.05, 64, 64);
+        // A) SİYAH/KOYU DÜNYA KÜRESİ (Okyanuslar ve Alt Gövde)
+        const textureLoader = new THREE.TextureLoader();
+        // Gerçek dünya topoğrafyası ve kıta harita dokusu
+        const earthDarkMap = textureLoader.load('https://unpkg.com/three-globe/example/img/earth-dark.jpg');
+        
+        const sphereGeo = new THREE.SphereGeometry(GLOBE_RADIUS, 64, 64);
         const sphereMat = new THREE.MeshStandardMaterial({
-            color: 0x030d1b,
-            roughness: 0.8,
-            metalness: 0.5,
+            map: earthDarkMap,
+            roughness: 0.9,
+            metalness: 0.2,
+            color: 0x1e293b
         });
         const baseGlobe = new THREE.Mesh(sphereGeo, sphereMat);
         globeGroup.add(baseGlobe);
 
-        // B) ATMOSFER HALKASI / GLOW (Videodaki Mavi Kenar Işığı)
+        // B) ATMOSFER MAVİ HALKASI (Videodaki Dış Parlama)
         const atmosGeo = new THREE.SphereGeometry(GLOBE_RADIUS + 0.08, 64, 64);
         const atmosMat = new THREE.MeshBasicMaterial({
             color: 0x38bdf8,
             transparent: true,
-            opacity: 0.12,
+            opacity: 0.15,
             side: THREE.BackSide
         });
         const atmosSphere = new THREE.Mesh(atmosGeo, atmosMat);
         globeGroup.add(atmosSphere);
 
-        // C) DİJİTAL NOKTA & AĞ (PLEXUS NETWORK) OLUŞTURMA
-        const nodeCount = 1000;
-        const positions = [];
-        const nodePoints = [];
+        // C) GERÇEK KITALARIN ÜZERİNE GECE İŞIKLARI & NOKTA AĞI (LANDMASS SAMPLING)
+        const landNodes = [];
+        const landPositions = [];
 
-        // Fibonacci Küre Dağılımı (Kıta ve Nokta Ağları İçin)
-        const phi = Math.PI * (3 - Math.sqrt(5));
-        for (let i = 0; i < nodeCount; i++) {
-            const y = 1 - (i / (nodeCount - 1)) * 2;
-            const radiusAtY = Math.sqrt(1 - y * y);
-            const theta = phi * i;
+        // Dünya Haritasından Sadece Karaları/Kıtaları Okuyan Canvas Fonksiyonu
+        const mapImg = new Image();
+        mapImg.crossOrigin = "Anonymous";
+        mapImg.src = "https://unpkg.com/three-globe/example/img/earth-dark.jpg";
 
-            const x = Math.cos(theta) * radiusAtY;
-            const z = Math.sin(theta) * radiusAtY;
+        mapImg.onload = () => {
+            const canvas2d = document.createElement('canvas');
+            const w = 512, h = 256;
+            canvas2d.width = w;
+            canvas2d.height = h;
+            const ctx = canvas2d.getContext('2d');
+            ctx.drawImage(mapImg, 0, 0, w, h);
 
-            // Küre yüzeyindeki pozisyon
-            const pos = new THREE.Vector3(x, y, z).multiplyScalar(GLOBE_RADIUS);
-            positions.push(pos.x, pos.y, pos.z);
-            nodePoints.push(pos);
-        }
+            const imgData = ctx.getImageData(0, 0, w, h).data;
 
-        // Nokta Parçacıkları (Nodes)
-        const nodeGeo = new THREE.BufferGeometry();
-        nodeGeo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-        const nodeMat = new THREE.PointsMaterial({
-            color: 0x7dd3fc,
-            size: 0.045,
-            transparent: true,
-            opacity: 0.95
-        });
-        const nodeMesh = new THREE.Points(nodeGeo, nodeMat);
-        globeGroup.add(nodeMesh);
+            // Haritada parlak/kara olan yerlere 3D noktalar koy (Kıtaları Oluştur)
+            for (let y = 0; y < h; y += 3) {
+                const lat = (0.5 - y / h) * Math.PI; // Enlem
+                for (let x = 0; x < w; x += 3) {
+                    const index = (y * w + x) * 4;
+                    const r = imgData[index];
+                    const g = imgData[index + 1];
+                    const b = imgData[index + 2];
+                    const brightness = (r + g + b) / 3;
 
-        // D) NOKTALARI BİRBİRİNE BAĞLAYAN ÇİZGİLER (Plexus Lines)
-        const linePositions = [];
-        const maxDistance = 0.75; // Bağlantı mesafesi
+                    // Eğer piksel kara/kıta parçasıysa nokta oluştur
+                    if (brightness > 35) {
+                        const lon = (x / w - 0.5) * 2 * Math.PI; // Boylam
 
-        for (let i = 0; i < nodePoints.length; i++) {
-            for (let j = i + 1; j < nodePoints.length; j++) {
-                const dist = nodePoints[i].distanceTo(nodePoints[j]);
-                if (dist < maxDistance) {
-                    linePositions.push(
-                        nodePoints[i].x, nodePoints[i].y, nodePoints[i].z,
-                        nodePoints[j].x, nodePoints[j].y, nodePoints[j].z
-                    );
+                        const posX = GLOBE_RADIUS * 1.01 * Math.cos(lat) * Math.sin(lon);
+                        const posY = GLOBE_RADIUS * 1.01 * Math.sin(lat);
+                        const posZ = GLOBE_RADIUS * 1.01 * Math.cos(lat) * Math.cos(lon);
+
+                        const pos = new THREE.Vector3(posX, posY, posZ);
+                        landNodes.push(pos);
+                        landPositions.push(posX, posY, posZ);
+                    }
                 }
             }
-        }
 
-        const linesGeo = new THREE.BufferGeometry();
-        linesGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-        const linesMat = new THREE.LineBasicMaterial({
-            color: 0x38bdf8,
-            transparent: true,
-            opacity: 0.28
-        });
-        const plexusLines = new THREE.LineSegments(linesGeo, linesMat);
-        globeGroup.add(plexusLines);
+            // KITA NOKTALARI (PARLAYAN ŞEHİR NİŞANLARI)
+            const nodeGeo = new THREE.BufferGeometry();
+            nodeGeo.setAttribute('position', new THREE.Float32BufferAttribute(landPositions, 3));
+            const nodeMat = new THREE.PointsMaterial({
+                color: 0x7dd3fc,
+                size: 0.032,
+                transparent: true,
+                opacity: 0.9
+            });
+            const nodeMesh = new THREE.Points(nodeGeo, nodeMat);
+            globeGroup.add(nodeMesh);
 
-        // E) VİDEODAKİ KAVİSLİ VERİ ARKLARI (DATA ARCS)
-        function createArc(p1, p2, color = 0x38bdf8) {
+            // KITA İÇİ ÇİZGİ AĞLARI (PLEXUS)
+            const linePositions = [];
+            const maxConnectDist = 0.38;
+
+            for (let i = 0; i < landNodes.length; i += 2) {
+                for (let j = i + 1; j < landNodes.length; j += 4) {
+                    const d = landNodes[i].distanceTo(landNodes[j]);
+                    if (d < maxConnectDist) {
+                        linePositions.push(
+                            landNodes[i].x, landNodes[i].y, landNodes[i].z,
+                            landNodes[j].x, landNodes[j].y, landNodes[j].z
+                        );
+                    }
+                }
+            }
+
+            const linesGeo = new THREE.BufferGeometry();
+            linesGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+            const linesMat = new THREE.LineBasicMaterial({
+                color: 0x38bdf8,
+                transparent: true,
+                opacity: 0.22
+            });
+            const plexusLines = new THREE.LineSegments(linesGeo, linesMat);
+            globeGroup.add(plexusLines);
+
+            // KITTALARARASI KAVİSLİ VERİ ARKLARI (DATA ARCS)
+            for (let a = 0; a < 15; a++) {
+                const idx1 = Math.floor(Math.random() * landNodes.length);
+                const idx2 = Math.floor(Math.random() * landNodes.length);
+                if (landNodes[idx1] && landNodes[idx2] && landNodes[idx1].distanceTo(landNodes[idx2]) > 2.5) {
+                    const arc = createArc(landNodes[idx1], landNodes[idx2]);
+                    globeGroup.add(arc);
+                }
+            }
+        };
+
+        // D) KAVİSLİ VERİ ARKI ÇİZEN FONKSİYON
+        function createArc(p1, p2) {
             const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
-            const distance = p1.distanceTo(p2);
-            mid.normalize().multiplyScalar(GLOBE_RADIUS + distance * 0.35);
+            const dist = p1.distanceTo(p2);
+            mid.normalize().multiplyScalar(GLOBE_RADIUS + dist * 0.35);
 
             const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
-            const points = curve.getPoints(30);
+            const points = curve.getPoints(35);
             const arcGeo = new THREE.BufferGeometry().setFromPoints(points);
             const arcMat = new THREE.LineBasicMaterial({
-                color: color,
+                color: 0xbae6fd,
                 transparent: true,
-                opacity: 0.7
+                opacity: 0.75
             });
             return new THREE.Line(arcGeo, arcMat);
         }
 
-        // Rastgele kıtalar arası 12 adet veri kavis halkası
-        for (let a = 0; a < 12; a++) {
-            const idx1 = Math.floor(Math.random() * nodePoints.length);
-            const idx2 = Math.floor(Math.random() * nodePoints.length);
-            if (nodePoints[idx1].distanceTo(nodePoints[idx2]) > 2) {
-                const arc = createArc(nodePoints[idx1], nodePoints[idx2], a % 2 === 0 ? 0x38bdf8 : 0xbae6fd);
-                globeGroup.add(arc);
-            }
-        }
-
-        // F) UZAY PARÇACIKLARI (SABİT YILDIZLAR)
+        // E) UZAY ARKA PLAN YILDIZLARI
         const starGeo = new THREE.BufferGeometry();
         const starPos = [];
-        for (let s = 0; s < 400; s++) {
-            starPos.push(
-                (Math.random() - 0.5) * 25,
-                (Math.random() - 0.5) * 25,
-                (Math.random() - 0.5) * 25
-            );
+        for (let s = 0; s < 500; s++) {
+            starPos.push((Math.random() - 0.5) * 30, (Math.random() - 0.5) * 30, (Math.random() - 0.5) * 30);
         }
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
-        const starMat = new THREE.PointsMaterial({ color: 0x94a3b8, size: 0.02, transparent: true, opacity: 0.5 });
-        const starField = new THREE.Points(starGeo, starMat);
-        scene.add(starField);
+        const starMat = new THREE.PointsMaterial({ color: 0x94a3b8, size: 0.02, transparent: true, opacity: 0.4 });
+        scene.add(new THREE.Points(starGeo, starMat));
 
-        // 3. VİDEODAKİ SİNEMATİK SAĞ ÜST UFUK IŞIĞI (Sun Flare / Horizon Light)
-        const ambientLight = new THREE.AmbientLight(0x0284c7, 0.4);
+        // 3. VİDEODAKİ SAĞ ÜST UFUK GÜNEŞ IŞIĞI (SUN FLARE & HORIZON LIGHT)
+        const ambientLight = new THREE.AmbientLight(0x0284c7, 0.5);
         scene.add(ambientLight);
 
-        // Videodaki parlayan parlak ufuk ışığı
-        const sunLight = new THREE.DirectionalLight(0xe0f2fe, 3.5);
-        sunLight.position.set(6, 4, 2);
+        // Videodaki gibi sağ üstten vuran kuvvetli ışık
+        const sunLight = new THREE.DirectionalLight(0xf0f9ff, 4.0);
+        sunLight.position.set(5, 3.5, 2);
         scene.add(sunLight);
 
-        const blueRimLight = new THREE.PointLight(0x0284c7, 4, 15);
-        blueRimLight.position.set(-6, -4, -2);
-        scene.add(blueRimLight);
+        const rimLight = new THREE.PointLight(0x0284c7, 5, 20);
+        rimLight.position.set(-5, -3, -2);
+        scene.add(rimLight);
 
-        // 4. SCROLL & PÜRÜZSÜZ FİZİK HESAPLAMASI
+        // 4. SCROLL & FİZİKSEL DÖNÜŞ HESABI
         let scrollPercent = 0;
         window.addEventListener('scroll', () => {
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -394,27 +390,23 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // 5. ANİMASYON DÖNGÜSÜ (Pürüzsüz Dönüş ve Kaydırma Takibi)
+        // 5. ANİMASYON DÖNGÜSÜ
         function animate() {
             requestAnimationFrame(animate);
 
-            // Kaydırmaya bağlı dönme açıları
-            const targetRotY = scrollPercent * Math.PI * 3;
-            const targetRotX = 0.2 + Math.sin(scrollPercent * Math.PI) * 0.4;
+            const targetRotY = scrollPercent * Math.PI * 2.5;
+            const targetRotX = 0.2 + Math.sin(scrollPercent * Math.PI) * 0.3;
             
-            // Mobil ve masaüstü konum ayarı
             const isMobile = window.innerWidth < 768;
-            const targetGroupX = isMobile ? 0 : (scrollPercent > 0.3 ? -1.2 : 0.8);
-            const targetCamZ = isMobile ? 8.5 : 7.2;
+            const targetGroupX = isMobile ? 0 : (scrollPercent > 0.3 ? -1.1 : 0.8);
 
-            // Yumuşak LERP fizik geçişleri
+            // Yumuşak LERP fizikleri
             globeGroup.rotation.y += (targetRotY - globeGroup.rotation.y) * 0.04;
             globeGroup.rotation.x += (targetRotX - globeGroup.rotation.x) * 0.04;
             globeGroup.position.x += (targetGroupX - globeGroup.position.x) * 0.04;
-            camera.position.z += (targetCamZ - camera.position.z) * 0.04;
 
-            // Kendi etrafında sürekli gerçekçi yavaş dönüş
-            globeGroup.rotation.y += 0.002;
+            // Kendi etrafında yavaş sürekli dönme
+            globeGroup.rotation.y += 0.0018;
 
             renderer.render(scene, camera);
         }
