@@ -3,339 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SERDAR | Futuristic Glass UI</title>
+    <title>SERDAR | Bio & Portfolio</title>
     
-    <!-- Modern Fontlar & İkonlar -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <style>
         * {
             font-family: 'Plus Jakarta Sans', sans-serif;
+            box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-        h1, h2, h3, .heading-font {
+
+        h1, h2, .heading-font {
             font-family: 'Space Grotesk', sans-serif;
         }
-        .font-mono-code {
-            font-family: 'Fira Code', monospace;
+
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Ana Şeffaf Çerçeve */
-        .master-glass-frame {
+        /* Cam Üst Sekme Barı (Liquid UI) */
+        .glass-nav {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
-            transition: background 0.4s ease, border-color 0.4s ease;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
-        /* Şeffaf Buzlu Cam Kartı */
-        .clear-glass-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(30px) saturate(180%);
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        .nav-btn {
+            color: #94a3b8;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Koyu Cam Kart */
-        .dark-glass-card {
-            background: rgba(18, 22, 38, 0.55);
-            backdrop-filter: blur(30px) saturate(180%);
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
+        .nav-btn.active {
+            color: #09090b;
+            background: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Sekme İçerikleri */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cam Buton Efekti */
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .pill-button {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
-        .pill-button:hover {
-            background: rgba(255, 255, 255, 0.22);
-        }
 
-        .nav-dock {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* Aktif Buton Stili */
-        .dock-btn.active {
-            background-color: #ffffff !important;
-            color: #0f172a !important;
-            transform: scale(1.08);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-        }
-
-        /* Aydınlık Cam Teması */
-        body.light-theme .master-glass-frame {
-            background: rgba(255, 255, 255, 0.4);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-        body.light-theme .clear-glass-card {
-            background: rgba(255, 255, 255, 0.55);
-            color: #0f172a;
-        }
-        body.light-theme .dark-glass-card {
-            background: rgba(255, 255, 255, 0.45);
-            color: #0f172a;
-        }
-        body.light-theme .text-white {
-            color: #0f172a !important;
-        }
-        body.light-theme .text-slate-300, body.light-theme .text-slate-400 {
-            color: #334155 !important;
-        }
-
-        /* İmleç Efekti */
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.1em;
-            background-color: #38bdf8;
-            animation: blink 1s infinite;
-            margin-left: 2px;
-            vertical-align: middle;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to { opacity: 1; transform: translateY(0); }
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body class="bg-slate-950 text-white min-h-screen flex items-center justify-center p-3 sm:p-6 relative overflow-x-hidden">
+<body class="relative min-h-screen flex flex-col justify-between p-4 md:p-10 select-none">
 
-    <!-- Arka Plan Videosu -->
-    <video autoplay muted loop playsinline id="bg-video" class="fixed inset-0 w-full h-full object-cover z-0 filter brightness-90 contrast-105 scale-105">
-        <source src="bg.mp4" type="video/mp4">
-    </video>
-    <div id="bg-overlay" class="fixed inset-0 bg-black/35 backdrop-blur-[2px] z-0 transition-all duration-500"></div>
+    <canvas id="dnaCanvas" class="fixed inset-0 w-full h-full z-0 pointer-events-none transition-opacity duration-700 opacity-0"></canvas>
 
-    <!-- ANA UI PENCERESİ -->
-    <div class="relative z-10 w-full max-w-5xl master-glass-frame rounded-[32px] sm:rounded-[40px] p-4 sm:p-7 flex flex-col justify-between min-h-[660px] overflow-hidden my-auto">
+    <div id="bgGradient" class="fixed inset-0 bg-gradient-to-t from-[#030712] via-transparent to-[#030712]/70 z-0 pointer-events-none"></div>
+
+    <header class="relative z-20 w-full flex items-center justify-between max-w-4xl mx-auto mb-6">
         
-        <!-- ÜST BAR -->
-        <header class="w-full flex flex-wrap items-center justify-between gap-3 z-20 mb-6">
-            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-                <div class="pill-button px-4 py-2 rounded-full text-xs font-bold text-white flex items-center gap-2 shadow-sm whitespace-nowrap">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Available for Projects
-                </div>
-                <div class="pill-button px-4 py-2 rounded-full text-xs font-semibold text-slate-200 hidden md:flex items-center gap-1.5 whitespace-nowrap">
-                    <i class="fa-solid fa-code text-cyan-400"></i> Solo Developer
-                </div>
+        <div class="glass-btn px-3 py-1.5 rounded-full text-xs font-mono text-emerald-400 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Available for Projects</span>
+        </div>
+
+        <nav class="glass-nav p-1.5 rounded-full flex items-center gap-1">
+            <button onclick="switchTab('home')" id="tab-btn-home" class="nav-btn w-10 h-10 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-house text-sm"></i>
+            </button>
+
+            <button onclick="switchTab('projects')" id="tab-btn-projects" class="nav-btn active w-10 h-10 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-layer-group text-sm"></i>
+            </button>
+
+            <button onclick="switchTab('contact')" id="tab-btn-contact" class="nav-btn w-10 h-10 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-code text-sm"></i>
+            </button>
+        </nav>
+
+        <a href="https://t.me/ser1live" target="_blank" class="glass-btn px-4 py-2 rounded-full text-xs font-semibold text-white hover:text-cyan-400 transition-colors hidden sm:flex items-center gap-2">
+            <span>Contact Me</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+    </header>
+
+    <section id="tab-home" class="tab-content relative z-10 max-w-lg mx-auto w-full my-auto py-8">
+        <div class="glass-btn p-8 rounded-3xl text-center border border-white/10">
+            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-cyan-400/50 mb-4 shadow-xl">
+                <img src="https://github.com/ser1live.png" alt="Serdar" class="w-full h-full object-cover">
             </div>
+            <h1 class="text-3xl font-bold text-white mb-1">SERDAR</h1>
+            <p class="text-xs text-cyan-400 font-mono tracking-widest uppercase mb-4">Solo Developer & Creator</p>
+            <p class="text-xs text-slate-400 leading-relaxed mb-6">Geleceğin web deneyimlerini ve kişiselleştirilmiş minimalist arayüzlerini kodluyorum.</p>
+            <button onclick="switchTab('projects')" class="w-full py-3 rounded-xl bg-white text-slate-950 text-xs font-bold hover:bg-slate-200 transition-all">
+                Projelerimi İncele <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+        </div>
+    </section>
 
-            <a href="https://t.me/ser1live" target="_blank" class="bg-white hover:bg-slate-100 text-slate-900 px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 shadow-lg hover:scale-105 ml-auto">
-                <span>Contact Me</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-            </a>
-        </header>
-
-        <!-- ORTA ALAN: Dinamik Sekmeler -->
-        <div class="relative w-full flex-1 flex flex-col md:flex-row items-start gap-6 z-20 my-3">
+    <section id="tab-projects" class="tab-content active relative z-10 max-w-5xl mx-auto w-full my-auto py-4">
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             
-            <!-- DİKEY İKON DOCK'I -->
-            <aside class="nav-dock rounded-full p-2 flex md:flex-col items-center gap-2.5 shadow-lg mx-auto md:mx-0">
-                <button onclick="switchTab('home', this)" class="dock-btn active w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center text-sm transition-all hover:scale-110" title="Ana Sayfa">
-                    <i class="fa-solid fa-house"></i>
-                </button>
-                <button onclick="switchTab('skills', this)" class="dock-btn w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center text-sm transition-all hover:scale-110" title="Yetenekler & Uzmanlık">
-                    <i class="fa-solid fa-layer-group"></i>
-                </button>
-                <button onclick="switchTab('terminal', this)" class="dock-btn w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center text-sm transition-all hover:scale-110" title="Live Terminal">
-                    <i class="fa-solid fa-code"></i>
-                </button>
-                
-                <div class="w-5 h-[1px] md:w-[1px] md:h-5 bg-white/20 my-0.5"></div>
-                
-                <button onclick="toggleGlassTheme()" class="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center text-sm transition-all hover:scale-110 hover:rotate-45" title="Tema Değiştir">
-                    <i class="fa-solid fa-circle-half-stroke"></i>
-                </button>
-            </aside>
+            <div class="md:col-span-7 space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[11px] font-mono">
+                    <i class="fa-solid fa-cube text-xs"></i>
+                    <span>PROJELER & UYGULAMALAR</span>
+                </div>
 
-            <!-- TAB 1: ANA SAYFA -->
-            <div id="tab-home" class="tab-content active flex-1 text-center md:text-left pt-2 md:pt-4">
-                <p class="text-xs font-bold tracking-widest text-cyan-300 uppercase mb-2">Modern Web Architecture</p>
-                <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white drop-shadow-md leading-none">
-                    New Way Of <br class="hidden sm:inline"/>
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400">Developing</span>
+                <h1 class="text-3xl sm:text-5xl font-light text-white leading-tight tracking-tight">
+                    How will custom <br/>
+                    <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-white to-slate-400">code change you?</span>
                 </h1>
+
+                <p id="project-desc" class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-md">
+                    Biyoteknoloji ve sinematik tasarım prensipleriyle geliştirilmiş özel projeler. 3D akıcı web mimarisi ve yüksek performanslı özel arayüzler.
+                </p>
+
+                <div class="pt-2 flex items-center gap-6">
+                    <a id="project-link" href="https://t.me/ser1live" target="_blank" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-white hover:text-cyan-300 transition-all">
+                        <span class="text-cyan-400 font-bold">&gt;</span>
+                        <span class="underline underline-offset-8 decoration-slate-600 hover:decoration-white">Canlı Demo / Proje Detayı</span>
+                    </a>
+                </div>
             </div>
 
-            <!-- TAB 2: YETENEKLER -->
-            <div id="tab-skills" class="tab-content flex-1 text-center md:text-left pt-2 w-full">
-                <p class="text-xs font-bold tracking-widest text-cyan-300 uppercase mb-1">Tech Stack & Ecosystem</p>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Uzmanlık Alanlarım</h2>
+            <div class="md:col-span-5 flex flex-col items-center md:items-end gap-6">
                 
-                <div class="flex flex-wrap justify-center md:justify-start gap-2 max-w-lg">
-                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-brands fa-linux text-amber-400"></i> Linux & Termux</span>
-                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-brands fa-android text-emerald-400"></i> Custom Android OS</span>
-                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-brands fa-html5 text-orange-400"></i> HTML5 & CSS3</span>
-                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-brands fa-js text-yellow-300"></i> JavaScript ES6+</span>
-                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-solid fa-wind text-sky-400"></i> Tailwind CSS</span>
-                    <span class="clear-glass-card px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2"><i class="fa-solid fa-shield-halved text-purple-400"></i> Cyber Security</span>
-                </div>
-            </div>
+                <a href="https://t.me/ser1live" target="_blank" class="glass-btn w-24 h-24 rounded-full flex flex-col items-center justify-center gap-1 text-white shadow-2xl group hover:border-cyan-400/50">
+                    <i class="fa-solid fa-play text-xl text-cyan-400 group-hover:scale-125 transition-transform"></i>
+                    <span class="text-[9px] font-mono tracking-wider text-slate-300 uppercase">Önizleme</span>
+                </a>
 
-            <!-- TAB 3: TERMINAL -->
-            <div id="tab-terminal" class="tab-content flex-1 text-left pt-1 w-full">
-                <div class="dark-glass-card rounded-2xl p-3.5 font-mono-code text-xs text-emerald-400 border border-white/20 shadow-xl max-w-xl">
-                    <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2">
-                        <span class="text-slate-400 text-[10px] flex items-center gap-1.5"><i class="fa-solid fa-terminal"></i> serdar@terminal:~</span>
-                        <div class="flex gap-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
-                        </div>
+                <div class="glass-btn p-4 rounded-2xl w-full max-w-xs border border-white/10 space-y-3">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-400">
+                        <span>SEÇİLİ PROJE</span>
+                        <span id="project-num" class="text-cyan-400 font-bold">01 / 03</span>
                     </div>
-                    <p class="text-slate-300">$ whoami</p>
-                    <p class="text-white mb-1.5">> SERDAR - Solo Developer & Modder</p>
-                    <p class="text-slate-300">$ status</p>
-                    <p class="text-cyan-300 mb-1.5">> System online. Liquid Glass UI v3.0 running...</p>
-                    <p class="text-slate-300">$ echo $SKILLS</p>
-                    <p class="text-amber-300">> ["Termux", "Aero UI", "Root Customization", "Web Dev"]</p>
+
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="setProject(1)" id="p-btn-1" class="py-2 rounded-lg bg-white/10 text-white text-xs font-bold border border-cyan-400/50">v3.0</button>
+                        <button onclick="setProject(2)" id="p-btn-2" class="py-2 rounded-lg bg-white/5 text-slate-400 text-xs font-bold hover:bg-white/10">Bio-Hub</button>
+                        <button onclick="setProject(3)" id="p-btn-3" class="py-2 rounded-lg bg-white/5 text-slate-400 text-xs font-bold hover:bg-white/10">Engine</button>
+                    </div>
                 </div>
+
             </div>
 
         </div>
 
-        <!-- ALT ALAN: Kartlar -->
-        <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-4 z-20 items-end mt-4">
-            
-            <!-- SOL ALT KART -->
-            <div class="lg:col-span-5 clear-glass-card rounded-[24px] p-4 sm:p-5 text-white flex flex-col justify-between shadow-2xl relative overflow-hidden">
-                <div class="flex items-center gap-3.5 mb-3">
-                    <div class="relative">
-                        <img src="profile.jpg" alt="SERDAR" class="w-14 h-14 rounded-2xl object-cover shadow-md border-2 border-white/40" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&h=200&fit=crop&crop=face';">
-                        <span class="absolute -bottom-1 -right-1 w-4.5 h-4.5 bg-emerald-500 border-2 border-slate-900 rounded-full flex items-center justify-center text-[9px] text-white">✓</span>
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-bold tracking-tight text-white">SERDAR</h2>
-                        <p class="text-xs font-medium text-slate-300">Solo Developer & Creator</p>
-                    </div>
-                </div>
+    </section>
 
-                <div class="h-11 flex items-center text-xs sm:text-sm font-semibold text-slate-100 bg-white/10 rounded-xl px-3 py-1.5 border border-white/15 mb-3 backdrop-blur-md">
-                    <span id="dynamicText"></span><span class="cursor"></span>
-                </div>
-
-                <div class="flex items-center justify-between border-t border-white/10 pt-2.5">
-                    <div>
-                        <p class="text-base font-extrabold text-white heading-font">100%</p>
-                        <p class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Custom Code</p>
-                    </div>
-                </div>
+    <section id="tab-contact" class="tab-content relative z-10 max-w-lg mx-auto w-full my-auto py-8">
+        <div class="glass-btn p-8 rounded-3xl border border-white/10 text-center space-y-4">
+            <h2 class="text-2xl font-bold text-white">İletişim & Sosyal Medya</h2>
+            <p class="text-xs text-slate-400">Projelerinize özel tasarım ve geliştirme için doğrudan ulaşabilirsiniz.</p>
+            <div class="pt-4 flex justify-center gap-4 text-xl">
+                <a href="https://t.me/ser1live" target="_blank" class="w-12 h-12 rounded-2xl glass-btn flex items-center justify-center text-cyan-400 hover:scale-110 transition-transform"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://www.instagram.com/ser_dark_" target="_blank" class="w-12 h-12 rounded-2xl glass-btn flex items-center justify-center text-pink-400 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@serlive7" target="_blank" class="w-12 h-12 rounded-2xl glass-btn flex items-center justify-center text-white hover:scale-110 transition-transform"><i class="fa-brands fa-tiktok"></i></a>
             </div>
+        </div>
+    </section>
 
-            <!-- SAĞ ALT KART (Sosyal Medya Hub) -->
-            <div class="lg:col-span-7 dark-glass-card rounded-[24px] p-4 sm:p-5 text-white flex flex-col justify-between shadow-2xl relative overflow-hidden">
-                
-                <div class="flex items-start justify-between gap-4 mb-2">
-                    <div>
-                        <div class="flex items-center gap-1.5 text-xs font-medium text-cyan-300 mb-0.5">
-                            <i class="fa-solid fa-bolt text-[10px]"></i> Active Social Hub
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-bold tracking-tight text-white">Connect & Follow</h3>
-                        <p class="text-xs text-slate-300 mt-0.5 max-w-sm">Projelerimi ve güncel içeriklerimi sosyal medya hesaplarımdan takip edebilirsiniz.</p>
-                    </div>
+    <footer class="relative z-10 w-full max-w-4xl mx-auto flex items-center justify-between text-[11px] text-slate-500 font-mono pt-4 border-t border-white/5">
+        <div>© 2026 SERDAR</div>
+        <div class="text-slate-400">v3.0 Liquid 3D Engine</div>
+    </footer>
 
-                    <div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white text-base backdrop-blur-md">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </div>
-                </div>
+    <script>
+        // --- 1. SEKMELER ARASI GEÇİŞ (TAB SWITCHER) ---
+        function switchTab(tabName) {
+            // Tüm içerikleri ve buton aktifliklerini temizle
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
 
-                <!-- Swiper Slider -->
-                <div class="w-full my-2">
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            
-                            <!-- Telegram -->
-                            <div class="swiper-slide">
-                                <a href="https://t.me/ser1live" target="_blank" class="flex items-center justify-between p-3 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-9 h-9 rounded-xl bg-sky-500 flex items-center justify-center text-white text-base shadow-md">
-                                            <i class="fa-brands fa-telegram"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-xs font-bold text-white">Telegram Channel</p>
-                                            <p class="text-[10px] text-slate-300">@ser1live • Duyurular</p>
-                                        </div>
-                                    </div>
-                                    <div class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </div>
-                                </a>
-                            </div>
+            // İstenen sekmeyi göster
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            document.getElementById(`tab-btn-${tabName}`).classList.add('active');
 
-                            <!-- Instagram -->
-                            <div class="swiper-slide">
-                                <a href="https://www.instagram.com/ser_dark_?igsh=MXhzeGY5eDJhMzFxNA==" target="_blank" class="flex items-center justify-between p-3 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white text-base shadow-md">
-                                            <i class="fa-brands fa-instagram"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-xs font-bold text-white">Instagram Profile</p>
-                                            <p class="text-[10px] text-slate-300">@ser_dark_ • Günlük İçerik</p>
-                                        </div>
-                                    </div>
-                                    <div class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </div>
-                                </a>
-                            </div>
+            // 3D DNA Arka Planını Sadece Projeler Sekmesinde Göster
+            const canvas = document.getElementById('dnaCanvas');
+            if (tabName === 'projects') {
+                canvas.style.opacity = '1';
+            } else {
+                canvas.style.opacity = '0';
+            }
+        }
 
-                            <!-- TikTok -->
-                            <div class="swiper-slide">
-                                <a href="https://www.tiktok.com/@serlive7?_t=ZS-90qic9PtnKp&_r=1" target="_blank" class="flex items-center justify-between p-3 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 group">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-9 h-9 rounded-xl bg-slate-950 flex items-center justify-center text-white text-base border border-white/20 shadow-md">
-                                            <i class="fa-brands fa-tiktok"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-xs font-bold text-white">TikTok Account</p>
-                                            <p class="text-[10px] text-slate-300">@serlive7 • VLOG & Tech</p>
-                                        </div>
-                                    </div>
-                                    <div class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-white group-hover:text-slate-900 flex items-center justify-center text-xs text-white transition-all">
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </div>
-                                </a>
-                            </div>
+        // --- 2. PROJELERİM SEKMESİ İÇİNDEKİ PROJE DEĞİŞTİRİCİ ---
+        const projectsData = {
+            1: {
+                num: "01 / 03",
+                desc: "Aero Liquid UI v3.0: Cam efekti (Glassmorphism), akıcı geçişler ve yüksek performanslı modern mobil bio arayüzü.",
+                link: "https://t.me/ser1live"
+            },
+            2: {
+                num: "02 / 03",
+                desc: "Bio-Hub Platform: Sosyal medya bağlantılarını ve içerikleri tek bir etkileşimli kartta toplayan web mimarisi.",
+                link: "https://t.me/ser1live"
+            },
+            3: {
+                num: "03 / 03",
+                desc: "Custom Engine & Mods: Web sitelerine özel 3D canvas efektleri, dinamik tema motoru ve kişiselleştirilmiş modlamalar.",
+                link: "https://t.me/ser1live"
+            }
+        };
 
-                        </div>
-                    </div>
-                </div>
+        function setProject(id) {
+            document.getElementById('project-num').innerText = projectsData[id].num;
+            document.getElementById('project-desc').innerText = projectsData[id].desc;
+            document.getElementById('project-link').href = projectsData[id].link;
 
-                <!-- Alt Detay Çubuğu -->
-                <div class="flex items-center justify-between border-t border-white/10 pt-2.5 text-[10px] text-slate-300">
-                    <span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-cyan-400"></i> Verified Developer</span>
-                    <span class="font-mono text-slate-400">© 2026 SERDAR</span>
-                </div>
+            [1, 2, 3].forEach(i => {
+                const btn = document.getElementById(`p-btn-${i}`);
+                if (i === id) {
+                    btn.className = "py-2 rounded-lg bg-white/10 text-white text-xs font-bold border border-cyan-400/50";
+                } else {
+                    btn.className = "py-2 rounded-lg bg-white/5 text-slate-400 text-xs font-bold hover:bg-white/10";
+                }
+            });
+        }
 
- 
+        // --- 3. 3D DNA CANVAS ANİMASYONU ---
+        const canvas = document.getElementById('dnaCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let angle = 0;
+        const numNodes = 32;
+        const radius = 110;
+        const speed = 0.014;
+
+        function drawDNA() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const centerX = canvas.width * (window.innerWidth > 768 ? 0.65 : 0.5);
+            const startY = canvas.height * 0.1;
+            const endY = canvas.height * 0.9;
+            const stepY = (endY - startY) / numNodes;
+
+            for (let i = 0; i < numNodes; i++) {
+                const currentAngle = angle + i * 0.25;
+                const y = startY + i * stepY;
+
+                const x1 = centerX + Math.cos(currentAngle) * radius;
+                const z1 = Math.sin(currentAngle) * radius;
+
+                const x2 = centerX + Math.cos(currentAngle + Math.PI) * radius;
+                const z2 = Math.sin(currentAngle + Math.PI) * radius;
+
+                const scale1 = (z1 + 200) / 300;
+                const scale2 = (z2 + 200) / 300;
+
+                // Basamaklar
+                ctx.beginPath();
+                ctx.moveTo(x1, y);
+                ctx.lineTo(x2, y);
+                ctx.strokeStyle = `rgba(56, 189, 248, ${Math.max(0.08, (z1 + radius) / (2 * radius) * 0.25)})`;
+                ctx.lineWidth = 1.2;
+                ctx.stroke();
+
+                // Orta Altın Işıklar
+                const midX = (x1 + x2) / 2;
+                ctx.beginPath();
+                ctx.arc(midX, y, 2.2, 0, Math.PI * 2);
+                ctx.fillStyle = '#fbbf24';
+                ctx.fill();
+
+                // Düğüm 1
+                ctx.beginPath();
+                ctx.arc(x1, y, Math.max(2, 4 * scale1), 0, Math.PI * 2);
+                ctx.fillStyle = z1 > 0 ? '#ffffff' : '#38bdf8';
+                ctx.fill();
+
+                // Düğüm 2
+                ctx.beginPath();
+                ctx.arc(x2, y, Math.max(2, 4 * scale2), 0, Math.PI * 2);
+                ctx.fillStyle = z2 > 0 ? '#ffffff' : '#0284c7';
+                ctx.fill();
+            }
+
+            angle += speed;
+            requestAnimationFrame(drawDNA);
+        }
+
+        drawDNA();
+        switchTab('projects'); // Varsayılan olarak Projelerim sekmesiyle açılır
+    </script>
+</body>
+</html>
