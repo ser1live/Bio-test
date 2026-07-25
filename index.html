@@ -44,9 +44,9 @@
             z-index: 10;
         }
 
-        /* YAZILARIN OKUNMASI İÇİN GÜÇLENDİRİLMİŞ SIVI CAM KART */
+        /* SIVI CAM KARTLAR */
         .liquid-card {
-            background: rgba(3, 7, 18, 0.65); /* Daha koyu arka plan tabakası */
+            background: rgba(3, 7, 18, 0.7);
             backdrop-filter: blur(25px) saturate(200%);
             -webkit-backdrop-filter: blur(25px) saturate(200%);
             border: 1px solid rgba(255, 255, 255, 0.18);
@@ -59,7 +59,15 @@
             border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
-        /* Yazıların Parlak Arka Planda Kaybolmaması İçin Gölge Efekti */
+        /* YANDAKİ SABİT DİKEY MENÜ (DOCK) */
+        .side-dock {
+            background: rgba(3, 7, 18, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+        }
+
         .text-glow {
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
         }
@@ -67,26 +75,43 @@
 </head>
 <body class="select-none">
 
-    <!-- 3D CANVAS -->
     <canvas id="webgl-canvas"></canvas>
 
-    <!-- HEADER -->
-    <header class="fixed top-0 left-0 right-0 z-50 p-6 max-w-5xl mx-auto flex justify-between items-center">
-        <div class="liquid-btn px-4 py-1.5 rounded-full text-[11px] font-mono text-cyan-300 flex items-center gap-2 shadow-lg">
-            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span>LIQUID GLASS</span>
+    <aside class="fixed left-4 top-1/2 -translate-y-1/2 z-50 side-dock w-14 py-5 rounded-2xl flex flex-col items-center justify-between h-[380px] hidden sm:flex">
+        <div class="flex flex-col items-center gap-1.5">
+            <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+            <div class="w-6 h-[1px] bg-white/20 my-2"></div>
+            <i class="fa-brands fa-youtube text-white text-xs"></i>
         </div>
-        <a href="https://t.me/ser1live" target="_blank" class="liquid-btn px-5 py-2 rounded-full text-xs font-semibold text-white flex items-center gap-2 shadow-lg">
-            <span>İletişim</span>
-            <i class="fa-solid fa-paper-plane text-[10px] text-cyan-400"></i>
-        </a>
+
+        <div class="flex flex-col items-center gap-5 text-slate-300">
+            <a href="#home" title="Home" class="hover:text-cyan-400 transition-colors text-sm"><i class="fa-solid fa-house"></i></a>
+            <a href="#projects" title="Projeler" class="hover:text-cyan-400 transition-colors text-sm"><i class="fa-solid fa-code"></i></a>
+            <a href="#contact" title="İletişim" class="hover:text-cyan-400 transition-colors text-sm"><i class="fa-solid fa-paper-plane"></i></a>
+        </div>
+
+        <div class="w-8 h-8 rounded-full overflow-hidden border border-white/40">
+            <img src="https://github.com/ser1live.png" alt="Serdar" class="w-full h-full object-cover">
+        </div>
+    </aside>
+
+    <header class="fixed top-0 left-0 right-0 z-50 p-4 max-w-5xl mx-auto flex justify-between items-center sm:hidden bg-black/40 backdrop-blur-md border-b border-white/10">
+        <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+            <span class="text-xs font-bold text-cyan-300 font-mono">SERDAR.DEV</span>
+        </div>
+        <div class="flex gap-2">
+            <a href="#home" class="px-3 py-1 rounded-lg liquid-btn text-[10px] text-white">Home</a>
+            <a href="#projects" class="px-3 py-1 rounded-lg liquid-btn text-[10px] text-white">Projeler</a>
+            <a href="#contact" class="px-3 py-1 rounded-lg liquid-btn text-[10px] text-white">İletişim</a>
+        </div>
     </header>
 
-    <!-- İÇERİK -->
-    <main class="content-layer w-full max-w-4xl mx-auto px-4">
+    <main class="content-layer w-full max-w-3xl mx-auto px-4 sm:pl-16">
         
-        <!-- BÖLÜM 1: BIO -->
-        <section class="min-h-screen flex items-center justify-center pt-20 pb-10">
+        <section id="home" class="min-h-screen flex items-center justify-center pt-20 pb-10">
             <div class="liquid-card p-8 rounded-3xl w-full max-w-sm text-center space-y-6">
                 <div class="relative w-24 h-24 mx-auto">
                     <img src="https://github.com/ser1live.png" alt="Serdar" class="w-full h-full rounded-full object-cover border-2 border-white/50 shadow-2xl">
@@ -125,7 +150,6 @@
             </div>
         </section>
 
-        <!-- BÖLÜM 2: PROJELER -->
         <section id="projects" class="py-24 space-y-8">
             <div class="text-center space-y-2">
                 <h2 class="text-2xl font-bold text-white text-glow">PROJELER</h2>
@@ -147,13 +171,26 @@
                 </div>
             </div>
         </section>
+
+        <section id="contact" class="py-24 space-y-8 mb-20">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl font-bold text-white text-glow">İLETİŞİM</h2>
+                <p class="text-xs text-slate-300 font-mono text-glow">Benimle hızlıca iletişime geçin</p>
+            </div>
+
+            <div class="liquid-card p-8 rounded-3xl text-center space-y-4">
+                <p class="text-xs text-slate-200 text-glow">Projeleriniz veya iş birlikleri için Telegram üzerinden yazabilirsiniz.</p>
+                <a href="https://t.me/ser1live" target="_blank" class="inline-block px-6 py-3 rounded-xl liquid-btn text-cyan-300 font-bold text-xs shadow-lg">
+                    <i class="fa-brands fa-telegram mr-2"></i> Telegram ile Mesaj Gönder
+                </a>
+            </div>
+        </section>
     </main>
 
-    <footer class="content-layer border-t border-white/10 py-8 text-center text-xs text-slate-400 font-mono text-glow">
+    <footer class="content-layer border-t border-white/10 py-8 text-center text-xs text-slate-400 font-mono text-glow sm:pl-12">
         <p>© 2026 SERDAR</p>
     </footer>
 
-    <!-- THREE.JS MOTORU -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('webgl-canvas');
