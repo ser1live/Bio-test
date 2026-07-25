@@ -30,19 +30,46 @@
             padding: 0;
         }
 
-        /* 👑 LIQUID GLASS CAM KART (3D TILT DESTEKLİ) */
+        /* ARKA PLAN MİSTİK GLOW (Z-INDEX: 0) */
+        .bg-glow {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 75% 20%, rgba(14, 165, 233, 0.15) 0%, rgba(2, 6, 23, 0.95) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* 3D CANVASA KESİN Z-INDEX: 1 */
+        #webgl-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* İÇERİK KATMANI (Z-INDEX: 10) */
+        .content-layer {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 👑 LIQUID GLASS CAM KART & BUTON STİLİ */
         .liquid-glass-card {
             position: relative;
             background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(28px) saturate(220%);
-            -webkit-backdrop-filter: blur(28px) saturate(220%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             box-shadow: 
-                inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.6),
-                inset 0 -1.5px 2px 0 rgba(255, 255, 255, 0.1),
-                inset 0 0 30px 2px rgba(56, 189, 248, 0.12),
+                inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1.5px 2px 0 rgba(255, 255, 255, 0.08),
+                inset 0 0 25px 2px rgba(56, 189, 248, 0.1),
                 0 30px 60px -12px rgba(0, 0, 0, 0.85);
             transform-style: preserve-3d;
+            transition: transform 0.15s ease-out;
             will-change: transform;
         }
 
@@ -53,7 +80,7 @@
             left: 10%;
             width: 80%;
             height: 1.5px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
         }
 
         .liquid-glass-btn {
@@ -61,10 +88,10 @@
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.28);
             box-shadow: 
-                inset 0 1px 2px 0 rgba(255, 255, 255, 0.8),
-                inset 0 -1px 2px 0 rgba(255, 255, 255, 0.15),
+                inset 0 1px 2px 0 rgba(255, 255, 255, 0.7),
+                inset 0 -1px 2px 0 rgba(255, 255, 255, 0.12),
                 0 8px 20px -4px rgba(0, 0, 0, 0.5);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -76,39 +103,29 @@
             left: 15%;
             width: 70%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
         }
 
         .liquid-glass-btn:hover {
             background: rgba(255, 255, 255, 0.22);
-            border-color: rgba(255, 255, 255, 0.8);
+            border-color: rgba(255, 255, 255, 0.75);
             transform: translateY(-2px) scale(1.03);
             box-shadow: 
                 inset 0 1px 3px 0 rgba(255, 255, 255, 1),
                 0 12px 30px -4px rgba(56, 189, 248, 0.4);
         }
-
-        #webgl-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body class="relative select-none bg-[#020617]">
 
-    <div class="fixed inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-sky-900/40 via-purple-950/20 to-[#020617] -z-10 pointer-events-none"></div>
+    <div class="bg-glow"></div>
 
     <canvas id="webgl-canvas"></canvas>
 
     <header class="fixed top-5 left-0 right-0 z-50 px-5 max-w-5xl mx-auto flex items-center justify-between">
         <div class="liquid-glass-btn px-3.5 py-1.5 rounded-full text-[11px] font-mono text-cyan-300 flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span>PHYSICS HELIX V4</span>
+            <span>OPTIMIZED HELIX V5</span>
         </div>
 
         <a href="https://t.me/ser1live" target="_blank" class="liquid-glass-btn px-4 py-2 rounded-full text-[11px] font-semibold text-white flex items-center gap-1.5">
@@ -117,11 +134,11 @@
         </a>
     </header>
 
-    <main class="relative z-10 w-full">
+    <main class="content-layer w-full">
 
         <section id="section1" class="min-h-screen flex items-center justify-center px-4 py-16">
             
-            <div class="liquid-glass-card p-5 sm:p-6 rounded-[2rem] w-full max-w-xs text-center space-y-4 shadow-2xl transition-transform duration-200">
+            <div class="liquid-glass-card p-5 sm:p-6 rounded-[2rem] w-full max-w-xs text-center space-y-4 shadow-2xl">
                 
                 <div class="relative w-20 h-20 mx-auto">
                     <div class="w-full h-full rounded-full overflow-hidden border-2 border-white/70 shadow-lg p-0.5 bg-white/10">
@@ -178,17 +195,17 @@
         </section>
 
         <section id="section2" class="min-h-screen flex items-center justify-end px-6 max-w-5xl mx-auto">
-            <div class="liquid-glass-card p-6 rounded-3xl max-w-sm space-y-3 text-right transition-transform duration-200">
+            <div class="liquid-glass-card p-6 rounded-3xl max-w-sm space-y-3 text-right">
                 <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full liquid-glass-btn text-amber-300 text-[10px] font-mono">
-                    <i class="fa-solid fa-bolt"></i>
-                    <span>INTERACTIVE DYNAMICS</span>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>STABLE & ULTRA FAST</span>
                 </div>
                 <h2 class="text-2xl font-light text-white leading-tight">
-                    Elastic <br/>
-                    <span class="font-bold text-cyan-400">Physics DNA Engine</span>
+                    Ultra-Stable <br/>
+                    <span class="font-bold text-cyan-400">Cyber DNA Engine</span>
                 </h2>
                 <p class="text-xs text-slate-200 leading-relaxed">
-                    Sayfa kaydırma hızına (velocity) tepki veren esnek yay fiziği, ataletli dönüşler ve 3D kart eğilme efektleri.
+                    Tüm cihazlarda (Mobil/PC) çökme yapmayan, optimize edilmiş 3D esnek DNA fiziği ve yüksek performanslı efektler.
                 </p>
                 <div class="pt-1 flex justify-end">
                     <a href="https://t.me/ser1live" target="_blank" class="liquid-glass-btn px-4 py-2 rounded-xl text-xs font-bold text-white inline-flex items-center gap-2">
@@ -201,108 +218,104 @@
 
     </main>
 
-    <footer class="relative z-10 w-full max-w-5xl mx-auto px-6 py-5 flex items-center justify-between text-[10px] text-slate-400 font-mono border-t border-white/10">
+    <footer class="content-layer w-full max-w-5xl mx-auto px-6 py-5 flex items-center justify-between text-[10px] text-slate-400 font-mono border-t border-white/10">
         <div>© 2026 SERDAR</div>
-        <div>Interactive 3D Physics Engine</div>
+        <div>Cybernetic DNA Helix Engine</div>
     </footer>
 
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            if (typeof THREE === 'undefined') {
-                console.error("Three.js kütüphanesi yüklenemedi.");
+        window.addEventListener('load', () => {
+            const canvas = document.getElementById('webgl-canvas');
+            if (!canvas || typeof THREE === 'undefined') {
+                console.error("Three.js veya Canvas bulunamadı.");
                 return;
             }
 
-            // --- 1. CAM KARTLARA 3D TILT FİZİĞİ EKLEME ---
+            // 1. CAM KARTLARA 3D TILT EFEKTİ
             const cards = document.querySelectorAll('.liquid-glass-card');
             cards.forEach(card => {
                 card.addEventListener('mousemove', (e) => {
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left - rect.width / 2;
                     const y = e.clientY - rect.top - rect.height / 2;
-                    card.style.transform = `perspective(1000px) rotateX(${-y / 14}deg) rotateY(${x / 14}deg) translateZ(8px)`;
+                    card.style.transform = `perspective(1000px) rotateX(${-y / 16}deg) rotateY(${x / 16}deg) translateZ(6px)`;
                 });
                 card.addEventListener('mouseleave', () => {
                     card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
                 });
             });
 
-            // --- 2. THREE.JS SAHNE VE KAMERA ---
-            const canvas = document.getElementById('webgl-canvas');
+            // 2. THREE.JS SAHNE VE KAMERA
             const scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x020617, 0.015);
 
-            scene.fog = new THREE.FogExp2(0x020617, 0.012);
-
-            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
             camera.position.set(0, 0, 14);
 
-            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            const renderer = new THREE.WebGLRenderer({ 
+                canvas: canvas, 
+                alpha: true, 
+                antialias: true,
+                powerPreference: "high-performance"
+            });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderer.toneMapping = THREE.ACESFilmicToneMapping;
-            renderer.toneMappingExposure = 1.9;
 
-            // --- 3. DNA MODEL GRUBU & ÇAPRAZ EĞİM ---
+            // WebGL Çökmesine Karşı Otomatik Kurtarma
+            canvas.addEventListener('webglcontextlost', (e) => {
+                e.preventDefault();
+                console.warn("WebGL Context Lost. Yeniden başlatılıyor...");
+            }, false);
+
+            // 3. DNA GRUBU VE EĞİM ('/' ÇAPRAZ DURUŞ)
             const dnaGroup = new THREE.Group();
-            dnaGroup.rotation.z = -0.62; // Çapraz Duruş '/'
-            dnaGroup.rotation.x = 0.25;
+            dnaGroup.rotation.z = -0.58; // Çapraz Duruş Açı
+            dnaGroup.rotation.x = 0.22;
             scene.add(dnaGroup);
 
-            const numRungs = 54;
+            const numRungs = 42;
             const radius = 2.2;
-            const height = 26;
-            const turns = 3.8;
+            const height = 24;
+            const turns = 3.5;
 
-            // MATERYALLER
-            const titaniumStrandMat = new THREE.MeshPhysicalMaterial({
+            // ULTRA PERFORMANSLI VE PARLAK PHONG MATERYALLER
+            const strandMat = new THREE.MeshPhongMaterial({
                 color: 0x38bdf8,
                 emissive: 0x0284c7,
-                emissiveIntensity: 0.5,
-                metalness: 0.95,
-                roughness: 0.08,
-                clearcoat: 1.0,
-                reflectivity: 1.0
+                specular: 0xffffff,
+                shininess: 90
             });
 
-            const atomNodeMat = new THREE.MeshPhysicalMaterial({
+            const atomMat = new THREE.MeshPhongMaterial({
                 color: 0xffffff,
                 emissive: 0x38bdf8,
-                emissiveIntensity: 1.8,
-                metalness: 0.9,
-                roughness: 0.1
+                specular: 0xffffff,
+                shininess: 100
             });
 
-            const baseCyanMat = new THREE.MeshStandardMaterial({
+            const leftBaseMat = new THREE.MeshPhongMaterial({
                 color: 0x0ea5e9,
                 emissive: 0x0284c7,
-                emissiveIntensity: 1.5,
-                roughness: 0.2,
-                metalness: 0.7
+                shininess: 60
             });
 
-            const baseAmberMat = new THREE.MeshStandardMaterial({
+            const rightBaseMat = new THREE.MeshPhongMaterial({
                 color: 0xf59e0b,
                 emissive: 0xd97706,
-                emissiveIntensity: 1.8,
-                roughness: 0.2,
-                metalness: 0.7
+                shininess: 60
             });
 
-            const coreGlowMat = new THREE.MeshStandardMaterial({
-                color: 0xffffff,
-                emissive: 0xfcb316,
-                emissiveIntensity: 8.0,
-                roughness: 0.0,
-                metalness: 0.9
+            const glowCenterMat = new THREE.MeshBasicMaterial({
+                color: 0xfcb316
             });
 
-            // TAŞIYICI SARMAL KOLLAR
+            // SARMAL OMURGA KOLLARI
             const points1 = [];
             const points2 = [];
 
-            for (let i = 0; i <= 150; i++) {
-                const t = (i / 150) * Math.PI * 2 * turns;
-                const y = (i / 150) * height - height / 2;
+            for (let i = 0; i <= 120; i++) {
+                const t = (i / 120) * Math.PI * 2 * turns;
+                const y = (i / 120) * height - height / 2;
                 points1.push(new THREE.Vector3(Math.cos(t) * radius, y, Math.sin(t) * radius));
                 points2.push(new THREE.Vector3(Math.cos(t + Math.PI) * radius, y, Math.sin(t + Math.PI) * radius));
             }
@@ -310,20 +323,17 @@
             const curve1 = new THREE.CatmullRomCurve3(points1);
             const curve2 = new THREE.CatmullRomCurve3(points2);
 
-            const tubeGeo1 = new THREE.TubeGeometry(curve1, 160, 0.11, 16, false);
-            const tubeGeo2 = new THREE.TubeGeometry(curve2, 160, 0.11, 16, false);
+            const tubeGeo1 = new THREE.TubeGeometry(curve1, 120, 0.1, 12, false);
+            const tubeGeo2 = new THREE.TubeGeometry(curve2, 120, 0.1, 12, false);
 
-            const strand1 = new THREE.Mesh(tubeGeo1, titaniumStrandMat);
-            const strand2 = new THREE.Mesh(tubeGeo2, titaniumStrandMat);
+            dnaGroup.add(new THREE.Mesh(tubeGeo1, strandMat));
+            dnaGroup.add(new THREE.Mesh(tubeGeo2, strandMat));
 
-            dnaGroup.add(strand1);
-            dnaGroup.add(strand2);
-
-            // BAZ ÇİFTLERİ & MOLEKÜLER ATOM KÜRELERİ
+            // NÜKLEOTİT BAZLAR & ATOM DÜĞÜMLERİ
             const jointRings = [];
-            const baseHalfGeo = new THREE.CylinderGeometry(0.045, 0.055, 0.95, 16);
-            const atomNodeGeo = new THREE.SphereGeometry(0.15, 16, 16);
-            const centerCoreGeo = new THREE.TorusGeometry(0.12, 0.04, 16, 32);
+            const baseHalfGeo = new THREE.CylinderGeometry(0.04, 0.05, 0.95, 12);
+            const atomNodeGeo = new THREE.SphereGeometry(0.14, 12, 12);
+            const centerCoreGeo = new THREE.TorusGeometry(0.11, 0.035, 12, 24);
 
             for (let i = 0; i < numRungs; i++) {
                 const fraction = i / numRungs;
@@ -337,85 +347,86 @@
                 const dir = new THREE.Vector3().subVectors(p2, p1).normalize();
                 const rotQuaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
 
-                const leftBase = new THREE.Mesh(baseHalfGeo, baseCyanMat);
-                const leftPos = new THREE.Vector3().addVectors(p1, mid).multiplyScalar(0.5);
-                leftBase.position.copy(leftPos);
+                // Sol Baz (Cyan)
+                const leftBase = new THREE.Mesh(baseHalfGeo, leftBaseMat);
+                leftBase.position.copy(new THREE.Vector3().addVectors(p1, mid).multiplyScalar(0.5));
                 leftBase.quaternion.copy(rotQuaternion);
                 dnaGroup.add(leftBase);
 
-                const rightBase = new THREE.Mesh(baseHalfGeo, baseAmberMat);
-                const rightPos = new THREE.Vector3().addVectors(p2, mid).multiplyScalar(0.5);
-                rightBase.position.copy(rightPos);
+                // Sağ Baz (Kehribar/Altın)
+                const rightBase = new THREE.Mesh(baseHalfGeo, rightBaseMat);
+                rightBase.position.copy(new THREE.Vector3().addVectors(p2, mid).multiplyScalar(0.5));
                 rightBase.quaternion.copy(rotQuaternion);
                 dnaGroup.add(rightBase);
 
-                const node1 = new THREE.Mesh(atomNodeGeo, atomNodeMat);
+                // Atom Küreleri
+                const node1 = new THREE.Mesh(atomNodeGeo, atomMat);
                 node1.position.copy(p1);
                 dnaGroup.add(node1);
 
-                const node2 = new THREE.Mesh(atomNodeGeo, atomNodeMat);
+                const node2 = new THREE.Mesh(atomNodeGeo, atomMat);
                 node2.position.copy(p2);
                 dnaGroup.add(node2);
 
-                const centerJoint = new THREE.Mesh(centerCoreGeo, coreGlowMat.clone());
+                // Merkez Bağ Halkası
+                const centerJoint = new THREE.Mesh(centerCoreGeo, glowCenterMat);
                 centerJoint.position.copy(mid);
                 centerJoint.quaternion.copy(rotQuaternion);
                 dnaGroup.add(centerJoint);
                 jointRings.push(centerJoint);
             }
 
-            // DİJİTAL PARÇACIKLAR
-            const particleCount = 500;
+            // PARÇACIK TOZLARI
+            const particleCount = 350;
             const particleGeo = new THREE.BufferGeometry();
             const particlePos = new Float32Array(particleCount * 3);
 
             for (let p = 0; p < particleCount; p++) {
-                particlePos[p * 3] = (Math.random() - 0.5) * 24;
-                particlePos[p * 3 + 1] = (Math.random() - 0.5) * 28;
-                particlePos[p * 3 + 2] = (Math.random() - 0.5) * 24;
+                particlePos[p * 3] = (Math.random() - 0.5) * 22;
+                particlePos[p * 3 + 1] = (Math.random() - 0.5) * 26;
+                particlePos[p * 3 + 2] = (Math.random() - 0.5) * 22;
             }
 
             particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
             const particleMat = new THREE.PointsMaterial({
                 color: 0x38bdf8,
-                size: 0.045,
+                size: 0.04,
                 transparent: true,
-                opacity: 0.8,
+                opacity: 0.75,
                 blending: THREE.AdditiveBlending
             });
             const particles = new THREE.Points(particleGeo, particleMat);
             scene.add(particles);
 
             // IŞIKLANDIRMA
-            const ambientLight = new THREE.AmbientLight(0x0f172a, 3.5);
-            scene.add(ambientLight);
+            scene.add(new THREE.AmbientLight(0x0f172a, 2.5));
 
-            const cyanSpot = new THREE.SpotLight(0x38bdf8, 7.0);
-            cyanSpot.position.set(-10, 15, 10);
-            scene.add(cyanSpot);
+            const dirLight1 = new THREE.DirectionalLight(0x38bdf8, 3.5);
+            dirLight1.position.set(-10, 12, 10);
+            scene.add(dirLight1);
 
-            const amberSpot = new THREE.SpotLight(0xf59e0b, 6.0);
-            amberSpot.position.set(10, -15, 8);
-            scene.add(amberSpot);
+            const dirLight2 = new THREE.DirectionalLight(0xf59e0b, 2.8);
+            dirLight2.position.set(10, -12, 8);
+            scene.add(dirLight2);
 
-            // --- 4. SCROLL & MOUSE FİZİK DEĞİŞKENLERİ ---
-            let currentScrollProgress = 0;
+            // 4. SCROLL & MOUSE FİZİK HESAPLAMALARI
             let targetScrollProgress = 0;
+            let currentScrollProgress = 0;
             let scrollVelocity = 0;
-            let targetScrollVelocity = 0;
-            let lastScrollY = window.scrollY;
+            let lastScrollY = window.scrollY || 0;
 
             let mouseX = 0, mouseY = 0;
             let targetMouseX = 0, targetMouseY = 0;
 
             window.addEventListener('scroll', () => {
-                const currentY = window.scrollY;
-                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                const currentY = window.scrollY || 0;
+                const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
                 
-                targetScrollProgress = currentY / (maxScroll || 1);
+                targetScrollProgress = currentY / maxScroll;
                 
-                // Kaydırma hızını (Velocity) hesaplama
-                targetScrollVelocity = (currentY - lastScrollY) * 0.008;
+                // Güvenli Velocity (Sınırlandırılmış)
+                const rawVel = (currentY - lastScrollY) * 0.005;
+                scrollVelocity = Math.max(-0.25, Math.min(0.25, rawVel));
                 lastScrollY = currentY;
             });
 
@@ -430,21 +441,21 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
 
-            // --- 5. FİZİK DÖNGÜSÜ VE RENDER ---
+            // 5. ANİMASYON DÖNGÜSÜ
             const clock = new THREE.Clock();
 
             function animate() {
                 requestAnimationFrame(animate);
+
                 const time = clock.getElapsedTime();
 
-                // Düzgünleştirme (Lerp / Damping)
+                // Yumuşak Takip (Lerp)
                 currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.08;
-                
-                scrollVelocity += (targetScrollVelocity - scrollVelocity) * 0.1;
-                targetScrollVelocity *= 0.88; // Yay sönümlemesi (decay)
+                scrollVelocity *= 0.90; // Sönümlenme
 
                 mouseX += (targetMouseX - mouseX) * 0.05;
                 mouseY += (targetMouseY - mouseY) * 0.05;
 
-                // FİZİK 1: Hızlı Kaydırmada Yay Esnemesi (Spring Elastic Stretch)
-                const stretchFactor = 1 + Math.min(Math.max(Math.abs(scrollVeloc
+                // FİZİK 1: Esnek Dikey Yay Ölçeklemesi (Spring Elastic Stretch)
+                const stretch = 1 + Math.abs(scrollVelocity) * 1.2;
+                dnaGroup.scale.y += (stretch - dnaGroup.scale.y
