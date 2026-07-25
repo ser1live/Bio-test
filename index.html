@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SERDAR | Coder & Developer</title>
+    <title>SERDAR | Developer Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,31 +15,21 @@
         * {
             font-family: 'Plus Jakarta Sans', sans-serif;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        h1, h2, h3, .heading-font {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        body {
-            background-color: #020617;
-            color: #f8fafc;
-            overflow-x: hidden;
             margin: 0;
             padding: 0;
         }
 
-        /* ARKA PLAN MİSTİK GLOW (Z-INDEX: 0) */
-        .bg-glow {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at 75% 20%, rgba(14, 165, 233, 0.15) 0%, rgba(2, 6, 23, 0.95) 70%);
-            z-index: 0;
-            pointer-events: none;
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* 3D CANVASA KESİN Z-INDEX: 1 */
+        body {
+            background-color: #030712;
+            color: #f9fafb;
+            overflow-x: hidden;
+        }
+
+        /* 3D WEBGL CANVAS (SABİT ARKA PLAN) */
         #webgl-canvas {
             position: fixed;
             top: 0;
@@ -50,207 +40,99 @@
             pointer-events: none;
         }
 
-        /* İÇERİK KATMANI (Z-INDEX: 10) */
+        /* İÇERİK KATMANI */
         .content-layer {
             position: relative;
             z-index: 10;
         }
 
-        /* 👑 LIQUID GLASS CAM KART & BUTON STİLİ */
-        .liquid-glass-card {
-            position: relative;
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(24px) saturate(200%);
-            -webkit-backdrop-filter: blur(24px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 
-                inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.5),
-                inset 0 -1.5px 2px 0 rgba(255, 255, 255, 0.08),
-                inset 0 0 25px 2px rgba(56, 189, 248, 0.1),
-                0 30px 60px -12px rgba(0, 0, 0, 0.85);
-            transform-style: preserve-3d;
-            transition: transform 0.15s ease-out;
-            will-change: transform;
+        /* MODERN GLASS CARD */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
 
-        .liquid-glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 10%;
-            width: 80%;
-            height: 1.5px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-        }
-
-        .liquid-glass-btn {
-            position: relative;
+        .glass-btn {
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.28);
-            box-shadow: 
-                inset 0 1px 2px 0 rgba(255, 255, 255, 0.7),
-                inset 0 -1px 2px 0 rgba(255, 255, 255, 0.12),
-                0 8px 20px -4px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
 
-        .liquid-glass-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 15%;
-            width: 70%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
-        }
-
-        .liquid-glass-btn:hover {
-            background: rgba(255, 255, 255, 0.22);
-            border-color: rgba(255, 255, 255, 0.75);
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 
-                inset 0 1px 3px 0 rgba(255, 255, 255, 1),
-                0 12px 30px -4px rgba(56, 189, 248, 0.4);
+        .glass-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.6);
+            transform: translateY(-2px);
         }
     </style>
 </head>
-<body class="relative select-none bg-[#020617]">
-
-    <div class="bg-glow"></div>
+<body class="bg-[#030712] select-none">
 
     <canvas id="webgl-canvas"></canvas>
 
-    <header class="fixed top-5 left-0 right-0 z-50 px-5 max-w-5xl mx-auto flex items-center justify-between">
-        <div class="liquid-glass-btn px-3.5 py-1.5 rounded-full text-[11px] font-mono text-cyan-300 flex items-center gap-2">
+    <header class="fixed top-0 left-0 right-0 z-50 p-6 max-w-6xl mx-auto flex justify-between items-center">
+        <div class="glass-btn px-4 py-1.5 rounded-full text-xs font-mono text-cyan-400 flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span>OPTIMIZED HELIX V5</span>
+            <span>SYSTEM ONLINE</span>
         </div>
-
-        <a href="https://t.me/ser1live" target="_blank" class="liquid-glass-btn px-4 py-2 rounded-full text-[11px] font-semibold text-white flex items-center gap-1.5">
-            <span>Contact</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-cyan-300"></i>
+        <a href="https://t.me/ser1live" target="_blank" class="glass-btn px-5 py-2 rounded-full text-xs font-semibold text-white flex items-center gap-2">
+            <span>İletişim</span>
+            <i class="fa-solid fa-paper-plane text-cyan-400 text-xs"></i>
         </a>
     </header>
 
     <main class="content-layer w-full">
 
-        <section id="section1" class="min-h-screen flex items-center justify-center px-4 py-16">
-            
-            <div class="liquid-glass-card p-5 sm:p-6 rounded-[2rem] w-full max-w-xs text-center space-y-4 shadow-2xl">
+        <section class="min-h-screen flex items-center justify-center px-4">
+            <div class="glass-card p-8 rounded-3xl w-full max-w-sm text-center space-y-6">
                 
-                <div class="relative w-20 h-20 mx-auto">
-                    <div class="w-full h-full rounded-full overflow-hidden border-2 border-white/70 shadow-lg p-0.5 bg-white/10">
-                        <img src="https://github.com/ser1live.png" alt="Serdar" class="w-full h-full object-cover rounded-full">
-                    </div>
-                    <span class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-[#020617] rounded-full"></span>
+                <div class="relative w-24 h-24 mx-auto">
+                    <img src="https://github.com/ser1live.png" alt="Serdar" class="w-full h-full rounded-full object-cover border-2 border-cyan-400/50 shadow-lg">
+                    <span class="absolute bottom-1 right-1 w-3.5 h-3.5 bg-emerald-500 border-2 border-[#030712] rounded-full"></span>
                 </div>
 
-                <div class="space-y-2">
-                    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white heading-font">
-                        SERDAR
-                    </h1>
-                    
-                    <div class="flex flex-wrap items-center justify-center gap-1.5">
-                        <span class="px-2.5 py-0.5 rounded-full liquid-glass-btn text-cyan-300 text-[10px] font-mono">
-                            <i class="fa-solid fa-code text-[9px] mr-1"></i> Coder
-                        </span>
-                        <span class="px-2.5 py-0.5 rounded-full liquid-glass-btn text-emerald-300 text-[10px] font-mono">
-                            <i class="fa-solid fa-terminal text-[9px] mr-1"></i> Developer
-                        </span>
-                        <span class="px-2.5 py-0.5 rounded-full liquid-glass-btn text-amber-300 text-[10px] font-mono">
-                            <i class="fa-solid fa-layer-group text-[9px] mr-1"></i> UI Modder
-                        </span>
+                <div>
+                    <h1 class="text-3xl font-bold tracking-tight text-white mb-2">SERDAR</h1>
+                    <div class="flex items-center justify-center gap-2">
+                        <span class="px-3 py-1 rounded-full glass-btn text-cyan-400 text-xs font-mono">Coder</span>
+                        <span class="px-3 py-1 rounded-full glass-btn text-emerald-400 text-xs font-mono">Developer</span>
                     </div>
                 </div>
 
-                <p class="text-[11px] text-slate-200 leading-relaxed px-2 font-medium">
-                    Sıvı cam (Liquid Glass) estetiği, minimalist mobil arayüzler ve modern web deneyimleri geliştiriyorum.
+                <p class="text-xs text-slate-300 leading-relaxed font-normal">
+                    Modern web deneyimleri, minimalist kullanıcı arayüzleri ve 3D grafik tasarımları geliştiriyorum.
                 </p>
 
-                <div class="pt-1 space-y-3">
-                    
-                    <a href="#section2" class="liquid-glass-btn w-full py-2.5 rounded-xl text-xs font-bold text-white flex items-center justify-center gap-2">
-                        <span>Projeleri İncele</span>
-                        <i class="fa-solid fa-arrow-down text-cyan-300 text-[10px] animate-bounce"></i>
+                <div class="flex justify-center gap-3 pt-2">
+                    <a href="https://t.me/ser1live" target="_blank" class="glass-btn w-10 h-10 rounded-xl flex items-center justify-center text-cyan-400 text-lg">
+                        <i class="fa-brands fa-telegram"></i>
                     </a>
-
-                    <div class="flex items-center justify-center gap-2 pt-1">
-                        <a href="https://t.me/ser1live" target="_blank" class="liquid-glass-btn w-9 h-9 rounded-xl flex items-center justify-center text-cyan-300">
-                            <i class="fa-brands fa-telegram text-sm"></i>
-                        </a>
-                        <a href="https://www.instagram.com/ser_dark_" target="_blank" class="liquid-glass-btn w-9 h-9 rounded-xl flex items-center justify-center text-pink-300">
-                            <i class="fa-brands fa-instagram text-sm"></i>
-                        </a>
-                        <a href="https://www.tiktok.com/@serlive7" target="_blank" class="liquid-glass-btn w-9 h-9 rounded-xl flex items-center justify-center text-white">
-                            <i class="fa-brands fa-tiktok text-sm"></i>
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section id="section2" class="min-h-screen flex items-center justify-end px-6 max-w-5xl mx-auto">
-            <div class="liquid-glass-card p-6 rounded-3xl max-w-sm space-y-3 text-right">
-                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full liquid-glass-btn text-amber-300 text-[10px] font-mono">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <span>STABLE & ULTRA FAST</span>
-                </div>
-                <h2 class="text-2xl font-light text-white leading-tight">
-                    Ultra-Stable <br/>
-                    <span class="font-bold text-cyan-400">Cyber DNA Engine</span>
-                </h2>
-                <p class="text-xs text-slate-200 leading-relaxed">
-                    Tüm cihazlarda (Mobil/PC) çökme yapmayan, optimize edilmiş 3D esnek DNA fiziği ve yüksek performanslı efektler.
-                </p>
-                <div class="pt-1 flex justify-end">
-                    <a href="https://t.me/ser1live" target="_blank" class="liquid-glass-btn px-4 py-2 rounded-xl text-xs font-bold text-white inline-flex items-center gap-2">
-                        <span>İletişime Geç</span>
-                        <i class="fa-solid fa-chevron-right text-cyan-300"></i>
+                    <a href="https://www.instagram.com/ser_dark_" target="_blank" class="glass-btn w-10 h-10 rounded-xl flex items-center justify-center text-pink-400 text-lg">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@serlive7" target="_blank" class="glass-btn w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg">
+                        <i class="fa-brands fa-tiktok"></i>
                     </a>
                 </div>
+
             </div>
         </section>
 
     </main>
 
-    <footer class="content-layer w-full max-w-5xl mx-auto px-6 py-5 flex items-center justify-between text-[10px] text-slate-400 font-mono border-t border-white/10">
-        <div>© 2026 SERDAR</div>
-        <div>Cybernetic DNA Helix Engine</div>
-    </footer>
-
     <script>
-        window.addEventListener('load', () => {
+        window.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('webgl-canvas');
-            if (!canvas || typeof THREE === 'undefined') {
-                console.error("Three.js veya Canvas bulunamadı.");
-                return;
-            }
-
-            // 1. CAM KARTLARA 3D TILT EFEKTİ
-            const cards = document.querySelectorAll('.liquid-glass-card');
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    card.style.transform = `perspective(1000px) rotateX(${-y / 16}deg) rotateY(${x / 16}deg) translateZ(6px)`;
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
-                });
-            });
-
-            // 2. THREE.JS SAHNE VE KAMERA
+            
+            // 1. SAHNE & KAMERA SETUP
             const scene = new THREE.Scene();
-            scene.fog = new THREE.FogExp2(0x020617, 0.015);
+            scene.fog = new THREE.FogExp2(0x030712, 0.02);
 
-            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-            camera.position.set(0, 0, 14);
+            const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.set(0, 0, 15);
 
             const renderer = new THREE.WebGLRenderer({ 
                 canvas: canvas, 
@@ -259,180 +141,120 @@
                 powerPreference: "high-performance"
             });
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // GPU Dostu Limit
 
-            // WebGL Çökmesine Karşı Otomatik Kurtarma
+            // WEBGL CONTEXT LOSS KORUMASI
             canvas.addEventListener('webglcontextlost', (e) => {
                 e.preventDefault();
-                console.warn("WebGL Context Lost. Yeniden başlatılıyor...");
+                console.warn('WebGL Kapandı, yeniden başlatılıyor...');
             }, false);
 
-            // 3. DNA GRUBU VE EĞİM ('/' ÇAPRAZ DURUŞ)
+            canvas.addEventListener('webglcontextrestored', () => {
+                console.log('WebGL Yeniden Kurtarıldı!');
+                init3D();
+            }, false);
+
+            // 2. DNA HELIX GRUBU
             const dnaGroup = new THREE.Group();
-            dnaGroup.rotation.z = -0.58; // Çapraz Duruş Açı
-            dnaGroup.rotation.x = 0.22;
+            dnaGroup.rotation.z = -0.5; // Çapraz Duruş
             scene.add(dnaGroup);
 
-            const numRungs = 42;
+            const numPoints = 80;
+            const turns = 3;
             const radius = 2.2;
-            const height = 24;
-            const turns = 3.5;
+            const height = 18;
 
-            // ULTRA PERFORMANSLI VE PARLAK PHONG MATERYALLER
-            const strandMat = new THREE.MeshPhongMaterial({
-                color: 0x38bdf8,
-                emissive: 0x0284c7,
-                specular: 0xffffff,
-                shininess: 90
-            });
-
-            const atomMat = new THREE.MeshPhongMaterial({
-                color: 0xffffff,
-                emissive: 0x38bdf8,
-                specular: 0xffffff,
-                shininess: 100
-            });
-
-            const leftBaseMat = new THREE.MeshPhongMaterial({
-                color: 0x0ea5e9,
-                emissive: 0x0284c7,
-                shininess: 60
-            });
-
-            const rightBaseMat = new THREE.MeshPhongMaterial({
-                color: 0xf59e0b,
-                emissive: 0xd97706,
-                shininess: 60
-            });
-
-            const glowCenterMat = new THREE.MeshBasicMaterial({
-                color: 0xfcb316
-            });
-
-            // SARMAL OMURGA KOLLARI
+            // STRAND 1 & 2 NOKTALARI
             const points1 = [];
             const points2 = [];
 
-            for (let i = 0; i <= 120; i++) {
-                const t = (i / 120) * Math.PI * 2 * turns;
-                const y = (i / 120) * height - height / 2;
-                points1.push(new THREE.Vector3(Math.cos(t) * radius, y, Math.sin(t) * radius));
-                points2.push(new THREE.Vector3(Math.cos(t + Math.PI) * radius, y, Math.sin(t + Math.PI) * radius));
+            for (let i = 0; i < numPoints; i++) {
+                const fraction = i / numPoints;
+                const angle = fraction * Math.PI * 2 * turns;
+                const y = fraction * height - height / 2;
+
+                const x1 = Math.cos(angle) * radius;
+                const z1 = Math.sin(angle) * radius;
+
+                const x2 = Math.cos(angle + Math.PI) * radius;
+                const z2 = Math.sin(angle + Math.PI) * radius;
+
+                points1.push(new THREE.Vector3(x1, y, z1));
+                points2.push(new THREE.Vector3(x2, y, z2));
+
+                // BAZ ÇİZGİLERİ (Nükleotit Bağları)
+                if (i % 2 === 0) {
+                    const lineGeo = new THREE.BufferGeometry().setFromPoints([
+                        new THREE.Vector3(x1, y, z1),
+                        new THREE.Vector3(x2, y, z2)
+                    ]);
+                    const lineMat = new THREE.LineBasicMaterial({
+                        color: i % 4 === 0 ? 0x38bdf8 : 0xf59e0b,
+                        transparent: true,
+                        opacity: 0.6
+                    });
+                    const bond = new THREE.Line(lineGeo, lineMat);
+                    dnaGroup.add(bond);
+                }
             }
 
+            // SARMAL ÇİZGİLER
             const curve1 = new THREE.CatmullRomCurve3(points1);
             const curve2 = new THREE.CatmullRomCurve3(points2);
 
-            const tubeGeo1 = new THREE.TubeGeometry(curve1, 120, 0.1, 12, false);
-            const tubeGeo2 = new THREE.TubeGeometry(curve2, 120, 0.1, 12, false);
+            const geo1 = new THREE.BufferGeometry().setFromPoints(curve1.getPoints(150));
+            const geo2 = new THREE.BufferGeometry().setFromPoints(curve2.getPoints(150));
 
-            dnaGroup.add(new THREE.Mesh(tubeGeo1, strandMat));
-            dnaGroup.add(new THREE.Mesh(tubeGeo2, strandMat));
+            const strandMat1 = new THREE.LineBasicMaterial({ color: 0x38bdf8, linewidth: 2 });
+            const strandMat2 = new THREE.LineBasicMaterial({ color: 0xf59e0b, linewidth: 2 });
 
-            // NÜKLEOTİT BAZLAR & ATOM DÜĞÜMLERİ
-            const jointRings = [];
-            const baseHalfGeo = new THREE.CylinderGeometry(0.04, 0.05, 0.95, 12);
-            const atomNodeGeo = new THREE.SphereGeometry(0.14, 12, 12);
-            const centerCoreGeo = new THREE.TorusGeometry(0.11, 0.035, 12, 24);
+            dnaGroup.add(new THREE.Line(geo1, strandMat1));
+            dnaGroup.add(new THREE.Line(geo2, strandMat2));
 
-            for (let i = 0; i < numRungs; i++) {
-                const fraction = i / numRungs;
-                const t = fraction * Math.PI * 2 * turns;
-                const y = fraction * height - height / 2;
+            // ATOM KÜRELERİ (NOKTALAR)
+            const nodeGeo = new THREE.SphereGeometry(0.12, 8, 8);
+            const nodeMatCyan = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
+            const nodeMatAmber = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
 
-                const p1 = new THREE.Vector3(Math.cos(t) * radius, y, Math.sin(t) * radius);
-                const p2 = new THREE.Vector3(Math.cos(t + Math.PI) * radius, y, Math.sin(t + Math.PI) * radius);
-                const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+            points1.forEach(p => {
+                const sphere = new THREE.Mesh(nodeGeo, nodeMatCyan);
+                sphere.position.copy(p);
+                dnaGroup.add(sphere);
+            });
 
-                const dir = new THREE.Vector3().subVectors(p2, p1).normalize();
-                const rotQuaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+            points2.forEach(p => {
+                const sphere = new THREE.Mesh(nodeGeo, nodeMatAmber);
+                sphere.position.copy(p);
+                dnaGroup.add(sphere);
+            });
 
-                // Sol Baz (Cyan)
-                const leftBase = new THREE.Mesh(baseHalfGeo, leftBaseMat);
-                leftBase.position.copy(new THREE.Vector3().addVectors(p1, mid).multiplyScalar(0.5));
-                leftBase.quaternion.copy(rotQuaternion);
-                dnaGroup.add(leftBase);
-
-                // Sağ Baz (Kehribar/Altın)
-                const rightBase = new THREE.Mesh(baseHalfGeo, rightBaseMat);
-                rightBase.position.copy(new THREE.Vector3().addVectors(p2, mid).multiplyScalar(0.5));
-                rightBase.quaternion.copy(rotQuaternion);
-                dnaGroup.add(rightBase);
-
-                // Atom Küreleri
-                const node1 = new THREE.Mesh(atomNodeGeo, atomMat);
-                node1.position.copy(p1);
-                dnaGroup.add(node1);
-
-                const node2 = new THREE.Mesh(atomNodeGeo, atomMat);
-                node2.position.copy(p2);
-                dnaGroup.add(node2);
-
-                // Merkez Bağ Halkası
-                const centerJoint = new THREE.Mesh(centerCoreGeo, glowCenterMat);
-                centerJoint.position.copy(mid);
-                centerJoint.quaternion.copy(rotQuaternion);
-                dnaGroup.add(centerJoint);
-                jointRings.push(centerJoint);
-            }
-
-            // PARÇACIK TOZLARI
-            const particleCount = 350;
+            // ARKA PLAN PARÇACIKLARI
+            const particleCount = 200;
             const particleGeo = new THREE.BufferGeometry();
-            const particlePos = new Float32Array(particleCount * 3);
+            const particlePositions = new Float32Array(particleCount * 3);
 
-            for (let p = 0; p < particleCount; p++) {
-                particlePos[p * 3] = (Math.random() - 0.5) * 22;
-                particlePos[p * 3 + 1] = (Math.random() - 0.5) * 26;
-                particlePos[p * 3 + 2] = (Math.random() - 0.5) * 22;
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                particlePositions[i] = (Math.random() - 0.5) * 20;
+                particlePositions[i + 1] = (Math.random() - 0.5) * 20;
+                particlePositions[i + 2] = (Math.random() - 0.5) * 20;
             }
 
-            particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+            particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
             const particleMat = new THREE.PointsMaterial({
                 color: 0x38bdf8,
-                size: 0.04,
+                size: 0.05,
                 transparent: true,
-                opacity: 0.75,
-                blending: THREE.AdditiveBlending
+                opacity: 0.5
             });
+
             const particles = new THREE.Points(particleGeo, particleMat);
             scene.add(particles);
 
-            // IŞIKLANDIRMA
-            scene.add(new THREE.AmbientLight(0x0f172a, 2.5));
-
-            const dirLight1 = new THREE.DirectionalLight(0x38bdf8, 3.5);
-            dirLight1.position.set(-10, 12, 10);
-            scene.add(dirLight1);
-
-            const dirLight2 = new THREE.DirectionalLight(0xf59e0b, 2.8);
-            dirLight2.position.set(10, -12, 8);
-            scene.add(dirLight2);
-
-            // 4. SCROLL & MOUSE FİZİK HESAPLAMALARI
-            let targetScrollProgress = 0;
-            let currentScrollProgress = 0;
-            let scrollVelocity = 0;
-            let lastScrollY = window.scrollY || 0;
-
+            // 3. FARE & PENCERE EYLEMLERİ
             let mouseX = 0, mouseY = 0;
-            let targetMouseX = 0, targetMouseY = 0;
-
-            window.addEventListener('scroll', () => {
-                const currentY = window.scrollY || 0;
-                const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-                
-                targetScrollProgress = currentY / maxScroll;
-                
-                // Güvenli Velocity (Sınırlandırılmış)
-                const rawVel = (currentY - lastScrollY) * 0.005;
-                scrollVelocity = Math.max(-0.25, Math.min(0.25, rawVel));
-                lastScrollY = currentY;
-            });
-
             window.addEventListener('mousemove', (e) => {
-                targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-                targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+                mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+                mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
             });
 
             window.addEventListener('resize', () => {
@@ -441,7 +263,7 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
 
-            // 5. ANİMASYON DÖNGÜSÜ
+            // 4. ANİMASYON DÖNGÜSÜ
             const clock = new THREE.Clock();
 
             function animate() {
@@ -449,13 +271,19 @@
 
                 const time = clock.getElapsedTime();
 
-                // Yumuşak Takip (Lerp)
-                currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.08;
-                scrollVelocity *= 0.90; // Sönümlenme
+                // Yavaş Akıcı Dönüş
+                dnaGroup.rotation.y = time * 0.4;
+                dnaGroup.rotation.x = mouseY * 0.5;
+                dnaGroup.rotation.z = -0.5 + mouseX * 0.5;
 
-                mouseX += (targetMouseX - mouseX) * 0.05;
-                mouseY += (targetMouseY - mouseY) * 0.05;
+                // Parçacık Hareketi
+                particles.rotation.y = time * 0.05;
 
-                // FİZİK 1: Esnek Dikey Yay Ölçeklemesi (Spring Elastic Stretch)
-                const stretch = 1 + Math.abs(scrollVelocity) * 1.2;
-                dnaGroup.scale.y += (stretch - dnaGroup.scale.y
+                renderer.render(scene, camera);
+            }
+
+            animate();
+        });
+    </script>
+</body>
+</html>
