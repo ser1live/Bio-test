@@ -29,14 +29,14 @@
             overflow-x: hidden;
         }
 
-        /* 3D CANVAS - KESİN GÖRÜNÜRLÜK İÇİN FIX */
+        /* 3D CANVAS - ARKA PLAN */
         #webgl-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 0; /* İçeriğin arkasında kalacak şekilde sabitlendi */
+            z-index: 0;
         }
 
         .content-layer {
@@ -44,18 +44,24 @@
             z-index: 10;
         }
 
+        /* YAZILARIN OKUNMASI İÇİN GÜÇLENDİRİLMİŞ SIVI CAM KART */
         .liquid-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+            background: rgba(3, 7, 18, 0.65); /* Daha koyu arka plan tabakası */
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
         }
 
         .liquid-btn {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* Yazıların Parlak Arka Planda Kaybolmaması İçin Gölge Efekti */
+        .text-glow {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
         }
     </style>
 </head>
@@ -66,11 +72,11 @@
 
     <!-- HEADER -->
     <header class="fixed top-0 left-0 right-0 z-50 p-6 max-w-5xl mx-auto flex justify-between items-center">
-        <div class="liquid-btn px-4 py-1.5 rounded-full text-[11px] font-mono text-cyan-300 flex items-center gap-2">
+        <div class="liquid-btn px-4 py-1.5 rounded-full text-[11px] font-mono text-cyan-300 flex items-center gap-2 shadow-lg">
             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
             <span>LIQUID GLASS</span>
         </div>
-        <a href="https://t.me/ser1live" target="_blank" class="liquid-btn px-5 py-2 rounded-full text-xs font-semibold text-white flex items-center gap-2">
+        <a href="https://t.me/ser1live" target="_blank" class="liquid-btn px-5 py-2 rounded-full text-xs font-semibold text-white flex items-center gap-2 shadow-lg">
             <span>İletişim</span>
             <i class="fa-solid fa-paper-plane text-[10px] text-cyan-400"></i>
         </a>
@@ -83,12 +89,12 @@
         <section class="min-h-screen flex items-center justify-center pt-20 pb-10">
             <div class="liquid-card p-8 rounded-3xl w-full max-w-sm text-center space-y-6">
                 <div class="relative w-24 h-24 mx-auto">
-                    <img src="https://github.com/ser1live.png" alt="Serdar" class="w-full h-full rounded-full object-cover border border-white/40 shadow-2xl">
+                    <img src="https://github.com/ser1live.png" alt="Serdar" class="w-full h-full rounded-full object-cover border-2 border-white/50 shadow-2xl">
                     <span class="absolute bottom-1 right-1 w-4 h-4 bg-emerald-400 border-2 border-black rounded-full"></span>
                 </div>
 
                 <div class="space-y-2">
-                    <h1 class="text-3xl font-bold tracking-tight text-white">SERDAR</h1>
+                    <h1 class="text-3xl font-bold tracking-tight text-white text-glow">SERDAR</h1>
                     <div class="flex items-center justify-center gap-1.5 flex-wrap">
                         <span class="px-3 py-0.5 rounded-full liquid-btn text-cyan-300 text-[10px] font-mono">Developer</span>
                         <span class="px-3 py-0.5 rounded-full liquid-btn text-emerald-300 text-[10px] font-mono">Linux & Cyber</span>
@@ -96,54 +102,54 @@
                     </div>
                 </div>
 
-                <p class="text-xs text-slate-300 leading-relaxed">
+                <p class="text-xs text-slate-200 leading-relaxed text-glow font-medium">
                     Akışkan 3D grafik arabirimleri, özel sistem modifikasyonları ve modern web deneyimleri geliştiriyorum.
                 </p>
 
                 <div class="flex justify-center gap-3 pt-2">
-                    <a href="https://t.me/ser1live" target="_blank" class="liquid-btn w-10 h-10 rounded-xl flex items-center justify-center text-cyan-300 text-lg">
+                    <a href="https://t.me/ser1live" target="_blank" class="liquid-btn w-10 h-10 rounded-xl flex items-center justify-center text-cyan-300 text-lg shadow-md">
                         <i class="fa-brands fa-telegram"></i>
                     </a>
-                    <a href="https://www.instagram.com/ser_dark_" target="_blank" class="liquid-btn w-10 h-10 rounded-xl flex items-center justify-center text-pink-400 text-lg">
+                    <a href="https://www.instagram.com/ser_dark_" target="_blank" class="liquid-btn w-10 h-10 rounded-xl flex items-center justify-center text-pink-400 text-lg shadow-md">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="https://www.tiktok.com/@serlive7" target="_blank" class="liquid-btn w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg">
+                    <a href="https://www.tiktok.com/@serlive7" target="_blank" class="liquid-btn w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shadow-md">
                         <i class="fa-brands fa-tiktok"></i>
                     </a>
                 </div>
 
-                <div class="pt-4 flex flex-col items-center gap-2 text-[10px] font-mono text-slate-400 opacity-70 animate-bounce">
+                <div class="pt-4 flex flex-col items-center gap-2 text-[10px] font-mono text-slate-300 opacity-90 animate-bounce text-glow">
                     <span>AŞAĞI KAYDIR</span>
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
             </div>
         </section>
 
-        <!-- BÖLÜM 2: PROJELER (Kaydırma testi için) -->
+        <!-- BÖLÜM 2: PROJELER -->
         <section id="projects" class="py-24 space-y-8">
             <div class="text-center space-y-2">
-                <h2 class="text-2xl font-bold text-white">PROJELER</h2>
-                <p class="text-xs text-slate-400 font-mono">Kaydırdıkça arkadaki 3D efekt hareket edecek</p>
+                <h2 class="text-2xl font-bold text-white text-glow">PROJELER</h2>
+                <p class="text-xs text-slate-300 font-mono text-glow">Kaydırdıkça arkadaki 3D efekt hareket edecek</p>
             </div>
 
             <div class="grid grid-cols-1 gap-4">
                 <div class="liquid-card p-6 rounded-2xl space-y-2">
-                    <h3 class="text-base font-bold text-cyan-300">Liquid Glass 3D Engine</h3>
-                    <p class="text-xs text-slate-300">GPU tabanlı GLSL shader ile geliştirilmiş akışkan cam arka planı.</p>
+                    <h3 class="text-base font-bold text-cyan-300 text-glow">Liquid Glass 3D Engine</h3>
+                    <p class="text-xs text-slate-200 text-glow font-medium">GPU tabanlı GLSL shader ile geliştirilmiş akışkan cam arka planı.</p>
                 </div>
                 <div class="liquid-card p-6 rounded-2xl space-y-2">
-                    <h3 class="text-base font-bold text-emerald-300">Termux Security Tools</h3>
-                    <p class="text-xs text-slate-300">Mobil Linux ortamında otomasyon ve güvenlik araç setleri.</p>
+                    <h3 class="text-base font-bold text-emerald-300 text-glow">Termux Security Tools</h3>
+                    <p class="text-xs text-slate-200 text-glow font-medium">Mobil Linux ortamında otomasyon ve güvenlik araç setleri.</p>
                 </div>
                 <div class="liquid-card p-6 rounded-2xl space-y-2">
-                    <h3 class="text-base font-bold text-amber-300">Custom System Tweaks</h3>
-                    <p class="text-xs text-slate-300">OxygenOS ve root tabanlı performans optimizasyonları.</p>
+                    <h3 class="text-base font-bold text-amber-300 text-glow">Custom System Tweaks</h3>
+                    <p class="text-xs text-slate-200 text-glow font-medium">OxygenOS ve root tabanlı performans optimizasyonları.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="content-layer border-t border-white/10 py-8 text-center text-xs text-slate-500 font-mono">
+    <footer class="content-layer border-t border-white/10 py-8 text-center text-xs text-slate-400 font-mono text-glow">
         <p>© 2026 SERDAR</p>
     </footer>
 
